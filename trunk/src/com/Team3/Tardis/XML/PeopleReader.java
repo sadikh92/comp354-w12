@@ -90,22 +90,28 @@ public class PeopleReader implements IPeopleReader {
 			Logger.log("is = " + is);
 			
 			JXPathContext ctx = XPathHelper.getDocumentContext(is);
-
-			Iterator<Pointer> peopleIt = ctx.iteratePointers("/people/person");
-			while(peopleIt.hasNext()){
-
-				Person person = new Person();
-				Pointer personPtr = peopleIt.next();
-				JXPathContext personCtx = ctx.getRelativeContext(personPtr);
-				Object id = personCtx.getValue("id");
-				Object firstName = personCtx.getValue("firstName");
-				Object lastName = personCtx.getValue("lastName");
+			
+			if(ctx != null) {
 				
-				person.setPersonId(Integer.parseInt((id == null)?"-1":(String)id));
-				person.setFirstName(((firstName == null)?"":(String)firstName));
-				person.setLastName(((lastName == null)?"":(String)lastName));
+				Iterator<Pointer> peopleIt = ctx.iteratePointers("/people/person");
 				
-				Logger.log(person.getPersonId() + " : " + person.getFirstName() + " " + person.getLastName());
+				while(peopleIt.hasNext()){
+	
+					Person person = new Person();
+					Pointer personPtr = peopleIt.next();
+					JXPathContext personCtx = ctx.getRelativeContext(personPtr);
+					Object id = personCtx.getValue("id");
+					Object firstName = personCtx.getValue("firstName");
+					Object lastName = personCtx.getValue("lastName");
+					
+					person.setPersonId(Integer.parseInt((id == null)?"-1":(String)id));
+					person.setFirstName(((firstName == null)?"":(String)firstName));
+					person.setLastName(((lastName == null)?"":(String)lastName));
+					
+					people.add(person);
+					
+					Logger.log(person.getPersonId() + " : " + person.getFirstName() + " " + person.getLastName());
+				}
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
