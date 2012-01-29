@@ -6,5 +6,5 @@ public interface IInputValidator {
 
 	String validatePerson(Node personNode);
 
-	String validateTasks(Node taskNode);
+	String validateTask(Node taskNode);
 }
