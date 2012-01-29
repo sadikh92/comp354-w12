@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<people>
+	<person>
+		<id>0</id>
+		<firstName>Mark</firstName>
+		<lastName>Smith</lastName>
+		<phoneNumber>514-744-3343</phoneNumber>
+		<address>2370 Gold Street</address>
+		<city>Saint-Laurent</city>
+		<postalCode>H4M-1S3</postalCode>
+		<province>Quebec</province>
+		<country>Canada</country>
+	</person>
+	<person>
+		<id>1</id>
+		<firstName>Joe</firstName>
+		<lastName>Miller</lastName>
+		<phoneNumber>514-333-1444</phoneNumber>
+		<address>1215 Alexis-Nihon</address>
+		<city>Saint-Laurent</city>
+		<postalCode>H4R-1Z3</postalCode>
+		<province>Quebec</province>
+		<country>Canada</country>
+	</person>
+</people>
