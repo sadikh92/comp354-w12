@@ -1,5 +1,6 @@
 package com.Team3.Tardis.Models;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Task {
@@ -9,6 +10,7 @@ public class Task {
 	private String shortDescription;
 	private int duration;
 	private Date dueDate;
+	private ArrayList<Task> subtasks;
 	
 	public int getTaskId() {
 		return taskId;
@@ -49,5 +51,7 @@ public class Task {
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
 	}
-
+	
+	public ArrayList<Task> getSubtasks(){return subtasks;}
+	public void addSubtask(Task task){subtasks.add(task);}
 }

@@ -58,7 +58,7 @@ public class TaskReader implements ITaskReader{
 				if(n != null && n.getFirstChild() != null)
 					task.setDuration(Integer.parseInt(n.getFirstChild().getNodeValue()));
 				
-				n = nl.item(i).getChildNodes().item(5);
+				n = nl.item(i).getChildNodes().item(6);
 				if(n != null && n.getFirstChild() != null){	
 					try {
 						DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
@@ -66,7 +66,7 @@ public class TaskReader implements ITaskReader{
 					} catch (ParseException e) {
 					}
 				}
-
+				
 				tasksList.add(task);
 			}
 			
