@@ -6,6 +6,6 @@ import com.Team3.Tardis.Models.Person;
 
 public interface IPeopleReader {
 
-	ArrayList<Person> loadPeople(String path);
+	ArrayList<Person> loadPeople(String path) throws Exception;
 
 }

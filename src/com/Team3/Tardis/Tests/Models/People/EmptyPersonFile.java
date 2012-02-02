@@ -32,7 +32,13 @@ public class EmptyPersonFile {
 		String path = "xml/empty_people.xml";
 		PeopleReader reader = new PeopleReader(new InputValidator());
 		//ArrayList<Person> people = reader.loadPeople(path);
-		ArrayList<Person> people = reader.loadPeople_NEW_LOGIC(path);
+		ArrayList<Person> people = null;
+		try {
+			people = reader.loadPeople(path);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(0, people.size());
 	}
 
