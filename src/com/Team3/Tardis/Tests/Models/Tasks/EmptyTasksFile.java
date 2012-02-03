@@ -13,5 +13,6 @@ public class EmptyTasksFile {
 	@Test
 	public void test()
 	{
+		
 	}
 }
