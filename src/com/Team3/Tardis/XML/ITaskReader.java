@@ -6,6 +6,6 @@ import com.Team3.Tardis.Models.*;
 
 public interface ITaskReader {
 
-	ArrayList<Task> loadTasks(String path);
+	ArrayList<Task> loadTasks(String path) throws Exception;
 
 }
