@@ -77,7 +77,8 @@ public class TaskReader implements ITaskReader{
 		Logger.log(PeopleReader.class.getName(), "loadPerson() - START ");
 		
 		String errorMessage = inputValidator.validateTask(taskCtx);
-		if (errorMessage == "") {
+		
+		if (errorMessage.equals("")) {
 			Task task = new Task();
 			
 			// required fields
