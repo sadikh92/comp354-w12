@@ -2,6 +2,7 @@ package com.Team3.Tardis.XML;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -28,8 +29,19 @@ public class PeopleReader implements IPeopleReader {
 		Logger.log(PeopleReader.class.getName(), "docPath = " + path);
 		ArrayList<Person> people = new ArrayList<Person>();
 		InputStream is = null;
-
+		File file = null;
+		
 		try {
+		
+			file = new File(path);
+			
+			// The file does not exist.
+			if (!file.exists()) {
+				System.out.println(path + " does not exist.");
+				return people;
+			}
+			
+			// The file exists.
 			is = new FileInputStream(path);
 			Logger.log(PeopleReader.class.getName(), "is = " + is);
 
