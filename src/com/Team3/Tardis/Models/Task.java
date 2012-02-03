@@ -9,7 +9,9 @@ public class Task {
 	private String title;
 	private String shortDescription;
 	private int duration;
+	private String deliverable;
 	private Date dueDate;
+	private int personId;
 	private ArrayList<Task> subtasks;
 	
 	public int getTaskId() {
@@ -43,6 +45,14 @@ public class Task {
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
+	
+	public String getDeliverable() {
+		return deliverable;
+	}
+
+	public void setDeliverable(String deliverable) {
+		this.deliverable = deliverable;
+	}
 
 	public Date getDueDate() {
 		return dueDate;
@@ -50,6 +60,14 @@ public class Task {
 
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
+	}
+	
+	public int getPersonId() {
+		return personId;
+	}
+
+	public void setPersonId(int personId) {
+		this.personId = personId;
 	}
 	
 	public ArrayList<Task> getSubtasks(){return subtasks;}
