@@ -37,7 +37,7 @@ public class XPathHelper
 	
 	public static Document getDocument(Object xmlFile)
 	{
-		Logger.log("getDocument - START");
+		Logger.log(XPathHelper.class.getName(), "getDocument - START");
 
 		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder;
@@ -51,42 +51,42 @@ public class XPathHelper
 				doc = docBuilder.parse((InputStream)xmlFile);// Parse the XML file and build the Document object in RAM
 				
 		} catch (ParserConfigurationException e) {
-			Logger.log("ParserConfigurationException: " + e.getMessage());
+			Logger.log(XPathHelper.class.getName(), "ParserConfigurationException: " + e.getMessage());
 		} catch (SAXParseException err) {
-			Logger.log("SAXParseException" + ", line " + err.getLineNumber() + ", uri " + err.getSystemId() + "\n" + "   " + err.getMessage());	  		
+			Logger.log(XPathHelper.class.getName(), "SAXParseException" + ", line " + err.getLineNumber() + ", uri " + err.getSystemId() + "\n" + "   " + err.getMessage());	  		
 		}catch (SAXException e) {
-			Logger.log("SAXException: " + e.getMessage());
+			Logger.log(XPathHelper.class.getName(), "SAXException: " + e.getMessage());
 		} catch (IOException e) {
-			Logger.log("IOException: " + e.getMessage());
+			Logger.log(XPathHelper.class.getName(), "IOException: " + e.getMessage());
 		}
 
-		Logger.log("getDocument - END");
+		Logger.log(XPathHelper.class.getName(), "getDocument - END");
 		return doc;
   	}
 	
 	public static JXPathContext getDocumentContext(Object xmlFile)
 	{
-		Logger.log("getDocumentContext - START");
+		Logger.log(XPathHelper.class.getName(), "getDocumentContext - START");
 		
 		Document doc = getDocument(xmlFile);
 		JXPathContext ctx = JXPathContext.newContext(doc);
 		
-		Logger.log("getDocumentContext - END");
+		Logger.log(XPathHelper.class.getName(), "getDocumentContext - END");
 		return ctx;
   	}
   	
 	public static NodeList getNodeList(Document doc, String query)
 	{
-		Logger.log("getNodeList - START");
+		Logger.log(XPathHelper.class.getName(), "getNodeList - START");
 		
 		NodeList nl = null;
 		try {
 			nl = XPathAPI.selectNodeList(doc, query);
 		} catch (TransformerException e) {
-			Logger.log("TransformerException: " + e.getMessage());
+			Logger.log(XPathHelper.class.getName(), "TransformerException: " + e.getMessage());
 		}
 
-		Logger.log("getNodeList - END");
+		Logger.log(XPathHelper.class.getName(), "getNodeList - END");
 		return nl;
 	}
 }
