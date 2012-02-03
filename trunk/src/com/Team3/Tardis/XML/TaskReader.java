@@ -1,5 +1,6 @@
 package com.Team3.Tardis.XML;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -31,8 +32,17 @@ public class TaskReader implements ITaskReader{
 		Logger.log(TaskReader.class.getName(), "docPath = " + path);
 		ArrayList<Task> tasks = new ArrayList<Task>();
 		InputStream is =  null;
+		File file = null;
 		
 		try {
+			file = new File(path);
+			
+			// The file does not exist.
+			if (!file.exists()) {
+				System.out.println(path + " does not exist.");
+				return tasks;
+			}
+			
 			is = new FileInputStream(path);
 			Logger.log(PeopleReader.class.getName(), "is = " + is);
 

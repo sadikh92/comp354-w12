@@ -1,5 +1,7 @@
 package com.Team3.Tardis.Models;
 
+import java.util.ArrayList;
+
 public class Person {
 
 	private int personId;
@@ -82,6 +84,23 @@ public class Person {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+	
+	/*
+	 * @param tasks The global list of tasks.
+	 * @description A list containing the person's tasks will be returned.
+	 */
+	public ArrayList<Task> getTasks(ArrayList<Task> tasks)
+	{
+		ArrayList<Task> myTasks = new ArrayList<Task>();
+		
+		for (Task task : tasks)
+		{
+			// The task belongs to the current person.
+			if (task.getPersonId() == personId)
+				myTasks.add(task);
+		}
+		return myTasks;
 	}
 
 }
