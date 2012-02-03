@@ -1,9 +1,9 @@
 package com.Team3.Tardis.XML;
 
 import java.util.regex.Pattern;
+
 import org.apache.commons.jxpath.JXPathContext;
 import org.apache.commons.jxpath.JXPathException;
-import org.w3c.dom.Node;
 
 import com.Team3.Tardis.logger.Logger;
 
@@ -53,7 +53,7 @@ public class InputValidator implements IInputValidator {
 		Logger.log("START: phone number check");
 		try {
 			Object value = personCtx.getValue("phoneNumber");
-			if (value != null && value.toString() != "" && !Pattern.matches(PHONENUMBER_FIELD, value.toString()))
+			if (value != null && !value.toString().equals("") && !Pattern.matches(PHONENUMBER_FIELD, value.toString()))
 				errorMessage.append("Invalid phone number\n");
 			Logger.log("END: phone number check " + errorMessage);
 		} catch (JXPathException e) {
@@ -62,7 +62,7 @@ public class InputValidator implements IInputValidator {
 		Logger.log("START: address check ");
 		try {
 			Object value = personCtx.getValue("address");
-			if (value != null && value.toString() != "" && !Pattern.matches(TEXT_FIELD, value.toString()))
+			if (value != null && !value.toString().equals("") && !Pattern.matches(TEXT_FIELD, value.toString()))
 				errorMessage.append("Invalid address\n");
 			Logger.log("END: address check " + errorMessage);
 		} catch (JXPathException e) {
@@ -71,7 +71,7 @@ public class InputValidator implements IInputValidator {
 		Logger.log("START: city check " + errorMessage);
 		try {
 			Object value = personCtx.getValue("city");
-			if (value != null && value.toString() != "" && !Pattern.matches(TEXT_FIELD, value.toString()))
+			if (value != null && !value.toString().equals("") && !Pattern.matches(TEXT_FIELD, value.toString()))
 				errorMessage.append("Invalid city\n");
 			Logger.log("END: city check " + errorMessage);
 		} catch (JXPathException e) {
@@ -80,7 +80,7 @@ public class InputValidator implements IInputValidator {
 		Logger.log("START: postal code check");
 		try {
 			Object value = personCtx.getValue("postalCode");
-			if (value != null && value.toString() != "" && !Pattern.matches(POSTAL_CODE_FIELD, value.toString()))
+			if (value != null && !value.toString().equals("") && !Pattern.matches(POSTAL_CODE_FIELD, value.toString()))
 				errorMessage.append("Invalid postal code\n");
 			Logger.log("END: postal code check " + errorMessage);
 		} catch (JXPathException e) {
@@ -89,7 +89,7 @@ public class InputValidator implements IInputValidator {
 		Logger.log("START: province check");
 		try {
 			Object value = personCtx.getValue("province");
-			if (value != null && value.toString() != "" && !Pattern.matches(TEXT_FIELD, value.toString()))
+			if (value != null && !value.toString().equals("") && !Pattern.matches(TEXT_FIELD, value.toString()))
 				errorMessage.append("Invalid province\n");
 			Logger.log("END: province check " + errorMessage);
 		} catch (JXPathException e) {
@@ -98,7 +98,7 @@ public class InputValidator implements IInputValidator {
 		Logger.log("START: country check " + errorMessage);
 		try {
 			Object value = personCtx.getValue("country");
-			if (value != null && value.toString() != "" && !Pattern.matches(TEXT_FIELD, value.toString()))
+			if (value != null && !value.toString().equals("") && !Pattern.matches(TEXT_FIELD, value.toString()))
 				errorMessage.append("Invalid country\n");
 			Logger.log("END: country check " + errorMessage);
 		} catch (JXPathException e) {
@@ -108,42 +108,58 @@ public class InputValidator implements IInputValidator {
 	}
 
 	@Override
-	public String validateTask(Node taskNode) {
+	public String validateTask(JXPathContext taskCtx) {
 
 		StringBuilder errorMessage = new StringBuilder();
 
-		Node n = taskNode.getChildNodes().item(1);
+		try {
+			if (taskCtx.getValue("id") == null || !Pattern.matches(NON_NEGATIVE_INTEGER_FIELD, taskCtx.getValue("id").toString()))
+				errorMessage.append("Invalid task ID\n");
 
-		if (n == null || n.getFirstChild() == null)
+		} catch (JXPathException e) {
 			errorMessage.append("Missing task ID node\n");
-		else {
-			if (!Pattern.matches(INTEGER_FIELD, n.getFirstChild().getNodeValue()))
-				;
-			errorMessage.append("Invalid task ID\n");
 		}
 
-		n = taskNode.getChildNodes().item(2);
-		if (n == null || n.getFirstChild() == null || n.getFirstChild().getNodeValue().trim().isEmpty())
+		try {
+			if (taskCtx.getValue("title") == null || !Pattern.matches(TEXT_FIELD, taskCtx.getValue("title").toString()))
+				errorMessage.append("Invalid title\n");
+		} catch (JXPathException e) {
 			errorMessage.append("Missing title node\n");
-
-		n = taskNode.getChildNodes().item(3);
-		if (n == null || n.getFirstChild() == null || n.getFirstChild().getNodeValue().trim().isEmpty())
-			errorMessage.append("Missing description node\n");
-
-		n = taskNode.getChildNodes().item(4);
-		String duration = n.getFirstChild().getNodeValue().trim();
-		if (n == null || n.getFirstChild() != null || duration.isEmpty()) {
-			errorMessage.append("Missing duration\n");
-		} else if (!Pattern.matches(INTEGER_FIELD, duration)) {
-			errorMessage.append("Invalid duration\n");
 		}
 
-		n = taskNode.getChildNodes().item(5);
-		String date = n.getFirstChild().getNodeValue().trim();
-		if (n == null || n.getFirstChild() != null || date.isEmpty()) {
-			errorMessage.append("Missing date\n");
-		} else if (!Pattern.matches(DATE_FIELD, date)) {
-			errorMessage.append("Invalid date\n");
+		try {
+			if (taskCtx.getValue("description") == null || !Pattern.matches(TEXT_FIELD, taskCtx.getValue("description").toString()))
+				errorMessage.append("Invalid description\n");
+		} catch (JXPathException e) {
+			errorMessage.append("Missing description node\n");
+		}
+
+		try {
+			Object value = taskCtx.getValue("duration");
+			if (value != null && !value.toString().equals("") && !Pattern.matches(TEXT_FIELD, value.toString()))
+				errorMessage.append("Invalid duration\n");
+		} catch (JXPathException e) {
+		}
+
+		try {
+			Object value = taskCtx.getValue("deliverable");
+			if (value != null && !value.toString().equals("") && !Pattern.matches(TEXT_FIELD, value.toString()))
+				errorMessage.append("Invalid deliverable\n");
+		} catch (JXPathException e) {
+		}
+
+		try {
+			Object value = taskCtx.getValue("deliverable");
+			if (value != null && !value.toString().equals("") && !Pattern.matches(TEXT_FIELD, value.toString()))
+				errorMessage.append("Invalid deliverable\n");
+		} catch (JXPathException e) {
+		}
+
+		try {
+			Object value = taskCtx.getValue("dueDate");
+			if (value != null && !value.toString().equals("") && !Pattern.matches(TEXT_FIELD, value.toString()))
+				errorMessage.append("Invalid dueDate\n");
+		} catch (JXPathException e) {
 		}
 
 		return errorMessage.toString();
