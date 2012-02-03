@@ -18,7 +18,7 @@ import com.Team3.Tardis.logger.Logger;
 public class PeopleTaskReport 
 {
 	static final String PEOPLE_FILE = "xml/people.xml";
-	static final String ONE_TASK_TEST_FILE = "report/report_test.xml";
+	static final String ONE_TASK_TEST_FILE = "report/report_test.txt";
 	static final String ONE_TASK_ACTUAL_FILE = "report/report.txt";
 	
 	@BeforeClass
