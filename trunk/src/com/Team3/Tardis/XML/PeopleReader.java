@@ -24,14 +24,14 @@ public class PeopleReader implements IPeopleReader {
 	@Override
 	public ArrayList<Person> loadPeople(String path) throws Exception {
 
-		Logger.log("loadPeople() - START ");
-		Logger.log("docPath = " + path);
+		Logger.log(PeopleReader.class.getName(), "loadPeople() - START ");
+		Logger.log(PeopleReader.class.getName(), "docPath = " + path);
 		ArrayList<Person> people = new ArrayList<Person>();
 		InputStream is = null;
 
 		try {
 			is = new FileInputStream(path);
-			Logger.log("is = " + is);
+			Logger.log(PeopleReader.class.getName(), "is = " + is);
 
 			JXPathContext ctx = XPathHelper.getDocumentContext(is);
 
@@ -50,7 +50,7 @@ public class PeopleReader implements IPeopleReader {
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			Logger.log("FileNotFoundException " + e.getMessage());
+			Logger.log(PeopleReader.class.getName(), "FileNotFoundException " + e.getMessage());
 			
 		}finally {
 			if (is != null) {
@@ -58,25 +58,25 @@ public class PeopleReader implements IPeopleReader {
 					is.close();
 				} catch (MalformedURLException e) {
 					e.printStackTrace();
-					Logger.log(" MalformedURLException " + e.getMessage());
+					Logger.log(PeopleReader.class.getName(), "MalformedURLException " + e.getMessage());
 				} catch (IOException e) {
 					e.printStackTrace();
-					Logger.log("IOException " + e.getMessage());
+					Logger.log(PeopleReader.class.getName(), "IOException " + e.getMessage());
 				}
 			}
 		}
 
-		Logger.log("loadPeople() - END ");
+		Logger.log(PeopleReader.class.getName(), "loadPeople() - END ");
 		return people;
 	}
 
 	private Person loadPerson(JXPathContext personCtx) throws Exception {
-
-		Logger.log("START: Validating Person");
+		
+		Logger.log(PeopleReader.class.getName(), "loadPerson() - START ");
+		
 		String errorMessage = inputValidator.validatePerson(personCtx);
-		Logger.log("END: Validating Person");
+		
 		if (errorMessage.equals("")) {
-			Logger.log("START: Assign Person");
 			Person person = new Person();
 
 			// required fields
@@ -98,9 +98,13 @@ public class PeopleReader implements IPeopleReader {
 					: personCtx.getValue("postalCode").toString());
 			person.setProvince(personCtx.getValue("province") == null ? ""
 					: personCtx.getValue("province").toString());
-			Logger.log("END: Assign Person");
+
+			Logger.log(PeopleReader.class.getName(), "loadPerson() - END ");
 			return person;
-		} else
+		} else {
+			
+			Logger.log(PeopleReader.class.getName(), "loadPerson() - errorMessage = " + errorMessage);
 			throw new Exception(errorMessage);
+		}
 	}
 }
