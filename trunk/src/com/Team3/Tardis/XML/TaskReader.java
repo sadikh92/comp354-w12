@@ -5,14 +5,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import org.apache.commons.jxpath.JXPathContext;
+import org.apache.commons.jxpath.Pointer;
 
 import com.Team3.Tardis.Models.Task;
 import com.Team3.Tardis.XML.Helper.XPathHelper;
@@ -20,69 +18,91 @@ import com.Team3.Tardis.logger.Logger;
 
 public class TaskReader implements ITaskReader{
 
-	@Override
-	public ArrayList<Task> loadTasks(String path) {
+	private IInputValidator inputValidator;
 
-		Logger.log("loadTask() - START ");
-		Logger.log("docPath = " + path);
-		ArrayList<Task> tasksList = new ArrayList<Task>();
+	public TaskReader(IInputValidator inputValidator) {
+		this.inputValidator = inputValidator;
+	}
+	
+	@Override
+	public ArrayList<Task> loadTasks(String path) throws Exception {
+
+		Logger.log(TaskReader.class.getName(), "loadTask() - START ");
+		Logger.log(TaskReader.class.getName(), "docPath = " + path);
+		ArrayList<Task> tasks = new ArrayList<Task>();
 		InputStream is =  null;
 		
 		try {
 			is = new FileInputStream(path);
+			Logger.log(PeopleReader.class.getName(), "is = " + is);
 
-			Logger.log("is = " + is);			
-			org.w3c.dom.Document doc = XPathHelper.getDocument(is);
-			
-			String query = "//people/person";
-			Logger.log("query = " + query);
-			NodeList nl = XPathHelper.getNodeList(doc, query);
-			Logger.log("nl.getLength() = " + nl.getLength());
-			for(int i=0; i< nl.getLength(); i++)
-			{
-				Task task = new Task();
-				
-				Node n = nl.item(i).getChildNodes().item(1);
-				if(n != null && n.getFirstChild() != null)
-					task.setTaskId(Integer.parseInt(n.getFirstChild().getNodeValue()));
-					
-				n = nl.item(i).getChildNodes().item(2);
-				if(n != null && n.getFirstChild() != null)
-					task.setTitle(n.getFirstChild().getNodeValue());
-					
-				n = nl.item(i).getChildNodes().item(3);
-				if(n != null && n.getFirstChild() != null)
-					task.setShortDescription(n.getFirstChild().getNodeValue());
-				
-				n = nl.item(i).getChildNodes().item(4);
-				if(n != null && n.getFirstChild() != null)
-					task.setDuration(Integer.parseInt(n.getFirstChild().getNodeValue()));
-				
-				n = nl.item(i).getChildNodes().item(6);
-				if(n != null && n.getFirstChild() != null){	
-					try {
-						DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
-						task.setDueDate((Date)formatter.parse((n.getFirstChild().getNodeValue())));
-					} catch (ParseException e) {
-					}
+			JXPathContext ctx = XPathHelper.getDocumentContext(is);
+
+			if (ctx != null) {
+
+				Iterator<Pointer> tasksIt = ctx
+						.iteratePointers("/tasks/task");
+
+				while (tasksIt.hasNext()) {
+
+					Pointer taskPtr = tasksIt.next();					
+					Task task = loadTask(ctx
+							.getRelativeContext(taskPtr));
+					tasks.add(task);
 				}
-				
-				tasksList.add(task);
 			}
-			
-			is.close();		
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			Logger.log("FILENOTFOUND EXCEPTION " + e.getMessage());
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-			Logger.log(" MalformedURLException " + e.getMessage());
-		} catch (IOException e) {
-			e.printStackTrace();
-			Logger.log("IOException " + e.getMessage());
+			Logger.log(TaskReader.class.getName(), "FILENOTFOUND EXCEPTION " + e.getMessage());
+		} finally {
+			if (is != null) {
+				try {
+					is.close();
+				} catch (MalformedURLException e) {
+					e.printStackTrace();
+					Logger.log(PeopleReader.class.getName(), "MalformedURLException " + e.getMessage());
+				} catch (IOException e) {
+					e.printStackTrace();
+					Logger.log(PeopleReader.class.getName(), "IOException " + e.getMessage());
+				}
+			}
 		}
 
-		Logger.log("loadTask() - END ");
-		return tasksList;		
+		Logger.log(TaskReader.class.getName(), "loadTask() - END ");
+		return tasks;		
+	}
+
+	private Task loadTask(JXPathContext taskCtx) throws Exception {
+		
+		Logger.log(PeopleReader.class.getName(), "loadPerson() - START ");
+		
+		String errorMessage = inputValidator.validateTask(taskCtx);
+		if (errorMessage == "") {
+			Task task = new Task();
+			
+			// required fields
+			task.setTaskId(Integer.parseInt(taskCtx.getValue("id").toString()));
+			task.setTitle(taskCtx.getValue("title").toString());
+			task.setShortDescription(taskCtx.getValue("description").toString());
+
+			// non required fields
+			task.setDuration(taskCtx.getValue("duration") == null ? 0
+					: Integer.parseInt(taskCtx.getValue("duration").toString()));
+			task.setDeliverable(taskCtx.getValue("deliverable") == null ? "" : taskCtx
+					.getValue("deliverable").toString());
+			task.setDueDate(taskCtx.getValue("dueDate") == null ? null : 
+					new Date(taskCtx.getValue("dueDate").toString()));
+			task.setPersonId(taskCtx.getValue("personId") == null ? 0
+					: Integer.parseInt(taskCtx.getValue("personId").toString()));
+			
+			// subtask to be read here in the next increment - where it's needed 
+			
+			Logger.log(PeopleReader.class.getName(), "loadPerson() - END ");
+			return task;
+		} else {
+			
+			Logger.log(PeopleReader.class.getName(), "loadPerson() - Error = " + errorMessage);
+			throw new Exception(errorMessage);
+		}
 	}
 }
