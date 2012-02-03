@@ -27,10 +27,15 @@ public class TasksFileNotFound {
 	 */
 	public void test()
 	{
-		//InputValidator validator = new InputValidator();
-		TaskReader reader = new TaskReader();
-		//ArrayList<Person> tasks = reader.loadPeople(EMPTY_PEOPLE_FILE);
-		ArrayList<Task> tasks = reader.loadTasks(TASKS_NON_EXISTING_FILE);
-		assertEquals(0, tasks.size());
+		InputValidator validator = new InputValidator();
+		TaskReader reader = new TaskReader(validator);
+		ArrayList<Task> tasks;
+		try {
+			tasks = reader.loadTasks(TASKS_NON_EXISTING_FILE);
+			assertEquals(0, tasks.size());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
