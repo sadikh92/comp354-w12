@@ -22,85 +22,85 @@ public class InputValidator implements IInputValidator {
 
 		StringBuilder errorMessage = new StringBuilder();
 
-		Logger.log("START: id check");
+		Logger.log(InputValidator.class.getName(), "START: id check");
 		try {
 			if (personCtx.getValue("id") == null || !Pattern.matches(NON_NEGATIVE_INTEGER_FIELD, personCtx.getValue("id").toString()))
 				errorMessage.append("Invalid person ID\n");
-			Logger.log("END: id check " + errorMessage);
+			Logger.log(InputValidator.class.getName(), "END: id check " + errorMessage);
 
 		} catch (JXPathException e) {
 			errorMessage.append("Missing person ID node\n");
 		}
 		
-		Logger.log("START: first name check");
+		Logger.log(InputValidator.class.getName(), "START: first name check");
 		try {
 			if (personCtx.getValue("firstName") == null || !Pattern.matches(TEXT_FIELD, personCtx.getValue("firstName").toString()))
 				errorMessage.append("Invalid first name\n");
-			Logger.log("END: first name check " + errorMessage);
+			Logger.log(InputValidator.class.getName(), "END: first name check " + errorMessage);
 		} catch (JXPathException e) {
 			errorMessage.append("Missing first name node\n");
 		}
 
-		Logger.log("START: last name check");
+		Logger.log(InputValidator.class.getName(), "START: last name check");
 		try {
 			if (personCtx.getValue("lastName") == null || !Pattern.matches(TEXT_FIELD, personCtx.getValue("lastName").toString()))
 				errorMessage.append("Invalid last name\n");
-			Logger.log("END: last name check " + errorMessage);
+			Logger.log(InputValidator.class.getName(), "END: last name check " + errorMessage);
 		} catch (JXPathException e) {
 			errorMessage.append("Missing last name node\n");
 		}
 
-		Logger.log("START: phone number check");
+		Logger.log(InputValidator.class.getName(), "START: phone number check");
 		try {
 			Object value = personCtx.getValue("phoneNumber");
 			if (value != null && !value.toString().equals("") && !Pattern.matches(PHONENUMBER_FIELD, value.toString()))
 				errorMessage.append("Invalid phone number\n");
-			Logger.log("END: phone number check " + errorMessage);
+			Logger.log(InputValidator.class.getName(), "END: phone number check " + errorMessage);
 		} catch (JXPathException e) {
 		}
 
-		Logger.log("START: address check ");
+		Logger.log(InputValidator.class.getName(), "START: address check ");
 		try {
 			Object value = personCtx.getValue("address");
 			if (value != null && !value.toString().equals("") && !Pattern.matches(TEXT_FIELD, value.toString()))
 				errorMessage.append("Invalid address\n");
-			Logger.log("END: address check " + errorMessage);
+			Logger.log(InputValidator.class.getName(), "END: address check " + errorMessage);
 		} catch (JXPathException e) {
 		}
 
-		Logger.log("START: city check " + errorMessage);
+		Logger.log(InputValidator.class.getName(), "START: city check " + errorMessage);
 		try {
 			Object value = personCtx.getValue("city");
 			if (value != null && !value.toString().equals("") && !Pattern.matches(TEXT_FIELD, value.toString()))
 				errorMessage.append("Invalid city\n");
-			Logger.log("END: city check " + errorMessage);
+			Logger.log(InputValidator.class.getName(), "END: city check " + errorMessage);
 		} catch (JXPathException e) {
 		}
 
-		Logger.log("START: postal code check");
+		Logger.log(InputValidator.class.getName(), "START: postal code check");
 		try {
 			Object value = personCtx.getValue("postalCode");
 			if (value != null && !value.toString().equals("") && !Pattern.matches(POSTAL_CODE_FIELD, value.toString()))
 				errorMessage.append("Invalid postal code\n");
-			Logger.log("END: postal code check " + errorMessage);
+			Logger.log(InputValidator.class.getName(), "END: postal code check " + errorMessage);
 		} catch (JXPathException e) {
 		}
 
-		Logger.log("START: province check");
+		Logger.log(InputValidator.class.getName(), "START: province check");
 		try {
 			Object value = personCtx.getValue("province");
 			if (value != null && !value.toString().equals("") && !Pattern.matches(TEXT_FIELD, value.toString()))
 				errorMessage.append("Invalid province\n");
-			Logger.log("END: province check " + errorMessage);
+			Logger.log(InputValidator.class.getName(), "END: province check " + errorMessage);
 		} catch (JXPathException e) {
 		}
 
-		Logger.log("START: country check " + errorMessage);
+		Logger.log(InputValidator.class.getName(), "START: country check " + errorMessage);
 		try {
 			Object value = personCtx.getValue("country");
 			if (value != null && !value.toString().equals("") && !Pattern.matches(TEXT_FIELD, value.toString()))
 				errorMessage.append("Invalid country\n");
-			Logger.log("END: country check " + errorMessage);
+			Logger.log(InputValidator.class.getName(), "END: country check " + errorMessage);
 		} catch (JXPathException e) {
 		}
 		
