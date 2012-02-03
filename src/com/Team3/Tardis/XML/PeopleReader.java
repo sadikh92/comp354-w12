@@ -72,8 +72,11 @@ public class PeopleReader implements IPeopleReader {
 
 	private Person loadPerson(JXPathContext personCtx) throws Exception {
 
+		Logger.log("START: Validating Person");
 		String errorMessage = inputValidator.validatePerson(personCtx);
-		if (errorMessage == "") {
+		Logger.log("END: Validating Person");
+		if (errorMessage.equals("")) {
+			Logger.log("START: Assign Person");
 			Person person = new Person();
 
 			// required fields
@@ -95,6 +98,7 @@ public class PeopleReader implements IPeopleReader {
 					: personCtx.getValue("postalCode").toString());
 			person.setProvince(personCtx.getValue("province") == null ? ""
 					: personCtx.getValue("province").toString());
+			Logger.log("END: Assign Person");
 			return person;
 		} else
 			throw new Exception(errorMessage);
