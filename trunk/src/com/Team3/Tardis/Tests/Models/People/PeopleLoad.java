@@ -47,27 +47,27 @@ public class PeopleLoad {
 			
 			// Test the 1st person.
 			Person first = people.get(0);
-			assertEquals(0, first.getPersonId());
+			assertEquals(2, first.getPersonId());
 			assertEquals("Mark", first.getFirstName());
 			assertEquals("Smith", first.getLastName());
-			/*assertEquals("514-744-3343", first.getPhoneNumber());
+			assertEquals("514-744-3333", first.getPhoneNumber());
 			assertEquals("2370 Gold Street", first.getAddress());
 			assertEquals("Saint-Laurent", first.getCity());
-			assertEquals("H4M-1S3", first.getPostalCode());
+			assertEquals("H4M 1S3", first.getPostalCode());
 			assertEquals("Quebec", first.getProvince());
-			assertEquals("Canada", first.getCountry());*/
+			assertEquals("Canada", first.getCountry());
 			
 			// Test the 2nd person.
 			Person second = people.get(1);
 			assertEquals(1, second.getPersonId());
 			assertEquals("Joe", second.getFirstName());
 			assertEquals("Miller", second.getLastName());
-			/*assertEquals("514-333-1444", second.getPhoneNumber());
+			assertEquals("514-333-1444", second.getPhoneNumber());
 			assertEquals("1215 Alexis-Nihon", second.getAddress());
 			assertEquals("Saint-Laurent", second.getCity());
-			assertEquals("H4R-1Z3", second.getPostalCode());
+			assertEquals("H4R 1Z3", second.getPostalCode());
 			assertEquals("Quebec", second.getProvince());
-			assertEquals("Canada", second.getCountry());*/
+			assertEquals("Canada", second.getCountry());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
