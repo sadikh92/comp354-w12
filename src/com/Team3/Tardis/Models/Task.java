@@ -7,8 +7,7 @@ public class Task {
 
 	private int taskId;
 	private String title;
-	private String shortDescription; //Note to developper:a bit confusing,had to check in the taskReader
-	                                 //to be sure it was reading the tag 'description' and not 'shortDescription'
+	private String shortDescription; 
 	private int duration;
 	private String deliverable;
 	private Date dueDate;
