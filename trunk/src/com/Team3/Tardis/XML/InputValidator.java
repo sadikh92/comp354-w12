@@ -136,7 +136,7 @@ public class InputValidator implements IInputValidator {
 
 		try {
 			Object value = taskCtx.getValue("duration");
-			if (value != null && !value.toString().equals("") && !Pattern.matches(TEXT_FIELD, value.toString()))
+			if (value != null && !value.toString().equals("") && !Pattern.matches(NON_NEGATIVE_INTEGER_FIELD, value.toString()))//fixed error here,not a text field
 				errorMessage.append("Invalid duration\n");
 		} catch (JXPathException e) {
 		}
@@ -157,7 +157,7 @@ public class InputValidator implements IInputValidator {
 
 		try {
 			Object value = taskCtx.getValue("dueDate");
-			if (value != null && !value.toString().equals("") && !Pattern.matches(TEXT_FIELD, value.toString()))
+			if (value != null && !value.toString().equals("") && !Pattern.matches(TEXT_FIELD, value.toString()))//isn't it supposed to be DATE_FIELD here
 				errorMessage.append("Invalid dueDate\n");
 		} catch (JXPathException e) {
 		}
