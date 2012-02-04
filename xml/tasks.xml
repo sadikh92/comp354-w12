@@ -7,7 +7,7 @@
 		<duration>1</duration>
 		<deliverable>First task.doc</deliverable>
 		<dueDate>01/23/2012</dueDate>
-		<personId>0</personId>
+		<personId>2</personId>
 		<subtasks>
 			<subtask>
 				<id>0</id>

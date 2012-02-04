@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<tasks>
+	<task>
+		<id>0</id>
+		<title>Unassigned Task 1</title>
+		<description>This is my first task...</description>
+		<duration>1</duration>
+		<deliverable>First task.doc</deliverable>
+		<dueDate>01/23/2012</dueDate>
+		<personId>0</personId>
+		<subtasks>
+			<subtask>
+				<id>0</id>
+				<title>My first sub-task</title>
+				<description>This is my first sub-task...</description>
+				<duration>1</duration>
+				<deliverable>First sub-task.doc</deliverable>
+				<dueDate>01/23/2012</dueDate>
+			</subtask>
+			<subtask>
+				<id>0</id>
+				<title>My second sub-task</title>
+				<description>This is my second sub-task...</description>
+				<duration>1</duration>
+				<deliverable>Second sub-task.doc</deliverable>
+				<dueDate>01/23/2012</dueDate>
+			</subtask>
+		</subtasks>
+	</task>
+	<task>
+		<id>1</id>
+		<title>My second task</title>
+		<description>This is my second task...</description>
+		<duration>3</duration>
+		<deliverable>Second task.doc</deliverable>
+		<dueDate>01/27/2012</dueDate>
+		<personId>1</personId>
+		<subtasks/>
+	</task>
+</tasks>
