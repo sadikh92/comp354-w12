@@ -56,8 +56,7 @@ public class TaskReader implements ITaskReader{
 				while (tasksIt.hasNext()) {
 
 					Pointer taskPtr = tasksIt.next();					
-					Task task = loadTask(ctx
-							.getRelativeContext(taskPtr));
+					Task task = loadTask(ctx.getRelativeContext(taskPtr));
 					tasks.add(task);
 				}
 			}
