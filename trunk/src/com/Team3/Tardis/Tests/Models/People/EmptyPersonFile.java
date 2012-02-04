@@ -11,10 +11,6 @@ import com.Team3.Tardis.XML.PeopleReader;
 import static org.junit.Assert.*;
 
 /**
- * 
- */
-
-/**
  * @author Alex Landovskis
  * @description This is a test case to verify that the 
  * 				people reader handles empty files correctly.
