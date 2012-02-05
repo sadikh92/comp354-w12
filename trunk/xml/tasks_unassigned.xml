@@ -3,7 +3,7 @@
 	<task>
 		<id>0</id>
 		<title>Unassigned Task 1</title>
-		<description>This is my first task...</description>
+		<description>This is an unassigned task.</description>
 		<duration>1</duration>
 		<deliverable>First task.doc</deliverable>
 		<dueDate>01/23/2012</dueDate>
@@ -11,7 +11,7 @@
 		<subtasks>
 			<subtask>
 				<id>0</id>
-				<title>My first sub-task</title>
+				<title>Unassigned subtask 1</title>
 				<description>This is my first sub-task...</description>
 				<duration>1</duration>
 				<deliverable>First sub-task.doc</deliverable>
@@ -19,7 +19,7 @@
 			</subtask>
 			<subtask>
 				<id>0</id>
-				<title>My second sub-task</title>
+				<title>Unassigned subtask 2</title>
 				<description>This is my second sub-task...</description>
 				<duration>1</duration>
 				<deliverable>Second sub-task.doc</deliverable>

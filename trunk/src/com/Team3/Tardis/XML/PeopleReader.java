@@ -61,7 +61,6 @@ public class PeopleReader implements IPeopleReader {
 				}
 			}
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 			Logger.log(PeopleReader.class.getName(), "FileNotFoundException " + e.getMessage());
 			
 		}finally {

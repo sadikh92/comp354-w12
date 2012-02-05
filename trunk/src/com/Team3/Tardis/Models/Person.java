@@ -2,6 +2,10 @@ package com.Team3.Tardis.Models;
 
 import java.util.ArrayList;
 
+import com.Team3.Tardis.Models.*;
+
+import java.util.ArrayList;
+
 public class Person {
 
 	private int personId;
@@ -102,5 +106,4 @@ public class Person {
 		}
 		return myTasks;
 	}
-
 }
