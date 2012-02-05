@@ -1,4 +1,12 @@
 Mark Smith
-- My first task
+-id: 2
+-phone: 514-744-3333
+-address: 2370 Gold Street
+-city: Saint-Laurent
+-postalCode: H4M 1S3
+-province: Quebec
+-country: Canada
+-tasks:
+	- My first task
 Joe Miller
 - My second task

@@ -3,14 +3,15 @@ package com.Team3.Tardis.Controller;
 import java.util.ArrayList;
 
 import com.Team3.Tardis.Models.*;
-import com.Team3.Tardis.XML.InputValidator;
+import com.Team3.Tardis.Views.PeopleTaskView;
 import com.Team3.Tardis.XML.*;
 import com.Team3.Tardis.logger.Logger;
 
 public class TardisController {
 
 	static final String PEOPLE_FILE = "xml/people.xml";
-	static final String TASKS_FILE = "xml/tasks.xml";
+	static final String TASKS_FILE = "xml/tasks_unassigned.xml";
+	static final String VIEW_FILE = "report/report.txt";
 	/**
 	 * @param args: The system arguments.
 	 */
@@ -31,6 +32,9 @@ public class TardisController {
 			tasks = taskReader.loadTasks(TASKS_FILE);
 			
 			// Prepare report.
+			PeopleTaskView peopleTaskView = new PeopleTaskView();
+			peopleTaskView.view(VIEW_FILE, people, tasks);
+			
 		} catch (Exception e) {
 			Logger.log(TardisController.class.getName(), e.toString());
 		}		
