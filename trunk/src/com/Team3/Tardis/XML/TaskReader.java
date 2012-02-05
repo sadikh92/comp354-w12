@@ -17,6 +17,10 @@ import com.Team3.Tardis.Models.Task;
 import com.Team3.Tardis.XML.Helper.XPathHelper;
 import com.Team3.Tardis.logger.Logger;
 
+/**
+ * @description Reads tasks from a file.
+ *
+ */
 public class TaskReader implements ITaskReader{
 
 	private IInputValidator inputValidator;
@@ -25,13 +29,18 @@ public class TaskReader implements ITaskReader{
 		this.inputValidator = inputValidator;
 	}
 	
+	/**
+	 * @description Reads a task from the file.
+	 * @param path The path to the tasks file.
+	 *
+	 */
 	@Override
 	public ArrayList<Task> loadTasks(String path) throws Exception {
 
 		Logger.log(TaskReader.class.getName(), "loadTask() - START ");
 		Logger.log(TaskReader.class.getName(), "docPath = " + path);
 		ArrayList<Task> tasks = new ArrayList<Task>();
-		InputStream is =  null;
+		InputStream is = null;
 		File file = null;
 		
 		try {
@@ -46,6 +55,7 @@ public class TaskReader implements ITaskReader{
 			is = new FileInputStream(path);
 			Logger.log(PeopleReader.class.getName(), "is = " + is);
 
+			// The file exists.
 			JXPathContext ctx = XPathHelper.getDocumentContext(is);
 
 			if (ctx != null) {
@@ -81,6 +91,11 @@ public class TaskReader implements ITaskReader{
 		return tasks;		
 	}
 
+	/**
+	 * @description Reads a task from the file.
+	 * @param taskCtx The XML context containing one task.
+	 *
+	 */
 	private Task loadTask(JXPathContext taskCtx) throws Exception {
 		
 		Logger.log(PeopleReader.class.getName(), "loadPerson() - START ");

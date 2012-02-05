@@ -14,6 +14,10 @@ import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.XML.Helper.XPathHelper;
 import com.Team3.Tardis.logger.Logger;
 
+/**
+ * @description Reads people from a file.
+ *
+ */
 public class PeopleReader implements IPeopleReader {
 
 	private IInputValidator inputValidator;
@@ -22,6 +26,11 @@ public class PeopleReader implements IPeopleReader {
 		this.inputValidator = inputValidator;
 	}
 
+	/**
+	 * @description Reads the people from the file.
+	 * @param path The path to the people file.
+	 *
+	 */
 	@Override
 	public ArrayList<Person> loadPeople(String path) throws Exception {
 
@@ -40,11 +49,11 @@ public class PeopleReader implements IPeopleReader {
 				System.out.println(path + " does not exist.");
 				return people;
 			}
-			
+		
 			// The file exists.
 			is = new FileInputStream(path);
 			Logger.log(PeopleReader.class.getName(), "is = " + is);
-
+			
 			JXPathContext ctx = XPathHelper.getDocumentContext(is);
 
 			if (ctx != null) {
@@ -81,13 +90,18 @@ public class PeopleReader implements IPeopleReader {
 		return people;
 	}
 
+	/**
+	 * @description Reads a person from the file.
+	 * @param personCtx The XML context containing one person.
+	 *
+	 */
 	private Person loadPerson(JXPathContext personCtx) throws Exception {
 		
 		Logger.log(PeopleReader.class.getName(), "loadPerson() - START ");
 		
 		String errorMessage = inputValidator.validatePerson(personCtx);
 		
-		if (errorMessage.equals("")) {
+		if (errorMessage.equals("")) { // No errors occurred.
 			Person person = new Person();
 
 			// required fields
@@ -112,7 +126,7 @@ public class PeopleReader implements IPeopleReader {
 
 			Logger.log(PeopleReader.class.getName(), "loadPerson() - END ");
 			return person;
-		} else {
+		} else { // Errors occurred.
 			
 			Logger.log(PeopleReader.class.getName(), "loadPerson() - errorMessage = " + errorMessage);
 			throw new Exception(errorMessage);
