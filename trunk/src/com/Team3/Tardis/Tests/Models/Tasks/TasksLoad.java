@@ -32,7 +32,7 @@ public class TasksLoad {
 	{
 		InputValidator validator = new InputValidator();
 		TaskReader reader = new TaskReader(validator);
-		ArrayList<Task> tasks = null;
+		ArrayList<Task> tasks;
 		Logger.log("Testing", "Tasks");
 		try {
 			tasks = reader.loadTasks(TASKS_FILE);
@@ -49,8 +49,8 @@ public class TasksLoad {
 			assertEquals("First task.doc", first.getDeliverable());
 			assertEquals("Mon Jan 23 00:00:00 EST 2012", first.getDueDate().toString());//adapted the test to the date format but my 1st choice was "01/23/2012"
 			assertEquals(0, first.getPersonId());
-			//Test the subtasks-INCOMPLETE
-			ArrayList<Task>subTaskList=first.getSubtasks();
+			//Test the subtasks(subtasks not being read yet)
+			ArrayList<Task> subTaskList=first.getSubtasks();
 			   // The file should contain 2 subtasks.
 			    assertEquals(2, subTaskList.size());
 			       // Test the 1st subtask.
@@ -82,7 +82,7 @@ public class TasksLoad {
 			assertEquals("Second task.doc", second.getDeliverable());
 			assertEquals("Fri Jan 27 00:00:00 EST 2012", second.getDueDate().toString());
 			assertEquals(1, second.getPersonId());
-			//Test the subtasks-INCOMPLETE
+			//Test the subtasks(subtasks not being read yet)
 			ArrayList<Task>emptySubTaskList=second.getSubtasks();
 			   // The file should contain no subtasks.
 			    assertEquals(0, emptySubTaskList.size());
