@@ -48,7 +48,8 @@ public class TasksLoad {
 			assertEquals(1, first.getDuration());
 			assertEquals("First task.doc", first.getDeliverable());
 			assertEquals("Mon Jan 23 00:00:00 EST 2012", first.getDueDate().toString());//adapted the test to the date format but my 1st choice was "01/23/2012"
-			assertEquals(0, first.getPersonId());
+			assertEquals(2, first.getPersonId());
+			//Test the subtasks-INCOMPLETE - Wait for second increment.
 			//Test the subtasks(subtasks not being read yet)
 			//ArrayList<Task> subTaskList=first.getSubtasks();
 			   // The file should contain 2 subtasks.
@@ -62,6 +63,7 @@ public class TasksLoad {
 						//assertEquals("First sub-task.doc", sub1.getDeliverable());
 						//assertEquals("Mon Jan 23 00:00:00 EST 2012", sub1.getDueDate().toString());
 						// Test the 2nd subtask.
+			
 						//Task sub2 = subTaskList.get(1);
 						//assertEquals(0, sub2.getTaskId());
 						//assertEquals("My second sub-task", sub2.getTitle());
@@ -69,8 +71,6 @@ public class TasksLoad {
 					    //assertEquals(1, sub2.getDuration());
 						//assertEquals("Second sub-task.doc", sub2.getDeliverable());
 						//assertEquals("Mon Jan 23 00:00:00 EST 2012", sub2.getDueDate());
-						
-			
 						
 			// Test the 2nd task.
 						
@@ -82,11 +82,12 @@ public class TasksLoad {
 			assertEquals("Second task.doc", second.getDeliverable());
 			assertEquals("Fri Jan 27 00:00:00 EST 2012", second.getDueDate().toString());
 			assertEquals(1, second.getPersonId());
+
 			//Test the subtasks(subtasks not being read yet)
 			//ArrayList<Task>emptySubTaskList=second.getSubtasks();
-			   // The file should contain no subtasks.
-			    //assertEquals(0, emptySubTaskList.size());
-			       
+			// The file should contain no subtasks.
+
+			//assertEquals(0, emptySubTaskList.size());
 		    }
 		
 		catch (Exception e) {
