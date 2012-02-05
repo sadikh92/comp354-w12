@@ -10,7 +10,7 @@ import com.Team3.Tardis.logger.Logger;
 public class TardisController {
 
 	static final String PEOPLE_FILE = "xml/people.xml";
-	static final String TASKS_FILE = "xml/tasks_unassigned.xml";
+	static final String TASKS_FILE = "xml/tasks.xml";
 	static final String VIEW_FILE = "report/report.txt";
 	/**
 	 * @param args: The system arguments.

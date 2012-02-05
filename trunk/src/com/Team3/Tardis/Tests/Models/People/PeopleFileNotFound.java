@@ -6,9 +6,6 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
-
 import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.XML.InputValidator;
 import com.Team3.Tardis.XML.PeopleReader;
@@ -22,13 +19,6 @@ import com.Team3.Tardis.XML.PeopleReader;
 public class PeopleFileNotFound {
 
 	static final String PEOPLE_NON_EXISTING_FILE = "xml/everyone.xml";
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
 
 	@Test
 	/*

@@ -5,20 +5,27 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.io.*;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.Team3.Tardis.Models.Person;
+import com.Team3.Tardis.Models.Task;
+import com.Team3.Tardis.Views.PeopleTaskView;
 import com.Team3.Tardis.XML.InputValidator;
 import com.Team3.Tardis.XML.PeopleReader;
+import com.Team3.Tardis.XML.TaskReader;
+import com.Team3.Tardis.logger.Logger;
 
 
 public class PeopleTaskReport 
 {
 	static final String ONE_TASK_TEST_FILE = "report/report_test.txt";
+	static final String ONE_TASK_ACTUAL_FILE = "report/report_one_task.txt";
+	static final String PEOPLE_FILE = "tests/people_one_task.xml";
+	static final String ONE_TASK_TASKS_FILE = "tests/tasks_one_task.xml";
 	static final String NO_TASK_TEST_FILE = "report/report_unassigned.txt";
-	static final String REPORT_FILE = "report/report.txt";
+	static final String NO_TASK_ACTUAL_FILE = "report/report_no_task.txt";
+	static final String NO_TASK_TASKS_FILE = "tests/tasks_unassigned.xml";
+	
 	
 	@Test
 	/*
@@ -26,9 +33,22 @@ public class PeopleTaskReport
 	 */
 	public void testOneTask()
 	{
+		ArrayList<Person> people;
+		ArrayList<Task> tasks;
+		InputValidator validator = new InputValidator();
+		PeopleReader peopleReader = new PeopleReader(validator);
+		TaskReader taskReader = new TaskReader(validator);
+		
 		try {
+			// Load people.
+			people = peopleReader.loadPeople(PEOPLE_FILE);
+			
+			// Load tasks
+			tasks = taskReader.loadTasks(ONE_TASK_TASKS_FILE);
+			
 			// Report Generation
-			// PeopleTaskReport.report().
+			PeopleTaskView peopleTaskView = new PeopleTaskView();
+			peopleTaskView.view(ONE_TASK_ACTUAL_FILE, people, tasks);
 			
 			// Test file.
 			FileInputStream testFileStream = new FileInputStream(ONE_TASK_TEST_FILE);
@@ -36,7 +56,7 @@ public class PeopleTaskReport
 			BufferedReader testReader = new BufferedReader(testInputStream);
 			
 			// Actual report file.
-			FileInputStream reportFileStream = new FileInputStream(REPORT_FILE);
+			FileInputStream reportFileStream = new FileInputStream(ONE_TASK_ACTUAL_FILE);
 			InputStreamReader reportInputStream = new InputStreamReader(reportFileStream);
 			BufferedReader reportReader = new BufferedReader(reportInputStream);
 			
@@ -51,13 +71,9 @@ public class PeopleTaskReport
 				reportLine = reportReader.readLine();
 			}
 			// Both files must have the same number of lines.
-			assertNull(REPORT_FILE + " has more lines than " + ONE_TASK_TEST_FILE, reportLine);
-			assertNull(ONE_TASK_TEST_FILE + " has more lines than " + REPORT_FILE, testLine);
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
+			assertNull(ONE_TASK_ACTUAL_FILE + " has more lines than " + ONE_TASK_TEST_FILE, reportLine);
+			assertNull(ONE_TASK_TEST_FILE + " has more lines than " + ONE_TASK_ACTUAL_FILE, testLine);	
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -69,9 +85,22 @@ public class PeopleTaskReport
 	 */
 	public void testNoTask()
 	{
+		ArrayList<Person> people;
+		ArrayList<Task> tasks;
+		InputValidator validator = new InputValidator();
+		PeopleReader peopleReader = new PeopleReader(validator);
+		TaskReader taskReader = new TaskReader(validator);
+		
 		try {
+			// Load people.
+			people = peopleReader.loadPeople(PEOPLE_FILE);
+			
+			// Load tasks
+			tasks = taskReader.loadTasks(NO_TASK_TASKS_FILE);
+			
 			// Report Generation
-			// PeopleTaskReport.report().
+			PeopleTaskView peopleTaskView = new PeopleTaskView();
+			peopleTaskView.view(NO_TASK_ACTUAL_FILE, people, tasks);
 			
 			// Test file.
 			FileInputStream testFileStream = new FileInputStream(NO_TASK_TEST_FILE);
@@ -79,7 +108,7 @@ public class PeopleTaskReport
 			BufferedReader testReader = new BufferedReader(testInputStream);
 			
 			// Actual report file.
-			FileInputStream reportFileStream = new FileInputStream(REPORT_FILE);
+			FileInputStream reportFileStream = new FileInputStream(NO_TASK_ACTUAL_FILE);
 			InputStreamReader reportInputStream = new InputStreamReader(reportFileStream);
 			BufferedReader reportReader = new BufferedReader(reportInputStream);
 			
@@ -94,13 +123,10 @@ public class PeopleTaskReport
 				reportLine = reportReader.readLine();
 			}
 			// Both files must have the same number of lines.
-			assertNull(REPORT_FILE + " has more lines than " + NO_TASK_TEST_FILE, reportLine);
-			assertNull(NO_TASK_TEST_FILE + " has more lines than " + REPORT_FILE, testLine);
+			assertNull(NO_TASK_ACTUAL_FILE + " has more lines than " + NO_TASK_TEST_FILE, reportLine);
+			assertNull(NO_TASK_TEST_FILE + " has more lines than " + NO_TASK_ACTUAL_FILE, testLine);
 			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
