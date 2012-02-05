@@ -6,7 +6,8 @@ Mark Smith
 -postalCode: H4M 1S3
 -province: Quebec
 -country: Canada
--tasks: None
+-tasks: 
+    -My first task
 
 Joe Miller
 -id: 1

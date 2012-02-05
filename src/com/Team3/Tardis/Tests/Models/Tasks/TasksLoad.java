@@ -3,29 +3,16 @@ package com.Team3.Tardis.Tests.Models.Tasks;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
-import java.util.Date;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.Models.Task;
 import com.Team3.Tardis.XML.InputValidator;
-import com.Team3.Tardis.XML.PeopleReader;
 import com.Team3.Tardis.XML.TaskReader;
 import com.Team3.Tardis.logger.Logger;
 
 
 public class TasksLoad {
-	static final String TASKS_FILE = "xml/tasks.xml";
-
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
+	static final String TASKS_FILE = "tests/tasks_one_task.xml";
 	
 	@Test
 	public void test()

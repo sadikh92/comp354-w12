@@ -18,7 +18,7 @@ import com.Team3.Tardis.XML.PeopleReader;
  */
 public class PeopleLoad {
 
-	static final String PEOPLE_FILE = "xml/people.xml";
+	static final String PEOPLE_FILE = "tests/people_one_task.xml";
 	
 	@Test
 	/*

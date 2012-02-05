@@ -6,7 +6,17 @@ Mark Smith
 -postalCode: H4M 1S3
 -province: Quebec
 -country: Canada
--tasks:
-	- My first task
+-tasks: 
+    -My first task
+
 Joe Miller
-- My second task
+-id: 1
+-phone: 514-333-1444
+-address: 1215 Alexis-Nihon
+-city: Saint-Laurent
+-postalCode: H4R 1Z3
+-province: Quebec
+-country: Canada
+-tasks: 
+    -My second task
+
