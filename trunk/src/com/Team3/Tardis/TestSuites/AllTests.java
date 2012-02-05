@@ -15,6 +15,11 @@ import com.Team3.Tardis.Tests.Views.*;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
+/**
+ * @author Alex Landovskis
+ * @description This is a test suite that runs all test cases.
+ *
+ */
 @RunWith(Suite.class)
 @Suite.SuiteClasses( { EmptyPersonFile.class,
 					   PeopleFileNotFound.class,
