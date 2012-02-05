@@ -15,7 +15,12 @@ import com.Team3.Tardis.XML.PeopleReader;
 import com.Team3.Tardis.XML.TaskReader;
 import com.Team3.Tardis.logger.Logger;
 
-
+/**
+ * @author Alex Landovskis
+ * @description This is a test case to verify that the 
+ * 				people table is successfully created.
+ *
+ */
 public class PeopleTaskReport 
 {
 	static final String ONE_TASK_TEST_FILE = "report/report_test.txt";

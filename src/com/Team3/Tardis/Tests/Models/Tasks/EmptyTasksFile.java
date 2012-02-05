@@ -11,7 +11,10 @@ import com.Team3.Tardis.Models.Task;
 import com.Team3.Tardis.XML.InputValidator;
 import com.Team3.Tardis.XML.TaskReader;
 
-
+/*
+ * @author Babacar Ndiaye
+ * @description Test the case where the task file is empty.
+ */
 public class EmptyTasksFile {
 	static final String EMPTY_TASK_FILE = "xml/empty_task.xml";
 	static final String NO_TASK_FILE = "xml/empty_task_xml_tags.xml";

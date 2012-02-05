@@ -8,6 +8,11 @@ import org.junit.runners.Suite;
 // Source
 import com.Team3.Tardis.Tests.Models.Tasks.*;
 
+/**
+ * @author Alex Landovskis
+ * @description This is a test suite that runs all Task test cases.
+ *
+ */
 @RunWith(Suite.class)
 @Suite.SuiteClasses( { EmptyTasksFile.class,
 					   TasksFileNotFound.class,

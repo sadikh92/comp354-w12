@@ -7,6 +7,11 @@ import com.Team3.Tardis.Views.PeopleTaskView;
 import com.Team3.Tardis.XML.*;
 import com.Team3.Tardis.logger.Logger;
 
+/**
+ * @author Alex Landovskis
+ * @description The main controller that runs the TARDIS task manager.
+ *
+ */
 public class TardisController {
 
 	static final String PEOPLE_FILE = "xml/people.xml";
@@ -35,12 +40,10 @@ public class TardisController {
 			PeopleTaskView peopleTaskView = new PeopleTaskView();
 			peopleTaskView.view(VIEW_FILE, people, tasks);
 			
+			System.out.println(VIEW_FILE + " has been created.");
+			
 		} catch (Exception e) {
 			Logger.log(TardisController.class.getName(), e.toString());
 		}		
-		// Load the tasks.
-		
-		// Produce report.
-		
 	}
 }

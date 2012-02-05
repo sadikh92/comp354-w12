@@ -10,7 +10,12 @@ import com.Team3.Tardis.XML.InputValidator;
 import com.Team3.Tardis.XML.TaskReader;
 import com.Team3.Tardis.logger.Logger;
 
-
+/**
+ * @author Bacabar Ndiaye
+ * @description This is a test case to verify that the 
+ * 				task reader successfully loads non-empty task files.
+ *
+ */
 public class TasksLoad {
 	static final String TASKS_FILE = "tests/tasks_one_task.xml";
 	
