@@ -16,6 +16,7 @@ public class TardisController {
 	 */
 	public static void main(String[] args) {
 
+		// Load the people.
 		InputValidator validator = new InputValidator();
 		PeopleReader peopleReader = new PeopleReader(validator);
 		TaskReader taskReader = new TaskReader(validator);
@@ -33,5 +34,9 @@ public class TardisController {
 		} catch (Exception e) {
 			Logger.log(TardisController.class.getName(), e.toString());
 		}		
+		// Load the tasks.
+		
+		// Produce report.
+		
 	}
 }

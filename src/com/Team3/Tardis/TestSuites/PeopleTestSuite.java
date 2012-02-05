@@ -13,7 +13,8 @@ import com.Team3.Tardis.Tests.Models.People.*;
 @RunWith(Suite.class)
 @Suite.SuiteClasses( { EmptyPersonFile.class,
 					   PeopleFileNotFound.class,
-					   PeopleLoad.class} )
+					   PeopleLoad.class,
+					   PersonTest.class} )
 public class PeopleTestSuite {
 
 	public static Test suite() {

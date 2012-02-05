@@ -6,6 +6,7 @@ import org.junit.runners.Suite;
 import com.Team3.Tardis.Tests.Models.People.EmptyPersonFile;
 import com.Team3.Tardis.Tests.Models.People.PeopleFileNotFound;
 import com.Team3.Tardis.Tests.Models.People.PeopleLoad;
+import com.Team3.Tardis.Tests.Models.People.PersonTest;
 import com.Team3.Tardis.Tests.Models.Tasks.EmptyTasksFile;
 import com.Team3.Tardis.Tests.Models.Tasks.TasksFileNotFound;
 import com.Team3.Tardis.Tests.Models.Tasks.TasksLoad;
@@ -18,6 +19,7 @@ import junit.framework.TestSuite;
 @Suite.SuiteClasses( { EmptyPersonFile.class,
 					   PeopleFileNotFound.class,
 					   PeopleLoad.class,
+					   PersonTest.class,
 					   EmptyTasksFile.class,
 					   TasksFileNotFound.class,
 					   TasksLoad.class,

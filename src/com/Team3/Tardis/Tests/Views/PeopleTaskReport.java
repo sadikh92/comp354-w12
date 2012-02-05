@@ -12,7 +12,6 @@ import org.junit.Test;
 import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.XML.InputValidator;
 import com.Team3.Tardis.XML.PeopleReader;
-import com.Team3.Tardis.logger.Logger;
 
 
 public class PeopleTaskReport 

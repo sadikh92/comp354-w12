@@ -4,14 +4,11 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.XML.InputValidator;
 import com.Team3.Tardis.XML.PeopleReader;
-import com.Team3.Tardis.logger.Logger;
 
 /**
  * @author Alex Landovskis
@@ -22,14 +19,7 @@ import com.Team3.Tardis.logger.Logger;
 public class PeopleLoad {
 
 	static final String PEOPLE_FILE = "xml/people.xml";
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
+	
 	@Test
 	/*
 	 * @description An ArrayList should be returned containing the people in the file.
@@ -72,7 +62,5 @@ public class PeopleLoad {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-		
 	}
 }
