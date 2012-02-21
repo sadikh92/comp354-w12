@@ -12,7 +12,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
-//Modified version of JTable found at http://docs.oracle.com/javase/tutorial/uiswing/components/table.html#data
+//Modified version of JTable template found at http://docs.oracle.com/javase/tutorial/uiswing/components/table.html#data
 
 /*
  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
@@ -54,18 +54,19 @@ public class PeopleUI extends JPanel {
         ArrayList<Person> pList=personList;
         int numOfPeople = pList.size();
         
-        Object[][] list = new Object[numOfPeople][8];
+        Object[][] list = new Object[numOfPeople][9];
         
         for(int i=0;i<numOfPeople;i++)
         {
-        	list[i][0] = pList.get(i).getFirstName();
-        	list[i][1] = pList.get(i).getLastName();	
-        	list[i][2] = pList.get(i).getPhoneNumber();
-        	list[i][3] = pList.get(i).getAddress();
-        	list[i][4] = pList.get(i).getCity();
-            list[i][5] = pList.get(i).getPostalCode();
-            list[i][6] = pList.get(i).getProvince();
-            list[i][7] = pList.get(i).getCountry();
+        	list[i][0] = pList.get(i).getPersonId();
+        	list[i][1] = pList.get(i).getFirstName();
+        	list[i][2] = pList.get(i).getLastName();	
+        	list[i][3] = pList.get(i).getPhoneNumber();
+        	list[i][4] = pList.get(i).getAddress();
+        	list[i][5] = pList.get(i).getCity();
+            list[i][6] = pList.get(i).getPostalCode();
+            list[i][7] = pList.get(i).getProvince();
+            list[i][8] = pList.get(i).getCountry();
         }
         
         JTable table = new JTable(new MyTableModel(list));
@@ -83,7 +84,8 @@ public class PeopleUI extends JPanel {
  
 
     class MyTableModel extends AbstractTableModel {
-        private String[] columnNames = {"First Name",
+        private String[] columnNames = {"ID",
+        								"First Name",
                                         "Last Name",
                                         "Phone Number",
                                         "Address",
@@ -134,7 +136,7 @@ public class PeopleUI extends JPanel {
         public boolean isCellEditable(int row, int col) {
             //Note that the data/cell address is constant,
             //no matter where the cell appears onscreen.
-            if (col < 8) {
+            if (col < 9) {
                 return false;
             } else {
                 return true;
