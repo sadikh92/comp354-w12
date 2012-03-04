@@ -98,10 +98,11 @@ private PeopleUI peoplePanel;
 	  }
 	}); 
 	
-//print action listener
+//printing action listeners
 	printTask.addActionListener(new ActionListener(){
 	  public void actionPerformed(ActionEvent e)
 	  {
+		  taskPrinter();
 		  System.out.println("Print tasks here");
 	  }
 	}); 
@@ -109,10 +110,10 @@ private PeopleUI peoplePanel;
 	printPeople.addActionListener(new ActionListener(){
 	  public void actionPerformed(ActionEvent e)
 	 {
-		  System.out.println("Print People here");
+		  peoplePrinter();
+		  System.out.println("People list printed");
 	 }
    }); 
-	
 	
 //change listener for tabs    
     tabbedPane.addChangeListener(new ChangeListener() {
@@ -132,6 +133,13 @@ private PeopleUI peoplePanel;
   }
   
   
+  public void peoplePrinter(){
+	  PeopleView peopleView = new PeopleView();
+	  peopleView.view("Table View of People.txt", this.people, this.tasks);
+	}
+	
+	
+  
 //create and show
   public static void createAndShowGUI(ArrayList<Task> tasks, ArrayList<Person> people)
 	{
@@ -145,7 +153,7 @@ private PeopleUI peoplePanel;
 			}
 		});
 			
-		frame.setSize(1300, 600);
+		frame.setSize(1200, 600);
 		frame.setVisible(true);
 	}
 }
