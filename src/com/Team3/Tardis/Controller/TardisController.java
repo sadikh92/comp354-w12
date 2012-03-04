@@ -3,9 +3,9 @@ package com.Team3.Tardis.Controller;
 import java.util.ArrayList;
 
 import com.Team3.Tardis.Models.*;
+import com.Team3.Tardis.Models.XML.*;
 import com.Team3.Tardis.Util.Logger;
 import com.Team3.Tardis.Views.PeopleView;
-import com.Team3.Tardis.XML.*;
 
 /**
  * @author Alex Landovskis

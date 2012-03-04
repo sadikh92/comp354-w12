@@ -8,8 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.Team3.Tardis.Models.Task;
-import com.Team3.Tardis.XML.InputValidator;
-import com.Team3.Tardis.XML.TaskReader;
+import com.Team3.Tardis.Models.XML.InputValidator;
+import com.Team3.Tardis.Models.XML.TaskReader;
 
 
 /*
