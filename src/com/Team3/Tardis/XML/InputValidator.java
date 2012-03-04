@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 import org.apache.commons.jxpath.JXPathContext;
 import org.apache.commons.jxpath.JXPathException;
 
-import com.Team3.Tardis.logger.Logger;
+import com.Team3.Tardis.Util.Logger;
 
 public class InputValidator implements IInputValidator {
 

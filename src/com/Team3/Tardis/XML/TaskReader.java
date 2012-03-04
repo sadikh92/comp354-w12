@@ -14,8 +14,8 @@ import org.apache.commons.jxpath.JXPathContext;
 import org.apache.commons.jxpath.Pointer;
 
 import com.Team3.Tardis.Models.Task;
+import com.Team3.Tardis.Util.Logger;
 import com.Team3.Tardis.XML.Helper.XPathHelper;
-import com.Team3.Tardis.logger.Logger;
 
 /**
  * @description Reads tasks from a file.

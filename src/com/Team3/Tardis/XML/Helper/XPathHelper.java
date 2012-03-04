@@ -22,7 +22,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import com.Team3.Tardis.logger.Logger;
+import com.Team3.Tardis.Util.Logger;
 
 
 /**
