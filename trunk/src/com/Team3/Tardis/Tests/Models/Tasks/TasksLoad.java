@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import com.Team3.Tardis.Models.Task;
+import com.Team3.Tardis.Util.Logger;
 import com.Team3.Tardis.XML.InputValidator;
 import com.Team3.Tardis.XML.TaskReader;
-import com.Team3.Tardis.logger.Logger;
 
 /**
  * @author Bacabar Ndiaye

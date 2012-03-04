@@ -11,8 +11,8 @@ import java.net.MalformedURLException;
 import org.apache.commons.jxpath.JXPathContext;
 import org.apache.commons.jxpath.Pointer;
 import com.Team3.Tardis.Models.Person;
+import com.Team3.Tardis.Util.Logger;
 import com.Team3.Tardis.XML.Helper.XPathHelper;
-import com.Team3.Tardis.logger.Logger;
 
 /**
  * @description Reads people from a file.

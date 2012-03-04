@@ -1,4 +1,4 @@
-package com.Team3.Tardis.logger;
+package com.Team3.Tardis.Util;
 
 public class Logger {
 
