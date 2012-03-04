@@ -273,13 +273,13 @@ public class PeopleUI extends JPanel
 		
 		setTaskInfo();
 		
-		//setLayout(new BorderLayout());
+		setLayout(new BorderLayout());
 		
 		//Creates the table part
 		taskTablePanel();
 
 		//Adds the two to the existing panel
-		add(peopleTablePanel/*, BorderLayout.NORTH*/);
+		add(peopleTablePanel, BorderLayout.NORTH);
 	}
 	
 	//Creates the table
