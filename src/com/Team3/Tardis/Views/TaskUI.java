@@ -138,8 +138,11 @@ public class TaskUI extends JPanel implements ActionListener
 			taskInfo[i][2] = tasks.get(i).getShortDescription();
 			taskInfo[i][3] = tasks.get(i).getDuration();
 			taskInfo[i][4] = tasks.get(i).getDeliverable();	
-			taskInfo[i][5] = tasks.get(i).getDueDate();	
+			taskInfo[i][5] = tasks.get(i).getDueDate();
 			
+			taskInfo[i][6] = tasks.get(i).getTaskId();	
+			
+			/*
 			for (int j = 0; j != people.size() && !breakIf; ++j)
 			{
 				if (people.get(j).getPersonId() == tasks.get(i).getPersonId())
@@ -147,7 +150,7 @@ public class TaskUI extends JPanel implements ActionListener
 					taskInfo[i][6] = people.get(j).getFirstName();
 					breakIf = true;
 				}
-			}
+			}*/
 			
 			breakIf = false;
 		}
@@ -230,17 +233,19 @@ public class TaskUI extends JPanel implements ActionListener
 	private void delete(int row)
 	{
 		boolean breakIf = false;
+		/*
 		Task tempTask = tasks.get(row);
 		Task tempSuperTask = tempTask.getSuperTask();
+		*/
 		
-		if (tempSuperTask != null)
-		{
+		if (tasks.get(row).getSuperTask() != null)	
+		{			
 			//Remove the task from the super task's list of sub tasks
-			for (int i = 0; i != tempSuperTask.getSubtasks().size() && !breakIf;)
+			for (int i = 0; i != tasks.get(row).getSuperTask().getSubtasks().size() && !breakIf;)
 			{
-				if (tempSuperTask.getSubtasks().get(i).getTaskId() == tempTask.getTaskId())
+				if (tasks.get(row).getSuperTask().getSubtasks().get(i).getTaskId() == tasks.get(row).getTaskId())
 				{
-					tempSuperTask.getSubtasks().remove(i);
+					tasks.get(row).getSuperTask().getSubtasks().remove(i);
 					breakIf = true;
 				}
 				else
@@ -252,30 +257,48 @@ public class TaskUI extends JPanel implements ActionListener
 		
 		breakIf = false;
 		
-		if (tempTask.getSubtasks() != null)
+		int k = tasks.get(row).getSubtasks().size();
+		int l = tasks.size();
+		
+		
+		if (!tasks.get(row).getSubtasks().isEmpty())
 		{
 			//Store the subtask index
-			int index = 0;
+			int index = -1;
 			
-			for (int i = 0; i != tempTask.getSubtasks().size(); ++i)
+			for (int i = 0; i != tasks.get(row).getSubtasks().size(); /*++i*/)
 			{
-				for (int j = 0; j != tasks.size() && !breakIf; ++j)
+				for (int j = 0; j != tasks.size() && !breakIf; /*++j*/)
 				{
-					if (tempTask.getSubtasks().get(i).getTaskId() == tasks.get(j).getTaskId())
+					if (tasks.get(row).getSubtasks().get(i).getTaskId() == tasks.get(j).getTaskId())
 					{
 						index = j;
 						breakIf = true;
 					}
+					else
+					{
+						++j;
+					}
 				}
 				
 				//Call remove on each subtask
-				tasks.remove(index);
+				if (index != -1)
+				{
+					delete(index);
+				
+					breakIf = false;
+					--l;
+				}
+				else
+				{
+					++i;
+				}
 			}
+			
+			
 		}
-		else
-		{
-			tasks.remove(row);	//Original Code
-		}						
+
+		tasks.remove(row);	//Original Code					
 		
 		shell.update();			//
 	}
