@@ -158,9 +158,9 @@ public class TaskUI extends JPanel implements ActionListener
 		
 		if (buttonString.equals("Add"))
 		{
-			TaskEditor taskAdd = new TaskEditor(tasks, people);
+			TaskEditor taskAdd = new TaskEditor(this, tasks, people);
 			
-			update();
+			//update();
 		}
 		else if (buttonString.equals("Edit"))
 		{
@@ -173,9 +173,9 @@ public class TaskUI extends JPanel implements ActionListener
 			}
 			else
 			{
-				TaskEditor taskAdd = new TaskEditor(tasks, people, row);
+				TaskEditor taskAdd = new TaskEditor(this, tasks, people, row);
 				
-				update();
+				//update();
 			}
 		}
 		else if (buttonString.equals("Delete"))
