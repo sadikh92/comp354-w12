@@ -17,6 +17,8 @@ class TaskEditor extends JFrame implements ActionListener
 	 TextField  tID,tTitle,tDesc,tDuration,tDeliverable,tYear,tMonth,tDay;
 	 JComboBox cPeople;
 	 int index;
+	 ArrayList<Task> tasks;
+	 ArrayList<Person> people;
 	 
 	 public int getIndex(){
 		 return index;
@@ -24,9 +26,15 @@ class TaskEditor extends JFrame implements ActionListener
 	
 	  //Constructor used for Add
 	  TaskEditor(ArrayList<Task> tasks, ArrayList<Person> people){
+		  super("Task Add");
 		  this.index=-1;
+		  this.tasks = tasks;
+		  this.people = people;
 		  
-		  String[] nameArray = new String[(people.getSize()-1)]
+		  String[] nameArray = new String[(people.size()-1)];
+		  for(int i=0;i<(people.size());i ++){
+			  nameArray[i]=people.get(i).getFirstName();
+		  }
 		  
 		  //Defining buttons and Fields
 		  taskID = new JLabel("Task ID #:");
@@ -52,7 +60,7 @@ class TaskEditor extends JFrame implements ActionListener
 		  tDay = new TextField(2);
 		  
 		  personID = new JLabel("Task Assigned to:");
-		  cPeople = new JComboBox(new String[]{nameArray});
+		  cPeople = new JComboBox(nameArray);
 		 
 		  SUBMIT=new JButton("SUBMIT");
 		  
@@ -84,34 +92,37 @@ class TaskEditor extends JFrame implements ActionListener
 		  SUBMIT.addActionListener(this);
 		  CANCEL.addActionListener(this);
 		  setTitle("Task Add");
+		  this.setSize(500,400);
+		  this.setVisible(true);
+		  this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	  }
 	  
 	//Constructor used for Edit
 	  TaskEditor(ArrayList<Task> tasks, ArrayList<Person> people, int index){
-		  
+		  super("Task Edit");
 		  this.index=index;
 		  //Defining buttons and Fields
 		  taskID = new JLabel("Task ID #:");
-		  tID = new TextField(""+tasks[index].getTaskId()+"",20);
+		  tID = new TextField(""+tasks.get(index).getTaskId()+"",20);
 		
 		  title = new JLabel("Task Title:");
-		  tTitle = new TextField(""+tasks[index].getTitle()+"",20);
+		  tTitle = new TextField(""+tasks.get(index).getTitle()+"",20);
 		  
 		  shortDesc = new JLabel("Short description:");
-		  tDesc = new TextField(""+tasks[index].getShortDescription()+"",20);
+		  tDesc = new TextField(""+tasks.get(index).getShortDescription()+"",20);
 		  
 		  duration = new JLabel("Duration (# of Hours):");
-		  tDuration = new TextField(""+tasks[index].getDuration()+"",20);
+		  tDuration = new TextField(""+tasks.get(index).getDuration()+"",20);
 		  
 		  deliverable = new JLabel("Deliverable:");
-		  tDeliverable = new TextField(""+tasks[index].getDeliverable+"",20);
+		  tDeliverable = new TextField(""+tasks.get(index).getDeliverable()+"",20);
 		  
 		  dueDateY = new JLabel("Due date Year (YYYY):");
 		  dueDateM = new JLabel("Due date Month (MM):");
 		  dueDateD = new JLabel("Due date Day (DD):");
-		  tYear = new TextField(""+(tasks[index].getDueDate().getYear()+1900)+"",4);
-		  tMonth = new TextField(""+tasks[index].getDueDate().getMonth()+"",2);
-		  tDay = new TextField(""+tasks[index].getDueDate().getDate()+"",2);
+		  tYear = new TextField(""+(tasks.get(index).getDueDate().getYear()+1900)+"",4);
+		  tMonth = new TextField(""+tasks.get(index).getDueDate().getMonth()+"",2);
+		  tDay = new TextField(""+tasks.get(index).getDueDate().getDate()+"",2);
 		  
 		  personID = new JLabel("Task Assigned to:");
 		  cPeople = new JComboBox(new String[]{"Need","Array","of People Names"});
@@ -146,6 +157,9 @@ class TaskEditor extends JFrame implements ActionListener
 		  SUBMIT.addActionListener(this);
 		  CANCEL.addActionListener(this);
 		  setTitle("Task Edit");
+		  this.setSize(500,400);
+		  this.setVisible(true);
+		  this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	  }
 	  
 	  //validation method activated upon Submit
@@ -159,22 +173,22 @@ class TaskEditor extends JFrame implements ActionListener
 		  
 		  //validating ID#
 		  String taskID = tID.getText();
-		  int numTaskID;
+		  int numTaskID=0;
 		  if(isInteger(taskID)){
 			  numTaskID = Integer.parseInt(taskID);
 		  }
 		  else{
 			  ID=false;
 		  }
-		  for(int i =0;i<tasks.length;i++){
-			  if(numTaskID==tasks[i].gettaskId())
+		  for(int i =0;i<(tasks.size());i++){
+			  if(numTaskID==tasks.get(i).getTaskId())
 				  ID = false;
 		  }
 		  
 		  //validating Title
 		  String taskTitle = tTitle.getText();
-		  for(int i=0;i<tasks.length;i++){
-			  if(taskTitle.equals(tasks[i].getTitle))
+		  for(int i=0;i<tasks.size();i++){
+			  if(taskTitle.equals(tasks.get(i).getTitle()))
 				  name =false;
 		  }
 		 
@@ -182,7 +196,7 @@ class TaskEditor extends JFrame implements ActionListener
 		  String year = tYear.getText();
 		  String month = tMonth.getText();
 		  String day = tDay.getText();
-		  int y,m,d;
+		  int y=0,m=0,d=0;
 		  if(isInteger(year) && isInteger(month) && isInteger(day) && year.length()==4 && month.length()==2 && day.length()==2){
 			  y = Integer.parseInt(year);
 			  m = Integer.parseInt(month);
@@ -195,7 +209,7 @@ class TaskEditor extends JFrame implements ActionListener
 		  
 		  //validating duration
 		  String duration = tDuration.getText();
-		  int dur;
+		  int dur=0;//most descriptive name ever
 		  if(!isInteger(duration)){
 			  dura=false;
 		  }
@@ -213,7 +227,7 @@ class TaskEditor extends JFrame implements ActionListener
 		  else if(!dura)
 			  JOptionPane.showMessageDialog(this,"Incorrect Duration (must be an integer)","Error",JOptionPane.ERROR_MESSAGE);
 		  else
-			  taskCreator(index,tasks,numTaskID,taskTitle,tDesc.getText(),dur,tDeliverable.getText(),new Date(y,m,d),people[cPeople.getSelectedIndex()].getPersonId());
+			  taskCreator(index,tasks,numTaskID,taskTitle,tDesc.getText(),dur,tDeliverable.getText(),new Date(y,m,d),people.get(cPeople.getSelectedIndex()).getPersonId());
 		  		
 		  
 	 }
@@ -222,16 +236,7 @@ class TaskEditor extends JFrame implements ActionListener
 	 //how do we pass it to the Tardis Controller?
 	 public void taskCreator(int index, ArrayList<Task> tasks, int taskId,String title, String shortDescription, int duration, String deliverable, Date dueDate, int personID){
 		 
-		 if(!this.getIndex()<0){
-			 tasks[this.getIndex()].setTaskId(taskId);
-			 tasks[this.getIndex()].setTitle(title);
-			 tasks[this.getIndex()].setShortDescription(shortDescription);
-			 tasks[this.getIndex()].setDuration(duration);
-			 tasks[this.getIndex()].setDeliverable(deliverable);
-			 tasks[this.getIndex()].setDueDate(dueDate);
-			 tasks[this.getIndex()].setPersonId(personID);
-		 }
-		 else{
+		 if(this.getIndex()<0){
 			 Task t = new Task();
 			 t.setTaskId(taskId);
 			 t.setTitle(title);
@@ -241,6 +246,15 @@ class TaskEditor extends JFrame implements ActionListener
 			 t.setDueDate(dueDate);
 			 t.setPersonId(personID);
 			 tasks.add(t);
+		 }
+		 else{
+			 tasks.get(this.getIndex()).setTaskId(taskId);
+			 tasks.get(this.getIndex()).setTitle(title);
+			 tasks.get(this.getIndex()).setShortDescription(shortDescription);
+			 tasks.get(this.getIndex()).setDuration(duration);
+			 tasks.get(this.getIndex()).setDeliverable(deliverable);
+			 tasks.get(this.getIndex()).setDueDate(dueDate);
+			 tasks.get(this.getIndex()).setPersonId(personID);
 		 }
 	 }
 	 
@@ -256,17 +270,5 @@ class TaskEditor extends JFrame implements ActionListener
 		 }
 	 }
 	 
-	 //button should trigger this
-	 public static void main(String arg[]){
-		  
-		  try{
-			  TaskEditor frame=new TaskEditor();
-			  frame.setSize(500,400);
-			  frame.setVisible(true);
-			  frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		  }
-		  
-		  catch(Exception e)
-		  {JOptionPane.showMessageDialog(null, e.getMessage());}
-	  }
 }
+
