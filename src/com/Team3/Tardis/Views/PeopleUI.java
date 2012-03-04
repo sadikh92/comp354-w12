@@ -237,6 +237,7 @@ public class PeopleUI extends JPanel {
 public class PeopleUI extends JPanel
 {	
 	//Stores the array of Task Objects and People Objects
+	private TardisShell shell;
 	private ArrayList<Task> tasks;
 	private ArrayList<Person> people;
 	
@@ -257,18 +258,18 @@ public class PeopleUI extends JPanel
 	
 	//Store the elements that form the Table View of People
 	private JPanel peopleTablePanel;
-	private JPanel peopleButtonPanel;
 	private JTable peopleTable;
 	
 	//Stores the default model
 	private DefaultTableModel model;
 	
 	//Constructor
-	public PeopleUI(ArrayList<Task> tasks, ArrayList<Person> people)
+	public PeopleUI(TardisShell shell, ArrayList<Task> tasks, ArrayList<Person> people)
 	{
 		//Fills the peopleInfo array with the values stored in the ArrayList
 		this.tasks = tasks;
 		this.people = people;
+		this.shell = shell;
 		
 		setTaskInfo();
 		
