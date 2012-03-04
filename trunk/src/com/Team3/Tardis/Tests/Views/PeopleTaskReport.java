@@ -9,11 +9,11 @@ import org.junit.Test;
 
 import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.Models.Task;
+import com.Team3.Tardis.Models.XML.InputValidator;
+import com.Team3.Tardis.Models.XML.PeopleReader;
+import com.Team3.Tardis.Models.XML.TaskReader;
 import com.Team3.Tardis.Util.Logger;
 import com.Team3.Tardis.Views.PeopleView;
-import com.Team3.Tardis.XML.InputValidator;
-import com.Team3.Tardis.XML.PeopleReader;
-import com.Team3.Tardis.XML.TaskReader;
 
 /**
  * @author Alex Landovskis

@@ -1,4 +1,4 @@
-package com.Team3.Tardis.XML;
+package com.Team3.Tardis.Models.XML;
 
 import org.apache.commons.jxpath.JXPathContext;
 

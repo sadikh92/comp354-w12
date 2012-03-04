@@ -1,4 +1,4 @@
-package com.Team3.Tardis.XML;
+package com.Team3.Tardis.Models.XML;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,8 +14,8 @@ import org.apache.commons.jxpath.JXPathContext;
 import org.apache.commons.jxpath.Pointer;
 
 import com.Team3.Tardis.Models.Task;
+import com.Team3.Tardis.Models.XML.Helper.XPathHelper;
 import com.Team3.Tardis.Util.Logger;
-import com.Team3.Tardis.XML.Helper.XPathHelper;
 
 /**
  * @description Reads tasks from a file.
