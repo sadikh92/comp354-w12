@@ -101,6 +101,12 @@ class TaskEditor extends JFrame implements ActionListener
 	  TaskEditor(ArrayList<Task> tasks, ArrayList<Person> people, int index){
 		  super("Task Edit");
 		  this.index=index;
+		  
+		  String[] nameArray = new String[(people.size()-1)];
+		  for(int i=0;i<(people.size());i ++){
+			  nameArray[i]=people.get(i).getFirstName();
+		  }
+		  
 		  //Defining buttons and Fields
 		  taskID = new JLabel("Task ID #:");
 		  tID = new TextField(""+tasks.get(index).getTaskId()+"",20);
@@ -125,7 +131,7 @@ class TaskEditor extends JFrame implements ActionListener
 		  tDay = new TextField(""+tasks.get(index).getDueDate().getDate()+"",2);
 		  
 		  personID = new JLabel("Task Assigned to:");
-		  cPeople = new JComboBox(new String[]{"Need","Array","of People Names"});
+		  cPeople = new JComboBox(nameArray);
 		 
 		  SUBMIT=new JButton("SUBMIT");
 		  
@@ -240,7 +246,7 @@ class TaskEditor extends JFrame implements ActionListener
 	 }
 	 
 	 //Creates new task object
-	 //how do we pass it to the Tardis Controller?
+	 //or Edits an existing task object
 	 public void taskCreator(int index, ArrayList<Task> tasks, int taskId,String title, String shortDescription, int duration, String deliverable, Date dueDate, int personID){
 		 
 		 if(this.getIndex()<0){
