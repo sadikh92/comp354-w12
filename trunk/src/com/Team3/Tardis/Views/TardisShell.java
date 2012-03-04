@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -36,6 +37,7 @@ private ArrayList<Person> people;
     TaskUI taskPanel = new TaskUI(this.tasks, this.people);
     JLabel taskLabel = new JLabel();
     taskLabel.setText("Tasks");
+    
     
     JPanel peoplePanel = new JPanel();
     JLabel peopleLabel = new JLabel();
@@ -85,10 +87,10 @@ private ArrayList<Person> people;
     tabbedPane.addTab("GANTT", ganttPanel);
     
 //adding exit buttons
-    taskPanel.add(exitButton1);
-    peoplePanel.add(exitButton2);
-    treePanel.add(exitButton3);
-    ganttPanel.add(exitButton4);
+    taskPanel.add(exitButton1, BorderLayout.PAGE_END);
+    peoplePanel.add(exitButton2, BorderLayout.PAGE_END);
+    treePanel.add(exitButton3, BorderLayout.PAGE_END);
+    ganttPanel.add(exitButton4, BorderLayout.PAGE_END);
     
    
 //change listener for tabs    
