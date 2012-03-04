@@ -287,7 +287,7 @@ class TaskEditor extends JFrame implements ActionListener
 			 t.setPersonId(personID);
 			 t.setParent(parent);
 			 tasks.add(t);
-			 parent.getSubtasks().add(t);
+			 parent.addSubtask(parent);
 		 }
 		 else{
 			 tasks.get(this.getIndex()).setTaskId(taskId);
