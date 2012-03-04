@@ -15,6 +15,11 @@ public class Task {
 	private ArrayList<Task> subTasks;
 	private Task superTask;
 	
+	public Task()
+	{
+		subTasks = new ArrayList<Task>();
+	}
+	
 	public long getTaskId() {
 		return taskId;
 	}
