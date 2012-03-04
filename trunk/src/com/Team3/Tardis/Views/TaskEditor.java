@@ -195,14 +195,20 @@ class TaskEditor extends JFrame implements ActionListener
 				  ID=false;
 			  }
 			  for(int i =0;i<(tasks.size());i++){
-				  if(numTaskID==tasks.get(i).getTaskId())
+				  if(this.getIndex()>=0 && numTaskID==tasks.get(this.getIndex()).getTaskId()){
+					  //do nothing when the title (that is being edited) matches up with itself
+				  }
+				  else
 					  ID = false;
 			  }
 			  
 			  //validating Title
 			  String taskTitle = tTitle.getText();
 			  for(int i=0;i<tasks.size();i++){
-				  if(taskTitle.equals(tasks.get(i).getTitle()))
+				  if(this.getIndex()>=0 && taskTitle.equals(tasks.get(this.getIndex()).getTitle())){
+					  //do nothing when the title (that is being edited) matches up with itself
+				}
+				else
 					  name =false;
 			  }
 			 
@@ -211,7 +217,7 @@ class TaskEditor extends JFrame implements ActionListener
 			  String month = tMonth.getText();
 			  String day = tDay.getText();
 			  int y=0,m=0,d=0;
-			  if(isInteger(year) && isInteger(month) && isInteger(day) && year.length()==4 && month.length()==2 && day.length()==2){
+			  if(isInteger(year) && isInteger(month) && isInteger(day) && year.length()==4 && (month.length()==2||month.length()==1) && (day.length()==2||day.length()==1)){
 				  y = Integer.parseInt(year);
 				  m = Integer.parseInt(month);
 				  d= Integer.parseInt(day);
