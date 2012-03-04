@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Task {
 
-	private int taskId;
+	private long taskId;
 	private String title;
 	private String shortDescription; 
 	private int duration;
@@ -15,11 +15,11 @@ public class Task {
 	private ArrayList<Task> subTasks;
 	private Task superTask;
 	
-	public int getTaskId() {
+	public long getTaskId() {
 		return taskId;
 	}
 
-	public void setTaskId(int taskId) {
+	public void setTaskId(long taskId) {
 		this.taskId = taskId;
 	}
 
