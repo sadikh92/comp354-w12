@@ -13,10 +13,11 @@ class TaskEditor extends JFrame implements ActionListener
 	 //parameters
 	 JButton SUBMIT,CANCEL;
 	 JPanel panel;
-	 JLabel taskID,title,shortDesc,duration,deliverable,dueDateY,dueDateM,dueDateD,personID;
-	 TextField  tID,tTitle,tDesc,tDuration,tDeliverable,tYear,tMonth,tDay;
-	 JComboBox cPeople;
+	 JLabel taskID,tID,title,shortDesc,duration,deliverable,dueDateY,dueDateM,dueDateD,personID,superID,cSuperL;
+	 TextField  tTitle,tDesc,tDuration,tDeliverable,tYear,tMonth,tDay;
+	 JComboBox cPeople,cSuper;
 	 int index;
+	 long tIDNum;
 	 
 	 ArrayList<Task> tasks;
 	 ArrayList<Person> people;
@@ -39,9 +40,17 @@ class TaskEditor extends JFrame implements ActionListener
 			  nameArray[i]=people.get(i).getFirstName();
 		  }
 		  
+		  Long[] tIDArray = new Long[tasks.size()+1];
+		  for(int i=0;i<tasks.size() ;i++){
+			  tIDArray[i]= tasks.get(i).getTaskId();
+		  }
+		  tIDArray[(tIDArray.length-1)]=null;
+		  
+		  tIDNum = new Date().getTime();
+		  
 		  //Defining buttons and Fields
 		  taskID = new JLabel("Task ID #:");
-		  tID = new TextField(20);
+		  tID = new JLabel(""+tIDNum+"");
 		
 		  title = new JLabel("Task Title:");
 		  tTitle = new TextField(20);
@@ -64,6 +73,10 @@ class TaskEditor extends JFrame implements ActionListener
 		  
 		  personID = new JLabel("Task Assigned to:");
 		  cPeople = new JComboBox(nameArray);
+		  
+		  superID = new JLabel("ID of Parent task");
+		  //cSuperL = new JLabel(""); only used in edit portion
+		  cSuper = new JComboBox(tIDArray);
 		 
 		  SUBMIT=new JButton("SUBMIT");
 		  
@@ -89,6 +102,8 @@ class TaskEditor extends JFrame implements ActionListener
 		  panel.add(tDay);
 		  panel.add(personID);
 		  panel.add(cPeople);
+		  panel.add(superID);
+		  panel.add(cSuper);
 		  panel.add(SUBMIT);
 		  panel.add(CANCEL);
 		  add(panel,BorderLayout.CENTER);
@@ -113,9 +128,17 @@ class TaskEditor extends JFrame implements ActionListener
 			  nameArray[i]=people.get(i).getFirstName();
 		  }
 		  
+		  Long[] tIDArray = new Long[tasks.size()+1];
+		  for(int i=0;i<tasks.size() ;i++){
+			  tIDArray[i]= tasks.get(i).getTaskId();
+		  }
+		  tIDArray[(tIDArray.length-1)]=null;
+		  
+		  tIDNum = new Date().getTime();
+		  
 		  //Defining buttons and Fields
 		  taskID = new JLabel("Task ID #:");
-		  tID = new TextField(""+tasks.get(index).getTaskId()+"",20);
+		  tID = new JLabel(""+tIDNum+"");
 		
 		  title = new JLabel("Task Title:");
 		  tTitle = new TextField(""+tasks.get(index).getTitle()+"",20);
@@ -138,6 +161,10 @@ class TaskEditor extends JFrame implements ActionListener
 		  
 		  personID = new JLabel("Task Assigned to:");
 		  cPeople = new JComboBox(nameArray);
+		  
+		  superID = new JLabel("ID of Parent task");
+		  cSuper = new JComboBox(tIDArray);
+		  cSuperL = new JLabel(""+tIDArray[index]+"");
 		 
 		  SUBMIT=new JButton("SUBMIT");
 		  
@@ -163,6 +190,8 @@ class TaskEditor extends JFrame implements ActionListener
 		  panel.add(tDay);
 		  panel.add(personID);
 		  panel.add(cPeople);
+		  panel.add(superID);
+		  panel.add(cSuperL);
 		  panel.add(SUBMIT);
 		  panel.add(CANCEL);
 		  add(panel,BorderLayout.CENTER);
@@ -179,30 +208,9 @@ class TaskEditor extends JFrame implements ActionListener
 		 String button = e.getActionCommand();
 		 
 		 if(button.equals("SUBMIT")){
-			  boolean ID = true;
 			  boolean name = true;
 			  boolean date = true;
 			  boolean dura =true;
-			  
-			  
-			  //validating ID#
-			  String taskID = tID.getText();
-			  int numTaskID=0;
-			  if(isInteger(taskID)){
-				  numTaskID = Integer.parseInt(taskID);
-			  }
-			  else{
-				  ID=false;
-			  }
-			  for(int i =0;i<(tasks.size());i++){
-				  if(numTaskID==tasks.get(i).getTaskId()){
-					  if(this.getIndex()>=0 && numTaskID==tasks.get(this.getIndex()).getTaskId()){
-						  //do nothing when the title (that is being edited) matches up with itself
-					  }
-					  else
-						  ID = false;
-				  }
-			  }
 			  
 			  //validating Title
 			  String taskTitle = tTitle.getText();
@@ -242,9 +250,7 @@ class TaskEditor extends JFrame implements ActionListener
 			  
 			  //displaying error pop up if validation failed
 			  //otherwise creating new task object
-			  if(!ID)
-				  JOptionPane.showMessageDialog(this,"Incorrect ID (Current ID is in use or in incorrect format)","Error",JOptionPane.ERROR_MESSAGE);
-			  else if(!name)
+			  if(!name)
 				  JOptionPane.showMessageDialog(this,"Incorrect Title (Current title is already in use.)","Error",JOptionPane.ERROR_MESSAGE);
 			  else if(!date)
 				  JOptionPane.showMessageDialog(this,"Incorrect Date format","Error",JOptionPane.ERROR_MESSAGE);
@@ -252,7 +258,7 @@ class TaskEditor extends JFrame implements ActionListener
 				  JOptionPane.showMessageDialog(this,"Incorrect Duration (must be an integer)","Error",JOptionPane.ERROR_MESSAGE);
 			  else
 			  {
-				  taskCreator(index,numTaskID,taskTitle,tDesc.getText(),dur,tDeliverable.getText(),new Date(y,m,d),people.get(cPeople.getSelectedIndex()).getPersonId());
+				  taskCreator(index,tIDNum,taskTitle,tDesc.getText(),dur,tDeliverable.getText(),new Date(y,m,d),people.get(cPeople.getSelectedIndex()).getPersonId(),tasks.get(cSuper.getSelectedIndex()));
 				  shell.update();
 				  this.dispose();
 			  }
@@ -268,7 +274,7 @@ class TaskEditor extends JFrame implements ActionListener
 	 
 	 //Creates new task object
 	 //or Edits an existing task object
-	 public void taskCreator(int index, int taskId, String title, String shortDescription, int duration, String deliverable, Date dueDate, int personID){
+	 public void taskCreator(int index, long taskId, String title, String shortDescription, int duration, String deliverable, Date dueDate, int personID, Task parent){
 		 
 		 if(this.getIndex()<0){
 			 Task t = new Task();
@@ -279,7 +285,9 @@ class TaskEditor extends JFrame implements ActionListener
 			 t.setDeliverable(deliverable);
 			 t.setDueDate(dueDate);
 			 t.setPersonId(personID);
+			 t.setParent(parent);
 			 tasks.add(t);
+			 parent.getSubtasks().add(t);
 		 }
 		 else{
 			 tasks.get(this.getIndex()).setTaskId(taskId);
