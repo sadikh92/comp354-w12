@@ -21,17 +21,18 @@ public class TardisShell extends JFrame {
 
 JTabbedPane tabbedPane = new JTabbedPane();
 
+//initializing task and person array lists
 private ArrayList<Task> tasks;
 private ArrayList<Person> people;
   
+//constructor
   public TardisShell(ArrayList<Task> tasks, ArrayList<Person> people) {
     super("TARDIS Task Manager");
     
     this.tasks = tasks;
 	this.people = people;
     
-    tabbedPane = new JTabbedPane();
-    
+//creation of tabs    
     TaskUI taskPanel = new TaskUI(this.tasks, this.people);
     JLabel taskLabel = new JLabel();
     taskLabel.setText("Tasks");
@@ -48,7 +49,7 @@ private ArrayList<Person> people;
     JLabel ganttLabel = new JLabel();
     ganttLabel.setText("GANTT");
     
-    
+//exit button listeners    
     JButton exitButton1 = new JButton("Exit");
     exitButton1.addActionListener(new ActionListener(){
     	public void actionPerformed(ActionEvent e){
@@ -77,19 +78,20 @@ private ArrayList<Person> people;
     	}
     });
     
-    
+//adding tabs to pane
     tabbedPane.addTab("Tasks", taskPanel);
     tabbedPane.addTab("People", peoplePanel);
     tabbedPane.addTab("Tree", treePanel);
     tabbedPane.addTab("GANTT", ganttPanel);
     
+//adding exit buttons
     taskPanel.add(exitButton1);
     peoplePanel.add(exitButton2);
     treePanel.add(exitButton3);
     ganttPanel.add(exitButton4);
     
    
-    
+//change listener for tabs    
     tabbedPane.addChangeListener(new ChangeListener() {
       public void stateChanged(ChangeEvent e) {
         tabbedPane.revalidate();
@@ -98,6 +100,7 @@ private ArrayList<Person> people;
     getContentPane().add(tabbedPane);
   }
   
+//create and show
   public static void createAndShowGUI(ArrayList<Task> tasks, ArrayList<Person> people)
 	{
 		JFrame frame = new TardisShell(tasks, people);
