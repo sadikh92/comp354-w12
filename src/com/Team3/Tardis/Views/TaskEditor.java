@@ -31,7 +31,7 @@ class TaskEditor extends JFrame implements ActionListener
 		  this.tasks = tasks;
 		  this.people = people;
 		  
-		  String[] nameArray = new String[(people.size()-1)];
+		  String[] nameArray = new String[(people.size())];
 		  for(int i=0;i<(people.size());i ++){
 			  nameArray[i]=people.get(i).getFirstName();
 		  }
@@ -102,7 +102,7 @@ class TaskEditor extends JFrame implements ActionListener
 		  super("Task Edit");
 		  this.index=index;
 		  
-		  String[] nameArray = new String[(people.size()-1)];
+		  String[] nameArray = new String[people.size()];
 		  for(int i=0;i<(people.size());i ++){
 			  nameArray[i]=people.get(i).getFirstName();
 		  }
@@ -210,7 +210,7 @@ class TaskEditor extends JFrame implements ActionListener
 				  m = Integer.parseInt(month);
 				  d= Integer.parseInt(day);
 				  if(y<2012 || m<1 || m>12 ||d<1 || d>31)
-					  date =false;
+					  date = false;
 			  }
 			  else
 				  date =false;
@@ -235,7 +235,9 @@ class TaskEditor extends JFrame implements ActionListener
 			  else if(!dura)
 				  JOptionPane.showMessageDialog(this,"Incorrect Duration (must be an integer)","Error",JOptionPane.ERROR_MESSAGE);
 			  else
-				  taskCreator(index,tasks,numTaskID,taskTitle,tDesc.getText(),dur,tDeliverable.getText(),new Date(y,m,d),people.get(cPeople.getSelectedIndex()).getPersonId());			  		
+				  taskCreator(index,numTaskID,taskTitle,tDesc.getText(),dur,tDeliverable.getText(),new Date(y,m,d),people.get(cPeople.getSelectedIndex()).getPersonId());
+			  
+			  this.dispose();
 		 }
 		 else if(button.equals("CANCEL")){
 			 this.dispose();
@@ -247,7 +249,7 @@ class TaskEditor extends JFrame implements ActionListener
 	 
 	 //Creates new task object
 	 //or Edits an existing task object
-	 public void taskCreator(int index, ArrayList<Task> tasks, int taskId,String title, String shortDescription, int duration, String deliverable, Date dueDate, int personID){
+	 public void taskCreator(int index, int taskId, String title, String shortDescription, int duration, String deliverable, Date dueDate, int personID){
 		 
 		 if(this.getIndex()<0){
 			 Task t = new Task();
