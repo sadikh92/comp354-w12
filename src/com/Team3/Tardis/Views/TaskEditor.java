@@ -128,12 +128,13 @@ class TaskEditor extends JFrame implements ActionListener
 		  for(int i=0;i<(people.size());i ++){
 			  nameArray[i]=people.get(i).getFirstName();
 		  }
-		  
+		  /*
 		  Long[] tIDArray = new Long[tasks.size()+1];
 		  for(int i=0;i<tasks.size() ;i++){
 			  tIDArray[i]= tasks.get(i).getTaskId();
 		  }
 		  tIDArray[(tIDArray.length-1)]=null;
+		  */
 		  
 		  //tIDNum = new Date().getTime(); not in Edit
 		  
@@ -165,7 +166,10 @@ class TaskEditor extends JFrame implements ActionListener
 		  
 		  superID = new JLabel("ID of Parent task");
 		  //cSuper = new JComboBox(tIDArray); not in edit
-		  cSuperL = new JLabel(""+tIDArray[index]+"");
+		  if(tasks.get(index).getSuperTask()==null)
+			  cSuperL = new JLabel("");
+		  else
+			  cSuperL = new JLabel(""+tasks.get(index).getSuperTask().getTaskId()+"");
 		 
 		  SUBMIT=new JButton("SUBMIT");
 		  
