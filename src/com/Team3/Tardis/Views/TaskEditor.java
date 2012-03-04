@@ -167,7 +167,7 @@ class TaskEditor extends JFrame implements ActionListener
 		  superID = new JLabel("ID of Parent task");
 		  //cSuper = new JComboBox(tIDArray); not in edit
 		  if(tasks.get(index).getSuperTask()==null)
-			  cSuperL = new JLabel("");
+			  cSuperL = new JLabel("No Parent");
 		  else
 			  cSuperL = new JLabel(""+tasks.get(index).getSuperTask().getTaskId()+"");
 		 
@@ -263,7 +263,16 @@ class TaskEditor extends JFrame implements ActionListener
 				  JOptionPane.showMessageDialog(this,"Incorrect Duration (must be an integer)","Error",JOptionPane.ERROR_MESSAGE);
 			  else
 			  {
-				  taskCreator(index,tIDNum,taskTitle,tDesc.getText(),dur,tDeliverable.getText(),new Date(y,m,d),people.get(cPeople.getSelectedIndex()).getPersonId(),tasks.get(cSuper.getSelectedIndex()));
+				  if(cSuper.getSelectedIndex()==-1){
+					  taskCreator(tIDNum,taskTitle,tDesc.getText(),dur,tDeliverable.getText(),new Date(y,m,d),people.get(cPeople.getSelectedIndex()).getPersonId(),null);
+				  }
+				  else{
+					  System.out.println("This should not happen");
+					  System.out.println(cSuper.getSelectedIndex());
+					  System.out.println(tasks.size());
+					  taskCreator(tIDNum,taskTitle,tDesc.getText(),dur,tDeliverable.getText(),new Date(y,m,d),people.get(cPeople.getSelectedIndex()).getPersonId(),tasks.get(cSuper.getSelectedIndex()));
+				  }
+				  
 				  shell.update();
 				  this.dispose();
 			  }
@@ -279,7 +288,7 @@ class TaskEditor extends JFrame implements ActionListener
 	 
 	 //Creates new task object
 	 //or Edits an existing task object
-	 public void taskCreator(int index, long taskId, String title, String shortDescription, int duration, String deliverable, Date dueDate, int personID, Task parent){
+	 public void taskCreator(long taskId, String title, String shortDescription, int duration, String deliverable, Date dueDate, int personID, Task parent){
 		 
 		 if(this.getIndex()<0){
 			 Task t = new Task();
@@ -292,10 +301,10 @@ class TaskEditor extends JFrame implements ActionListener
 			 t.setPersonId(personID);
 			 t.setSuperTask(parent);
 			 tasks.add(t);
-			 parent.addSubtask(parent);
+			 if(parent!=null)
+				 parent.addSubtask(t);
 		 }
 		 else{
-			 tasks.get(this.getIndex()).setTaskId(taskId);
 			 tasks.get(this.getIndex()).setTitle(title);
 			 tasks.get(this.getIndex()).setShortDescription(shortDescription);
 			 tasks.get(this.getIndex()).setDuration(duration);
