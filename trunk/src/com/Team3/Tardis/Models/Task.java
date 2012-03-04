@@ -12,8 +12,8 @@ public class Task {
 	private String deliverable;
 	private Date dueDate;
 	private int personId;
-	private ArrayList<Task> subtasks;
-	private Task parent;
+	private ArrayList<Task> subTasks;
+	private Task superTask;
 	
 	public int getTaskId() {
 		return taskId;
@@ -71,15 +71,15 @@ public class Task {
 		this.personId = personId;
 	}
 	
-	public ArrayList<Task> getSubtasks(){return subtasks;}
-	public void addSubtask(Task task){subtasks.add(task);}
+	public ArrayList<Task> getSubtasks(){return subTasks;}
+	public void addSubtask(Task task){subTasks.add(task);}
 	
-	public Task getParent(){
-		return parent;
+	public Task getSuperTask(){
+		return superTask;
 	}
 	
-	public void setParent(Task parent){
-		this.parent=parent;
+	public void setParent(Task superTask){
+		this.superTask = superTask;
 	}
 	
 }
