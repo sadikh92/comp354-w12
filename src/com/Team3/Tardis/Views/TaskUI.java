@@ -222,6 +222,6 @@ public class TaskUI extends JPanel implements ActionListener
 	{
 		tasks.remove(row);
 		
-		update();
+		shell.update();
 	}
 }
