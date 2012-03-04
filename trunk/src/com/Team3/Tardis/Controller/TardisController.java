@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.Team3.Tardis.Models.*;
 import com.Team3.Tardis.Models.XML.*;
 import com.Team3.Tardis.Util.Logger;
-import com.Team3.Tardis.Views.PeopleView;
+import com.Team3.Tardis.Views.TardisShell;
 
 /**
  * @author Alex Landovskis
@@ -36,14 +36,10 @@ public class TardisController {
 			// Load tasks
 			tasks = taskReader.loadTasks(TASKS_FILE);
 			
-			// Prepare report.
-			PeopleView peopleTaskView = new PeopleView();
-			peopleTaskView.view(VIEW_FILE, people, tasks);
-			
-			System.out.println(VIEW_FILE + " has been created.");
+			TardisShell.createAndShowGUI(tasks, people);
 			
 		} catch (Exception e) {
 			Logger.log(TardisController.class.getName(), e.toString());
-		}		
+		}
 	}
 }
