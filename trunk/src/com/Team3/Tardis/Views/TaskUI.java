@@ -27,6 +27,7 @@ import com.Team3.Tardis.Views.TaskEditor;
 public class TaskUI extends JPanel implements ActionListener
 {	
 	//Stores the array of Task Objects
+	private TardisShell shell;
 	private ArrayList<Task> tasks;
 	private ArrayList<Person> people;
 	
@@ -51,9 +52,10 @@ public class TaskUI extends JPanel implements ActionListener
 	private DefaultTableModel model;
 	
 	//Constructor
-	public TaskUI(ArrayList<Task> tasks, ArrayList<Person> people)
+	public TaskUI(TardisShell shell, ArrayList<Task> tasks, ArrayList<Person> people)
 	{
 		//Fills the taskInfo array with the values stored in the ArrayList
+		this.shell = shell;
 		this.tasks = tasks;
 		this.people = people;
 		
@@ -149,6 +151,8 @@ public class TaskUI extends JPanel implements ActionListener
 		//The model is reset
 		model = new DefaultTableModel(taskInfo, columnNames);
 		taskTable.setModel(model);
+		
+		
 	}
 	
 	//Listens for the button presses
@@ -158,7 +162,7 @@ public class TaskUI extends JPanel implements ActionListener
 		
 		if (buttonString.equals("Add"))
 		{
-			TaskEditor taskAdd = new TaskEditor(this, tasks, people);
+			TaskEditor taskAdd = new TaskEditor(shell, tasks, people);
 			
 			//update();
 		}
@@ -173,7 +177,7 @@ public class TaskUI extends JPanel implements ActionListener
 			}
 			else
 			{
-				TaskEditor taskAdd = new TaskEditor(this, tasks, people, row);
+				TaskEditor taskAdd = new TaskEditor(shell, tasks, people, row);
 				
 				//update();
 			}
