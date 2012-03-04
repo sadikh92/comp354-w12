@@ -71,15 +71,19 @@ public class Task {
 		this.personId = personId;
 	}
 	
-	public ArrayList<Task> getSubtasks(){return subTasks;}
-	public void addSubtask(Task task){subTasks.add(task);}
+	public ArrayList<Task> getSubtasks() {
+		return subTasks;
+	}
+	
+	public void addSubtask(Task task) {
+		subTasks.add(task);
+	}
 	
 	public Task getSuperTask(){
 		return superTask;
 	}
 	
-	public void setParent(Task superTask){
+	public void setSuperTask(Task superTask){
 		this.superTask = superTask;
 	}
-	
 }
