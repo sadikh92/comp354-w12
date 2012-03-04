@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -20,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.Models.Task;
+import com.Team3.Tardis.Views.TaskEditor;
 
 //Table View of Tasks
 public class TaskUI extends JPanel implements ActionListener
@@ -156,8 +158,10 @@ public class TaskUI extends JPanel implements ActionListener
 		
 		if (buttonString.equals("Add"))
 		{
-			//Call Adam's Pop up window
-			//adamAddFunction(tasks, row);
+			TaskEditor taskAdd = new TaskEditor(tasks, people);
+			TaskEditor.setSize(500, 400);
+			TaskEditor.setVisible(true);
+			TaskEditor.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			
 			update();
 		}
@@ -172,8 +176,10 @@ public class TaskUI extends JPanel implements ActionListener
 			}
 			else
 			{
-				//Call Adam's Pop up window
-				//adamEditFunction(tasks, people, row);
+				TaskEditor taskAdd = new TaskEditor(tasks, people, row);
+				TaskEditor.setSize(500, 400);
+				TaskEditor.setVisible(true);
+				TaskEditor.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				
 				update();
 			}
