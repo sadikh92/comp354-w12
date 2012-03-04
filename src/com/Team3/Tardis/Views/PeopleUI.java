@@ -251,7 +251,7 @@ public class PeopleUI extends JPanel
 									"Postal Code",
 									"Province",
 									"Country",
-            						"Tasks"};
+            						"Tasks Assigned (by ID)"};
 	
 	//Stores the People information
 	private Object[][] peopleInfo;
