@@ -159,9 +159,6 @@ public class TaskUI extends JPanel implements ActionListener
 		if (buttonString.equals("Add"))
 		{
 			TaskEditor taskAdd = new TaskEditor(tasks, people);
-			TaskEditor.setSize(500, 400);
-			TaskEditor.setVisible(true);
-			TaskEditor.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			
 			update();
 		}
@@ -177,9 +174,6 @@ public class TaskUI extends JPanel implements ActionListener
 			else
 			{
 				TaskEditor taskAdd = new TaskEditor(tasks, people, row);
-				TaskEditor.setSize(500, 400);
-				TaskEditor.setVisible(true);
-				TaskEditor.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				
 				update();
 			}
