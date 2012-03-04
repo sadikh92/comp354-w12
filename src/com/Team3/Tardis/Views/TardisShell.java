@@ -86,7 +86,7 @@ private PeopleUI peoplePanel;
 	save.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e)
 		{
-			System.out.println("Save function here");
+			//Save function
 		}
 	});
 	
@@ -94,6 +94,7 @@ private PeopleUI peoplePanel;
 	exit.addActionListener(new ActionListener(){
 	  public void actionPerformed(ActionEvent e)
 	  {
+		  //Save function
 		  System.exit(0);
 	  }
 	}); 
@@ -102,6 +103,7 @@ private PeopleUI peoplePanel;
 	printTask.addActionListener(new ActionListener(){
 	  public void actionPerformed(ActionEvent e)
 	  {
+		  //Save Function
 		  taskPrinter();
 		  System.out.println("Print tasks here");
 	  }
@@ -110,6 +112,7 @@ private PeopleUI peoplePanel;
 	printPeople.addActionListener(new ActionListener(){
 	  public void actionPerformed(ActionEvent e)
 	 {
+		  //Save Function
 		  peoplePrinter();
 		  System.out.println("People list printed");
 	 }
@@ -132,6 +135,10 @@ private PeopleUI peoplePanel;
 	  peoplePanel.update();
   }
   
+  public void taskPrinter(){
+	  TaskView taskView = new TaskView();
+	  taskView.view("Table View of Tasks.txt", this.people, this.tasks);
+  }
   
   public void peoplePrinter(){
 	  PeopleView peopleView = new PeopleView();
