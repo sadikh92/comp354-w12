@@ -12,7 +12,7 @@ import com.Team3.Tardis.Models.Task;
  * @author Alex Landovskis
  * @description Prepare and output table 2
  */
-public class PeopleTaskView implements IPeopleTaskView {
+public class PeopleView implements IPeopleView {
 	
 	/*
 	 * @description Output the people view.
