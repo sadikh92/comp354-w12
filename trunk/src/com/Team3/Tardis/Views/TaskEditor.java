@@ -163,73 +163,80 @@ class TaskEditor extends JFrame implements ActionListener
 	  }
 	  
 	  //validation method activated upon Submit
-	 public void actionPerformed(ActionEvent ae){
+	 public void actionPerformed(ActionEvent e){
+		 String button = e.getActionCommand();
 		 
-		  boolean ID = true;
-		  boolean name = true;
-		  boolean date = true;
-		  boolean dura =true;
-		  
-		  
-		  //validating ID#
-		  String taskID = tID.getText();
-		  int numTaskID=0;
-		  if(isInteger(taskID)){
-			  numTaskID = Integer.parseInt(taskID);
-		  }
-		  else{
-			  ID=false;
-		  }
-		  for(int i =0;i<(tasks.size());i++){
-			  if(numTaskID==tasks.get(i).getTaskId())
-				  ID = false;
-		  }
-		  
-		  //validating Title
-		  String taskTitle = tTitle.getText();
-		  for(int i=0;i<tasks.size();i++){
-			  if(taskTitle.equals(tasks.get(i).getTitle()))
-				  name =false;
-		  }
-		 
-		  //validating date
-		  String year = tYear.getText();
-		  String month = tMonth.getText();
-		  String day = tDay.getText();
-		  int y=0,m=0,d=0;
-		  if(isInteger(year) && isInteger(month) && isInteger(day) && year.length()==4 && month.length()==2 && day.length()==2){
-			  y = Integer.parseInt(year);
-			  m = Integer.parseInt(month);
-			  d= Integer.parseInt(day);
-			  if(y<2012 || m<1 || m>12 ||d<1 || d>31)
+		 if(button.equals("SUBMIT")){
+			  boolean ID = true;
+			  boolean name = true;
+			  boolean date = true;
+			  boolean dura =true;
+			  
+			  
+			  //validating ID#
+			  String taskID = tID.getText();
+			  int numTaskID=0;
+			  if(isInteger(taskID)){
+				  numTaskID = Integer.parseInt(taskID);
+			  }
+			  else{
+				  ID=false;
+			  }
+			  for(int i =0;i<(tasks.size());i++){
+				  if(numTaskID==tasks.get(i).getTaskId())
+					  ID = false;
+			  }
+			  
+			  //validating Title
+			  String taskTitle = tTitle.getText();
+			  for(int i=0;i<tasks.size();i++){
+				  if(taskTitle.equals(tasks.get(i).getTitle()))
+					  name =false;
+			  }
+			 
+			  //validating date
+			  String year = tYear.getText();
+			  String month = tMonth.getText();
+			  String day = tDay.getText();
+			  int y=0,m=0,d=0;
+			  if(isInteger(year) && isInteger(month) && isInteger(day) && year.length()==4 && month.length()==2 && day.length()==2){
+				  y = Integer.parseInt(year);
+				  m = Integer.parseInt(month);
+				  d= Integer.parseInt(day);
+				  if(y<2012 || m<1 || m>12 ||d<1 || d>31)
+					  date =false;
+			  }
+			  else
 				  date =false;
-		  }
-		  else
-			  date =false;
-		  
-		  //validating duration
-		  String duration = tDuration.getText();
-		  int dur=0;//most descriptive name ever
-		  if(!isInteger(duration)){
-			  dura=false;
-		  }
-		  else
-			  dur = Integer.parseInt(duration);
-		  
-		  //displaying error pop up if validation failed
-		  //otherwise creating new task object
-		  if(!ID)
-			  JOptionPane.showMessageDialog(this,"Incorrect ID (Current ID is in use or in incorrect format)","Error",JOptionPane.ERROR_MESSAGE);
-		  else if(!name)
-			  JOptionPane.showMessageDialog(this,"Incorrect Title (Current title is already in use.)","Error",JOptionPane.ERROR_MESSAGE);
-		  else if(!date)
-			  JOptionPane.showMessageDialog(this,"Incorrect Date format","Error",JOptionPane.ERROR_MESSAGE);
-		  else if(!dura)
-			  JOptionPane.showMessageDialog(this,"Incorrect Duration (must be an integer)","Error",JOptionPane.ERROR_MESSAGE);
-		  else
-			  taskCreator(index,tasks,numTaskID,taskTitle,tDesc.getText(),dur,tDeliverable.getText(),new Date(y,m,d),people.get(cPeople.getSelectedIndex()).getPersonId());
-		  		
-		  
+			  
+			  //validating duration
+			  String duration = tDuration.getText();
+			  int dur=0;//most descriptive name ever
+			  if(!isInteger(duration)){
+				  dura=false;
+			  }
+			  else
+				  dur = Integer.parseInt(duration);
+			  
+			  //displaying error pop up if validation failed
+			  //otherwise creating new task object
+			  if(!ID)
+				  JOptionPane.showMessageDialog(this,"Incorrect ID (Current ID is in use or in incorrect format)","Error",JOptionPane.ERROR_MESSAGE);
+			  else if(!name)
+				  JOptionPane.showMessageDialog(this,"Incorrect Title (Current title is already in use.)","Error",JOptionPane.ERROR_MESSAGE);
+			  else if(!date)
+				  JOptionPane.showMessageDialog(this,"Incorrect Date format","Error",JOptionPane.ERROR_MESSAGE);
+			  else if(!dura)
+				  JOptionPane.showMessageDialog(this,"Incorrect Duration (must be an integer)","Error",JOptionPane.ERROR_MESSAGE);
+			  else
+				  taskCreator(index,tasks,numTaskID,taskTitle,tDesc.getText(),dur,tDeliverable.getText(),new Date(y,m,d),people.get(cPeople.getSelectedIndex()).getPersonId());			  		
+		 }
+		 else if(button.equals("CANCEL")){
+			 this.dispose();
+		 }
+		 else{
+			 System.out.println("Unexpected Error");
+		 }
 	 }
 	 
 	 //Creates new task object
