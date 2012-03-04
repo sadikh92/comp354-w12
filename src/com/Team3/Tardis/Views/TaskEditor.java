@@ -20,19 +20,19 @@ class TaskEditor extends JFrame implements ActionListener
 	 
 	 ArrayList<Task> tasks;
 	 ArrayList<Person> people;
-	 TaskUI taskTable;
+	 TardisShell shell;
 	 
 	 public int getIndex(){
 		 return index;
 	 }
 	
 	  //Constructor used for Add
-	  TaskEditor(TaskUI taskTable, ArrayList<Task> tasks, ArrayList<Person> people){
+	  TaskEditor(TardisShell shell, ArrayList<Task> tasks, ArrayList<Person> people){
 		  super("Task Add");
 		  this.index=-1;
 		  this.tasks = tasks;
 		  this.people = people;
-		  this.taskTable = taskTable;
+		  this.shell = shell;
 		  
 		  String[] nameArray = new String[(people.size())];
 		  for(int i=0;i<(people.size());i ++){
@@ -101,12 +101,12 @@ class TaskEditor extends JFrame implements ActionListener
 	  }
 	  
 	//Constructor used for Edit
-	  TaskEditor(TaskUI taskTable, ArrayList<Task> tasks, ArrayList<Person> people, int index){
+	  TaskEditor(TardisShell shell, ArrayList<Task> tasks, ArrayList<Person> people, int index){
 		  super("Task Edit");
 		  this.index=index;
 		  this.tasks = tasks;
 		  this.people = people;
-		  this.taskTable = taskTable;
+		  this.shell = shell;
 		  
 		  String[] nameArray = new String[people.size()];
 		  for(int i=0;i<(people.size());i ++){
@@ -249,7 +249,7 @@ class TaskEditor extends JFrame implements ActionListener
 			  else
 			  {
 				  taskCreator(index,numTaskID,taskTitle,tDesc.getText(),dur,tDeliverable.getText(),new Date(y,m,d),people.get(cPeople.getSelectedIndex()).getPersonId());
-				  taskTable.update();
+				  shell.update();
 				  this.dispose();
 			  }
 			  
