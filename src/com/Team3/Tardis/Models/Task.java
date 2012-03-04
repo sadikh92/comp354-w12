@@ -13,6 +13,7 @@ public class Task {
 	private Date dueDate;
 	private int personId;
 	private ArrayList<Task> subtasks;
+	private Task parent;
 	
 	public int getTaskId() {
 		return taskId;
@@ -72,4 +73,13 @@ public class Task {
 	
 	public ArrayList<Task> getSubtasks(){return subtasks;}
 	public void addSubtask(Task task){subtasks.add(task);}
+	
+	public Task getParent(){
+		return parent;
+	}
+	
+	public void setParent(Task parent){
+		this.parent=parent;
+	}
+	
 }
