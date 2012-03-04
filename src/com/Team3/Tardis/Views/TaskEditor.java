@@ -267,9 +267,6 @@ class TaskEditor extends JFrame implements ActionListener
 					  taskCreator(tIDNum,taskTitle,tDesc.getText(),dur,tDeliverable.getText(),new Date(y,m,d),people.get(cPeople.getSelectedIndex()).getPersonId(),null);
 				  }
 				  else{
-					  System.out.println("This should not happen");
-					  System.out.println(cSuper.getSelectedIndex());
-					  System.out.println(tasks.size());
 					  taskCreator(tIDNum,taskTitle,tDesc.getText(),dur,tDeliverable.getText(),new Date(y,m,d),people.get(cPeople.getSelectedIndex()).getPersonId(),tasks.get(cSuper.getSelectedIndex()));
 				  }
 				  
