@@ -27,6 +27,10 @@ JTabbedPane tabbedPane = new JTabbedPane();
 private ArrayList<Task> tasks;
 private ArrayList<Person> people;
   
+private TaskUI taskPanel;
+private PeopleUI peoplePanel;
+
+
 //constructor
   public TardisShell(ArrayList<Task> tasks, ArrayList<Person> people) {
     super("TARDIS Task Manager");
@@ -39,8 +43,8 @@ private ArrayList<Person> people;
 	setJMenuBar(menuBar);
 	JMenu fileMenu = new JMenu("File");
 	menuBar.add(fileMenu);
-	
-	
+
+//menu items	
 	JMenuItem save = new JMenuItem("Save");
 	JMenuItem printSubMenu = new JMenu("Print");
 	JMenuItem exit = new JMenuItem("Exit");
@@ -49,12 +53,11 @@ private ArrayList<Person> people;
 	
 	
 //creation of tabs    
-    TaskUI taskPanel = new TaskUI(this.tasks, this.people);
+    taskPanel = new TaskUI(this, this.tasks, this.people);
     JLabel taskLabel = new JLabel();
     taskLabel.setText("Tasks");
     
-    
-    JPanel peoplePanel = new JPanel();
+    peoplePanel = new PeopleUI(this, this.tasks, this.people);
     JLabel peopleLabel = new JLabel();
     peopleLabel.setText("People");
     
@@ -122,6 +125,12 @@ private ArrayList<Person> people;
     
     getContentPane().add(tabbedPane);
   }
+  
+  public void update() {
+	  taskPanel.update();
+	  peoplePanel.update();
+  }
+  
   
 //create and show
   public static void createAndShowGUI(ArrayList<Task> tasks, ArrayList<Person> people)
