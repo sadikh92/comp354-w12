@@ -195,21 +195,25 @@ class TaskEditor extends JFrame implements ActionListener
 				  ID=false;
 			  }
 			  for(int i =0;i<(tasks.size());i++){
-				  if(this.getIndex()>=0 && numTaskID==tasks.get(this.getIndex()).getTaskId()){
-					  //do nothing when the title (that is being edited) matches up with itself
+				  if(numTaskID==tasks.get(i).getTaskId()){
+					  if(this.getIndex()>=0 && numTaskID==tasks.get(this.getIndex()).getTaskId()){
+						  //do nothing when the title (that is being edited) matches up with itself
+					  }
+					  else
+						  ID = false;
 				  }
-				  else
-					  ID = false;
 			  }
 			  
 			  //validating Title
 			  String taskTitle = tTitle.getText();
 			  for(int i=0;i<tasks.size();i++){
-				  if(this.getIndex()>=0 && taskTitle.equals(tasks.get(this.getIndex()).getTitle())){
-					  //do nothing when the title (that is being edited) matches up with itself
-				}
-				else
-					  name =false;
+				  if(taskTitle.equals(tasks.get(i).getTitle())){
+					  if(this.getIndex()>=0 && taskTitle.equals(tasks.get(this.getIndex()).getTitle())){
+						  //do nothing when the title (that is being edited) matches up with itself
+					  }
+					  else
+						  name =false;
+				  }
 			  }
 			 
 			  //validating date
