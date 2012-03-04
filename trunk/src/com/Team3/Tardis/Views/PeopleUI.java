@@ -234,7 +234,7 @@ public class PeopleUI extends JPanel {
 }*/
 
 //Table View of Tasks
-public class PeopleUI extends JPanel implements ActionListener
+public class PeopleUI extends JPanel
 {	
 	//Stores the array of Task Objects and People Objects
 	private ArrayList<Task> tasks;
@@ -272,17 +272,13 @@ public class PeopleUI extends JPanel implements ActionListener
 		
 		setTaskInfo();
 		
-		setLayout(new BorderLayout());
+		//setLayout(new BorderLayout());
 		
 		//Creates the table part
 		taskTablePanel();
-		
-		//Creates the button part
-		taskButtonPanel();
 
 		//Adds the two to the existing panel
-		add(peopleTablePanel, BorderLayout.NORTH);
-		add(peopleButtonPanel, BorderLayout.SOUTH);
+		add(peopleTablePanel/*, BorderLayout.NORTH*/);
 	}
 	
 	//Creates the table
@@ -314,25 +310,6 @@ public class PeopleUI extends JPanel implements ActionListener
         
         //Create the scroll pane, add the table to it and add the scroll pane to the panel.
         add(scrollPane);
-	}
-	
-	//Creates the button Panel
-	private void taskButtonPanel() 
-	{
-		peopleButtonPanel = new JPanel();
-		peopleButtonPanel.setLayout(new FlowLayout());
-		
-		JButton addButton = new JButton("Add");
-		addButton.addActionListener(this);
-		peopleButtonPanel.add(addButton);
-		
-		JButton editButton = new JButton("Edit");
-		editButton.addActionListener(this);
-		peopleButtonPanel.add(editButton);
-		
-		JButton deleteButton = new JButton("Delete");
-		deleteButton.addActionListener(this);
-		peopleButtonPanel.add(deleteButton);
 	}
 	
 	//Used to initialize the taskInfo array during the construction of the object
@@ -377,76 +354,6 @@ public class PeopleUI extends JPanel implements ActionListener
 		//The model is reset
 		model = new DefaultTableModel(peopleInfo, columnNames);
 		peopleTable.setModel(model);
-	}
-	
-	//Listens for the button presses
-	public void actionPerformed(ActionEvent e)
-	{
-		String buttonString = e.getActionCommand();
-		
-		if (buttonString.equals("Add"))
-		{
-			TaskEditor taskAdd = new TaskEditor(tasks, people);
-			
-			update();
-		}
-		else if (buttonString.equals("Edit"))
-		{
-			int row = peopleTable.getSelectedRow();
-			
-			if (row == -1)
-			{
-				//Error Pop Up
-				JOptionPane.showMessageDialog(this, "No row selected!", "Error", JOptionPane.ERROR_MESSAGE);
-			}
-			else
-			{
-				TaskEditor taskAdd = new TaskEditor(tasks, people, row);
-				
-				update();
-			}
-		}
-		else if (buttonString.equals("Delete"))
-		{
-			int row = peopleTable.getSelectedRow();
-			
-			if (row == -1)
-			{
-				//Error Pop Up
-				JOptionPane.showMessageDialog(this, "No row selected!", "Error", JOptionPane.ERROR_MESSAGE);
-			}
-			else
-			{
-				//Confirm Delete Pop Up
-				int n = JOptionPane.showConfirmDialog(this,
-						"Are you sure you want to delete the person?", "Deletion Confirmation", JOptionPane.YES_NO_OPTION);
-
-				if (n == JOptionPane.YES_OPTION)
-				{
-					delete(row);
-				}
-				else if (n == JOptionPane.NO_OPTION)
-				{
-					//Nothing happens
-				}
-				else
-				{
-					System.out.println("Unexpected error.");
-				}
-			}
-		}
-		else
-		{
-			System.out.println("Unexpected error.");
-		}
-	}
-	
-	//Deletes the appropriate Task from the array list
-	private void delete(int row)
-	{
-		tasks.remove(row);
-		
-		update();
 	}
 }
 
