@@ -48,16 +48,24 @@ import java.util.ArrayList;
 public class PeopleUI extends JPanel {
     private boolean DEBUG = false;
 
-    public PeopleUI(ArrayList<Person> personList) {
+    public PeopleUI(ArrayList<Person> personList, ArrayList<Task> taskList) {
         super(new GridLayout(1,0));
         
+        //Array list to store input list of people
         ArrayList<Person> pList=personList;
+        
+        //Number of people
         int numOfPeople = pList.size();
         
-        Object[][] list = new Object[numOfPeople][9];
+        //2D array to store table data
+        Object[][] list = new Object[numOfPeople][10];
         
+        //Populate the data table
         for(int i=0;i<numOfPeople;i++)
         {
+        	//Array list to store input list of tasks
+        	ArrayList<Task> subTaskList = pList.get(i).getTasks(taskList);
+        	
         	list[i][0] = pList.get(i).getPersonId();
         	list[i][1] = pList.get(i).getFirstName();
         	list[i][2] = pList.get(i).getLastName();	
@@ -67,11 +75,23 @@ public class PeopleUI extends JPanel {
             list[i][6] = pList.get(i).getPostalCode();
             list[i][7] = pList.get(i).getProvince();
             list[i][8] = pList.get(i).getCountry();
+            
+            //String to store task ID's
+            String tList ="";
+            
+            for(int j=0;j<subTaskList.size();j++)
+            {
+            	tList+=subTaskList.get(j).getTaskId()+" ";
+            }
+            
+            list[i][9] = tList;
         }
         
         JTable table = new JTable(new MyTableModel(list));
         table.setPreferredScrollableViewportSize(new Dimension(800, 200));
         table.setFillsViewportHeight(true);
+        
+        //Allow the auto sorting
         table.setAutoCreateRowSorter(true);
 
         //Create the scroll pane and add the table to it.
@@ -84,7 +104,9 @@ public class PeopleUI extends JPanel {
  
 
     class MyTableModel extends AbstractTableModel {
-        private String[] columnNames = {"ID",
+        
+    	//Table column tables
+    	private String[] columnNames = {"ID",
         								"First Name",
                                         "Last Name",
                                         "Phone Number",
@@ -92,12 +114,14 @@ public class PeopleUI extends JPanel {
                                         "City",
                                         "Postal Code",
                                         "Province",
-                                        "Country"
+                                        "Country",
+                                        "Tasks"
                                         };
         
-
+    	//2D array of data
         private Object[][] data;
 	   
+        //Constructor
         public MyTableModel(Object[][] temp)
         {
         	data=temp;
@@ -184,13 +208,13 @@ public class PeopleUI extends JPanel {
      * this method should be invoked from the
      * event-dispatching thread.
      */
-    public static void createAndShowPeopleGUI(ArrayList<Person> personList) {
+    public static void createAndShowPeopleGUI(ArrayList<Person> personList, ArrayList<Task> taskList) {
         //Create and set up the window.
         JFrame frame = new JFrame("TableDemo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Create and set up the content pane.
-        PeopleUI newContentPane = new PeopleUI(personList);
+        PeopleUI newContentPane = new PeopleUI(personList, taskList);
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
 
