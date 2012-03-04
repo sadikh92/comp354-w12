@@ -7,6 +7,7 @@ import java.awt.event.*;
 import java.util.Date;
 
 import com.Team3.Tardis.Models.*;
+
  
 class TaskEditor extends JFrame implements ActionListener
 {
@@ -285,7 +286,7 @@ class TaskEditor extends JFrame implements ActionListener
 			 t.setDeliverable(deliverable);
 			 t.setDueDate(dueDate);
 			 t.setPersonId(personID);
-			 t.setParent(parent);
+			 t.setSuperTask(parent);
 			 tasks.add(t);
 			 parent.addSubtask(parent);
 		 }
@@ -310,7 +311,5 @@ class TaskEditor extends JFrame implements ActionListener
 		 catch(Exception e){
 			 return false;
 		 }
-	 }
-	 
+	 } 
 }
-
