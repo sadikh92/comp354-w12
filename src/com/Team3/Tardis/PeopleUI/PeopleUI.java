@@ -105,7 +105,7 @@ public class PeopleUI extends JPanel {
 
     class MyTableModel extends AbstractTableModel {
         
-    	//Table column tables
+    	//Table column titles
     	private String[] columnNames = {"ID",
         								"First Name",
                                         "Last Name",
@@ -210,7 +210,7 @@ public class PeopleUI extends JPanel {
      */
     public static void createAndShowPeopleGUI(ArrayList<Person> personList, ArrayList<Task> taskList) {
         //Create and set up the window.
-        JFrame frame = new JFrame("TableDemo");
+        JFrame frame = new JFrame("People View");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Create and set up the content pane.
