@@ -151,8 +151,6 @@ public class TaskUI extends JPanel implements ActionListener
 		//The model is reset
 		model = new DefaultTableModel(taskInfo, columnNames);
 		taskTable.setModel(model);
-		
-		
 	}
 	
 	//Listens for the button presses
@@ -220,8 +218,54 @@ public class TaskUI extends JPanel implements ActionListener
 	//Deletes the appropriate Task from the array list
 	private void delete(int row)
 	{
-		tasks.remove(row);
+		boolean breakIf = false;
+		Task tempTask = tasks.get(row);
+		Task tempSuperTask = tempTask.getSuperTask();
 		
-		shell.update();
+		if (tempSuperTask != null)
+		{
+			//Remove the task from the super task's list of sub tasks
+			for (int i = 0; i != tempSuperTask.getSubtasks().size() && !breakIf;)
+			{
+				if (tempSuperTask.getSubtasks().get(i).getTaskId() == tempTask.getTaskId())
+				{
+					tempSuperTask.getSubtasks().remove(i);
+					breakIf = true;
+				}
+				else
+				{
+					++i;
+				}
+			}
+		}
+		
+		breakIf = false;
+		
+		if (tempTask.getSubtasks() != null)
+		{
+			//Store the subtask index
+			int index = 0;
+			
+			for (int i = 0; i != tempTask.getSubtasks().size(); ++i)
+			{
+				for (int j = 0; j != tasks.size() && !breakIf; ++j)
+				{
+					if (tempTask.getSubtasks().get(i).getTaskId() == tasks.get(j).getTaskId())
+					{
+						index = j;
+						breakIf = true;
+					}
+				}
+				
+				//Call remove on each subtask
+				tasks.remove(index);
+			}
+		}
+		else
+		{
+			tasks.remove(row);	//Original Code
+		}						
+		
+		shell.update();			//
 	}
 }
