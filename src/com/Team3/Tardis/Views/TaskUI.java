@@ -129,6 +129,7 @@ public class TaskUI extends JPanel implements ActionListener
 	private void setTaskInfo()
 	{		
 		taskInfo = new Object[tasks.size()][7];
+		boolean breakIf = false;
 		
 		for (int i = 0; i != taskInfo.length; ++i)
 		{
@@ -138,7 +139,17 @@ public class TaskUI extends JPanel implements ActionListener
 			taskInfo[i][3] = tasks.get(i).getDuration();
 			taskInfo[i][4] = tasks.get(i).getDeliverable();	
 			taskInfo[i][5] = tasks.get(i).getDueDate();	
-			taskInfo[i][6] = tasks.get(i).getPersonId();
+			
+			for (int j = 0; j != people.size() && !breakIf; ++j)
+			{
+				if (people.get(j).getPersonId() == tasks.get(i).getPersonId())
+				{
+					taskInfo[i][6] = people.get(j).getFirstName();
+					breakIf = true;
+				}
+			}
+			
+			breakIf = false;
 		}
 	}
 	
