@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.Models.Task;
-import com.Team3.Tardis.Views.PeopleTaskView;
+import com.Team3.Tardis.Views.PeopleView;
 import com.Team3.Tardis.XML.InputValidator;
 import com.Team3.Tardis.XML.PeopleReader;
 import com.Team3.Tardis.XML.TaskReader;
@@ -52,7 +52,7 @@ public class PeopleTaskReport
 			tasks = taskReader.loadTasks(ONE_TASK_TASKS_FILE);
 			
 			// Report Generation
-			PeopleTaskView peopleTaskView = new PeopleTaskView();
+			PeopleView peopleTaskView = new PeopleView();
 			peopleTaskView.view(ONE_TASK_ACTUAL_FILE, people, tasks);
 			
 			// Test file.
@@ -104,7 +104,7 @@ public class PeopleTaskReport
 			tasks = taskReader.loadTasks(NO_TASK_TASKS_FILE);
 			
 			// Report Generation
-			PeopleTaskView peopleTaskView = new PeopleTaskView();
+			PeopleView peopleTaskView = new PeopleView();
 			peopleTaskView.view(NO_TASK_ACTUAL_FILE, people, tasks);
 			
 			// Test file.

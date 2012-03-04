@@ -3,7 +3,7 @@ package com.Team3.Tardis.Controller;
 import java.util.ArrayList;
 
 import com.Team3.Tardis.Models.*;
-import com.Team3.Tardis.Views.PeopleTaskView;
+import com.Team3.Tardis.Views.PeopleView;
 import com.Team3.Tardis.XML.*;
 import com.Team3.Tardis.logger.Logger;
 
@@ -37,7 +37,7 @@ public class TardisController {
 			tasks = taskReader.loadTasks(TASKS_FILE);
 			
 			// Prepare report.
-			PeopleTaskView peopleTaskView = new PeopleTaskView();
+			PeopleView peopleTaskView = new PeopleView();
 			peopleTaskView.view(VIEW_FILE, people, tasks);
 			
 			System.out.println(VIEW_FILE + " has been created.");
