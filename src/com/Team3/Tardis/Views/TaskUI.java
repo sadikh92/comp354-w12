@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -59,6 +58,7 @@ public class TaskUI extends JPanel implements ActionListener
 		this.tasks = tasks;
 		this.people = people;
 		
+		//Sets the two dimensional array of tasks
 		setTaskInfo();
 		
 		setLayout(new BorderLayout());
@@ -80,6 +80,7 @@ public class TaskUI extends JPanel implements ActionListener
 		taskTablePanel = new JPanel();
 		taskTablePanel.setLayout(new GridLayout(1, 0));
 		
+		//Creates the table using the array of tasks and the array of column names
 		model = new DefaultTableModel(taskInfo, columnNames);
 		taskTable = new JTable(model)
 		{
@@ -90,9 +91,10 @@ public class TaskUI extends JPanel implements ActionListener
 			}
 		};
         
+		//Sets the size and sorting of the table
         taskTable.setPreferredScrollableViewportSize(new Dimension(1300, 600));
         taskTable.setFillsViewportHeight(true);
-        taskTable.setAutoCreateRowSorter(true);
+        //taskTable.setAutoCreateRowSorter(true);
         
         //Set so that the user can only select one row at a time to simplify
         //deletion and editing
@@ -111,14 +113,17 @@ public class TaskUI extends JPanel implements ActionListener
 		taskButtonPanel = new JPanel();
 		taskButtonPanel.setLayout(new FlowLayout());
 		
+		//Adds the add button
 		JButton addButton = new JButton("Add");
 		addButton.addActionListener(this);
 		taskButtonPanel.add(addButton);
 		
+		//Adds the Edit button
 		JButton editButton = new JButton("Edit");
 		editButton.addActionListener(this);
 		taskButtonPanel.add(editButton);
 		
+		//Adds the Delete button
 		JButton deleteButton = new JButton("Delete");
 		deleteButton.addActionListener(this);
 		taskButtonPanel.add(deleteButton);
@@ -128,9 +133,11 @@ public class TaskUI extends JPanel implements ActionListener
 	//or after an edit or delete
 	private void setTaskInfo()
 	{		
+		//Sets the two dimensional array to the correct size
 		taskInfo = new Object[tasks.size()][7];
 		boolean breakIf = false;
 		
+		//Loads the array with the correct values
 		for (int i = 0; i != taskInfo.length; ++i)
 		{
 			taskInfo[i][0] = tasks.get(i).getTaskId();			
@@ -140,17 +147,20 @@ public class TaskUI extends JPanel implements ActionListener
 			taskInfo[i][4] = tasks.get(i).getDeliverable();	
 			taskInfo[i][5] = tasks.get(i).getDueDate();
 			
-			taskInfo[i][6] = tasks.get(i).getTaskId();	
-			
-			/*
+			//Rather than adding a person's ID, the ID is used to find
+			//the person in the people arrayList to print to show their name instead
 			for (int j = 0; j != people.size() && !breakIf; ++j)
 			{
+				//When the person's ID matches the ID of the person in the people list
 				if (people.get(j).getPersonId() == tasks.get(i).getPersonId())
 				{
+					//Their name is placed in the array
 					taskInfo[i][6] = people.get(j).getFirstName();
+					
+					//The search stops
 					breakIf = true;
 				}
-			}*/
+			}
 			
 			breakIf = false;
 		}
@@ -172,28 +182,29 @@ public class TaskUI extends JPanel implements ActionListener
 	{
 		String buttonString = e.getActionCommand();
 		
+		//If add was pressed
 		if (buttonString.equals("Add"))
 		{
 			TaskEditor taskAdd = new TaskEditor(shell, tasks, people);
-			
-			//update();
 		}
+		//If edit was pressed
 		else if (buttonString.equals("Edit"))
 		{
 			int row = taskTable.getSelectedRow();
 			
+			//If no row is selected (Swing returns -1)
 			if (row == -1)
 			{
 				//Error Pop Up
 				JOptionPane.showMessageDialog(this, "No row selected!", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			else
-			{
-				TaskEditor taskAdd = new TaskEditor(shell, tasks, people, row);
-				
-				//update();
+			{				
+				//The task is edited
+				TaskEditor taskEdit = new TaskEditor(shell, tasks, people, row);
 			}
 		}
+		//If delete was pressed
 		else if (buttonString.equals("Delete"))
 		{
 			int row = taskTable.getSelectedRow();
@@ -207,7 +218,9 @@ public class TaskUI extends JPanel implements ActionListener
 			{
 				//Confirm Delete Pop Up
 				int n = JOptionPane.showConfirmDialog(this,
-						"Are you sure you want to delete the task?", "Deletion Confirmation", JOptionPane.YES_NO_OPTION);
+						"Deleting a task will also delete any of its subtasks. " +
+						"Are you sure you want to delete the task?",
+						"Deletion Confirmation", JOptionPane.YES_NO_OPTION);
 
 				if (n == JOptionPane.YES_OPTION)
 				{
@@ -230,22 +243,21 @@ public class TaskUI extends JPanel implements ActionListener
 	}
 	
 	//Deletes the appropriate Task from the array list
+	//Delete will call itself recursively to delete any subtasks
 	private void delete(int row)
 	{
 		boolean breakIf = false;
-		/*
-		Task tempTask = tasks.get(row);
-		Task tempSuperTask = tempTask.getSuperTask();
-		*/
+		int index = row;
 		
-		if (tasks.get(row).getSuperTask() != null)	
+		//If the task has a super task
+		if (tasks.get(index).getSuperTask() != null)	
 		{			
-			//Remove the task from the super task's list of sub tasks
-			for (int i = 0; i != tasks.get(row).getSuperTask().getSubtasks().size() && !breakIf;)
+			//The task will be removed from the super task's list of subtasks
+			for (int i = 0; i != tasks.get(index).getSuperTask().getSubtasks().size() && !breakIf;)
 			{
-				if (tasks.get(row).getSuperTask().getSubtasks().get(i).getTaskId() == tasks.get(row).getTaskId())
+				if (tasks.get(index).getSuperTask().getSubtasks().get(i).getTaskId() == tasks.get(index).getTaskId())
 				{
-					tasks.get(row).getSuperTask().getSubtasks().remove(i);
+					tasks.get(index).getSuperTask().getSubtasks().remove(i);
 					breakIf = true;
 				}
 				else
@@ -255,24 +267,26 @@ public class TaskUI extends JPanel implements ActionListener
 			}
 		}
 		
+		//BreakIf is reset
 		breakIf = false;
 		
-		int k = tasks.get(row).getSubtasks().size();
-		int l = tasks.size();
-		
-		
-		if (!tasks.get(row).getSubtasks().isEmpty())
+		//If the task has subtasks,
+		//The delete method is called recursively on each of its children
+		if (!tasks.get(index).getSubtasks().isEmpty())
 		{
 			//Store the subtask index
-			int index = -1;
+			int subIndex = -1;
 			
-			for (int i = 0; i != tasks.get(row).getSubtasks().size(); /*++i*/)
+			//For each of the task's subtasks
+			//(i is never incremented because the arrayList will be updated after every deletion)
+			for (int i = 0; i != tasks.get(index).getSubtasks().size();)
 			{
-				for (int j = 0; j != tasks.size() && !breakIf; /*++j*/)
+				//Find the subtask's location in the arrayList so that it can be deleted
+				for (int j = 0; j != tasks.size() && !breakIf;)
 				{
-					if (tasks.get(row).getSubtasks().get(i).getTaskId() == tasks.get(j).getTaskId())
+					if (tasks.get(index).getSubtasks().get(i).getTaskId() == tasks.get(j).getTaskId())
 					{
-						index = j;
+						subIndex = j;
 						breakIf = true;
 					}
 					else
@@ -281,25 +295,20 @@ public class TaskUI extends JPanel implements ActionListener
 					}
 				}
 				
-				//Call remove on each subtask
-				if (index != -1)
+				//Call delete recursively on the subtask
+				if (subIndex != -1)
 				{
-					delete(index);
+					delete(subIndex);
 				
 					breakIf = false;
-					--l;
-				}
-				else
-				{
-					++i;
 				}
 			}
-			
-			
 		}
 
-		tasks.remove(row);	//Original Code					
+		//Once all of the subtasks have been deleted, the task itself is deleted
+		tasks.remove(index);			
 		
-		shell.update();			//
+		//The shell is updated after each deletion
+		shell.update();
 	}
 }
