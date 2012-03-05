@@ -1,3 +1,7 @@
+//**************************************************
+//THIS FILE IS NO LONGER USED. IT SHOULD BE DELETED.
+//**************************************************
+
 package com.Team3.Tardis.Views;
 
 import java.util.ArrayList;
