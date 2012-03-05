@@ -15,6 +15,7 @@ public class Task {
 	private ArrayList<Task> subTasks;
 	private Task superTask;
 	
+	//Deafault constructor to get rig of the empty arrayList problem
 	public Task()
 	{
 		subTasks = new ArrayList<Task>();
@@ -76,6 +77,7 @@ public class Task {
 		this.personId = personId;
 	}
 	
+	//Returns a shallow copy so that the changes are actually made to the Task's arrayList
 	public ArrayList<Task> getSubtasks() {
 		return subTasks;
 	}
