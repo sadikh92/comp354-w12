@@ -36,6 +36,7 @@ public class TardisController {
 			// Load tasks
 			tasks = taskReader.loadTasks(TASKS_FILE);
 			
+			//Create the interactive GUI
 			TardisShell.createAndShowGUI(tasks, people);
 			
 		} catch (Exception e) {
