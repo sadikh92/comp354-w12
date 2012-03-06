@@ -6,8 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.Team3.Tardis.Models.Person;
-import com.Team3.Tardis.Models.XML.InputValidator;
 import com.Team3.Tardis.Models.XML.PeopleReader;
+import com.Team3.Tardis.Util.InputValidator;
 
 import static org.junit.Assert.*;
 
