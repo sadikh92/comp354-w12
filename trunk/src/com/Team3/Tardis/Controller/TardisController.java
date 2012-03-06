@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.Team3.Tardis.Models.*;
 import com.Team3.Tardis.Models.XML.*;
+import com.Team3.Tardis.Util.InputValidator;
 import com.Team3.Tardis.Util.Logger;
 import com.Team3.Tardis.Views.TardisShell;
 
@@ -14,8 +15,8 @@ import com.Team3.Tardis.Views.TardisShell;
  */
 public class TardisController {
 
-	static final String PEOPLE_FILE = "xml/people.xml";
-	static final String TASKS_FILE = "xml/tasks.xml";
+	public static final String PEOPLE_FILE = "xml/people.xml";
+	public static final String TASKS_FILE = "xml/tasks.xml";
 	static final String VIEW_FILE = "report/report.txt";
 	/**
 	 * @param args: The system arguments.
