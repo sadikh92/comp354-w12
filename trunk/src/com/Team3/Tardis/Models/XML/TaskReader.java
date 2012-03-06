@@ -65,9 +65,20 @@ public class TaskReader implements ITaskReader{
 
 				while (tasksIt.hasNext()) {
 
-					Pointer taskPtr = tasksIt.next();					
+					Pointer taskPtr = tasksIt.next();	
+					
+					//Comment out next two lines to test sub tasks
 					Task task = loadTask(ctx.getRelativeContext(taskPtr));
 					tasks.add(task);
+					
+					//ArrayList<Task> tempTaskList = loadTask(ctx.getRelativeContext(taskPtr));
+					/*
+					//add the task and all its subtasks to the main task list
+					for(int i =0; i<tempTaskList.size();i++)
+					{
+						tasks.add(tempTaskList.get(i));					
+					}
+					*/
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -96,6 +107,8 @@ public class TaskReader implements ITaskReader{
 	 * @param taskCtx The XML context containing one task.
 	 *
 	 */
+	
+	//private ArrayList<Task> loadTask(JXPathContext taskCtx) throws Exception {
 	private Task loadTask(JXPathContext taskCtx) throws Exception {
 		
 		Logger.log(PeopleReader.class.getName(), "loadPerson() - START ");
@@ -103,6 +116,10 @@ public class TaskReader implements ITaskReader{
 		String errorMessage = inputValidator.validateTask(taskCtx);
 		
 		if (errorMessage.equals("")) {
+			
+			// Temporary list to store new tasks in to return
+			ArrayList<Task> tempList = new ArrayList<Task>();
+			
 			Task task = new Task();
 			
 			// required fields
@@ -120,10 +137,46 @@ public class TaskReader implements ITaskReader{
 			task.setPersonId(taskCtx.getValue("personId") == null ? 0
 					: Integer.parseInt(taskCtx.getValue("personId").toString()));
 			
+			/*
+			 
+			// add parent to list to be returned
+			tempList.add(task);
+					
 			// subtask to be read here in the next increment - where it's needed 
+			
+			//need to loop through if there are sub tasks and not to if there are none
+			
+			//START LOOP
+			
+			// required fields
+			Task subTask = new Task();
+			subTask.setTaskId(Integer.parseInt(((JXPathContext) ((JXPathContext) taskCtx.getValue("subtasks")).getValue("subtask")).getValue("id").toString()));
+			subTask.setTitle(((JXPathContext) ((JXPathContext) taskCtx.getValue("subtasks")).getValue("subtask")).getValue("title").toString());
+			subTask.setShortDescription(((JXPathContext) ((JXPathContext) taskCtx.getValue("subtasks")).getValue("subtask")).getValue("description").toString());
+
+			// non required fields
+			subTask.setDuration(((JXPathContext) ((JXPathContext) taskCtx.getValue("subtasks")).getValue("subtask")).getValue("duration") == null ? 0
+					: Integer.parseInt(((JXPathContext) ((JXPathContext) taskCtx.getValue("subtasks")).getValue("subtask")).getValue("duration").toString()));
+			subTask.setDeliverable(((JXPathContext) ((JXPathContext) taskCtx.getValue("subtasks")).getValue("subtask")).getValue("deliverable") == null ? "" : ((JXPathContext) ((JXPathContext) taskCtx
+					.getValue("subtasks")).getValue("subtask")).getValue("deliverable").toString());
+			subTask.setDueDate(((JXPathContext) ((JXPathContext) taskCtx.getValue("subtasks")).getValue("subtask")).getValue("dueDate") == null ? null : 
+					new Date(((JXPathContext) ((JXPathContext) taskCtx.getValue("subtasks")).getValue("subtask")).getValue("dueDate").toString()));
+			
+			// setting parent
+			subTask.setSuperTask(task);
+			
+			// add sub tasks to the parents sub task list
+			task.addSubtask(subTask);
+			
+			// add the sub task to the list to be returned
+			tempList.add(subTask);
+			//END LOOP
+			 
+			*/
 			
 			Logger.log(PeopleReader.class.getName(), "loadPerson() - END ");
 			return task;
+			//return tempList;
 		} else {
 			
 			Logger.log(PeopleReader.class.getName(), "loadPerson() - Error = " + errorMessage);
