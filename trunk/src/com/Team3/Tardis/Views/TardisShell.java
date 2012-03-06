@@ -16,8 +16,10 @@ import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import com.Team3.Tardis.Controller.TardisController;
 import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.Models.Task;
+import com.Team3.Tardis.Models.XML.TaskWriter;
 
 public class TardisShell extends JFrame {
 	//Holds the tabbed pane
@@ -90,8 +92,13 @@ public class TardisShell extends JFrame {
 				//*************************
 				//Call to the save function
 				//*************************
+				//TaskWriter writer = new TaskWriter();
+				//boolean saved = writer.writeTasks(TardisController.TASKS_FILE, this.tasks);
 				
-				JOptionPane.showMessageDialog(null, "Your changes have been saved to the XML files.");
+				//if(saved)
+					JOptionPane.showMessageDialog(null, "Your changes have been saved to the XML files.");
+				//else
+					//JOptionPane.showMessageDialog(null, "Failed to save changes to the XML files.");
 			}
 		});
 		
@@ -109,6 +116,8 @@ public class TardisShell extends JFrame {
 					//*************************
 					//Call to the save function
 					//*************************
+					//TaskWriter writer = new TaskWriter();
+					//boolean saved = writer.writeTasks(TardisController.TASKS_FILE, this.tasks);
 				}
 				else if (n == JOptionPane.NO_OPTION)
 				{
@@ -192,6 +201,8 @@ public class TardisShell extends JFrame {
 					//*************************
 					//Call to the save function
 					//*************************
+					//TaskWriter writer = new TaskWriter();
+					//boolean saved = writer.writeTasks(TardisController.TASKS_FILE, this.tasks);
 				}
 				else if (n == JOptionPane.NO_OPTION)
 				{
