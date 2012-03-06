@@ -11,7 +11,7 @@ import java.net.MalformedURLException;
 import org.apache.commons.jxpath.JXPathContext;
 import org.apache.commons.jxpath.Pointer;
 import com.Team3.Tardis.Models.Person;
-import com.Team3.Tardis.Models.XML.Helper.XPathHelper;
+import com.Team3.Tardis.Util.IInputValidator;
 import com.Team3.Tardis.Util.Logger;
 
 /**
