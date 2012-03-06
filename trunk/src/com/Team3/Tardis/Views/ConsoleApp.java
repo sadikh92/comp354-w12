@@ -6,11 +6,12 @@ package com.Team3.Tardis.Views;
 
 import java.util.ArrayList;
 
+import com.Team3.Tardis.Controller.TardisController;
 import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.Models.Task;
-import com.Team3.Tardis.Models.XML.InputValidator;
 import com.Team3.Tardis.Models.XML.PeopleReader;
 import com.Team3.Tardis.Models.XML.TaskReader;
+import com.Team3.Tardis.Util.InputValidator;
 
 public class ConsoleApp {
 
@@ -23,8 +24,8 @@ public class ConsoleApp {
 		PeopleReader pr = new PeopleReader(new InputValidator());
 		
 		try {
-			ArrayList<Task> tasks = tr.loadTasks("xml/tasks.xml");
-			ArrayList<Person> people = pr.loadPeople("xml/people.xml");
+			ArrayList<Task> tasks = tr.loadTasks(TardisController.TASKS_FILE);
+			ArrayList<Person> people = pr.loadPeople(TardisController.PEOPLE_FILE);
 			
 			TardisShell.createAndShowGUI(tasks, people);
 			
