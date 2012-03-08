@@ -15,6 +15,7 @@ import com.Team3.Tardis.Util.IInputValidator;
 import com.Team3.Tardis.Util.Logger;
 
 /**
+ * @author Eric Regnier
  * @description Reads people from a file.
  *
  */
