@@ -9,27 +9,27 @@ import java.util.Date;
 import com.Team3.Tardis.Models.*;
 
  
-class TaskEditor extends JFrame implements ActionListener
+public class TaskEditor extends JFrame implements ActionListener
 {
 	 //parameters
-	 JButton SUBMIT,CANCEL;
-	 JPanel panel;
-	 JLabel taskID,tID,title,shortDesc,duration,deliverable,dueDateY,dueDateM,dueDateD,personID,superID,cSuperL;
-	 TextField  tTitle,tDesc,tDuration,tDeliverable,tYear,tMonth,tDay;
-	 JComboBox cPeople,cSuper;
-	 int index;
-	 long tIDNum;
+	 private JButton SUBMIT,CANCEL;
+	 private JPanel panel;
+	 private JLabel taskID,tID,title,shortDesc,duration,deliverable,dueDateY,dueDateM,dueDateD,personID,superID,cSuperL;
+	 private TextField  tTitle,tDesc,tDuration,tDeliverable,tYear,tMonth,tDay;
+	 private JComboBox cPeople,cSuper;
+	 private int index;
+	 private long tIDNum;
 	 
-	 ArrayList<Task> tasks;
-	 ArrayList<Person> people;
-	 TardisShell shell;
+	 private ArrayList<Task> tasks;
+	 private ArrayList<Person> people;
+	 private ITardisShell shell;
 	 
 	 public int getIndex(){
 		 return index;
 	 }
 	
 	  //Constructor used for Add
-	  TaskEditor(TardisShell shell, ArrayList<Task> tasks, ArrayList<Person> people){
+	  public TaskEditor(ITardisShell shell, ArrayList<Task> tasks, ArrayList<Person> people){
 		  super("Task Add");
 		  this.index=-1;
 		  this.tasks = tasks;
@@ -117,7 +117,7 @@ class TaskEditor extends JFrame implements ActionListener
 	  }
 	  
 	//Constructor used for Edit
-	  TaskEditor(TardisShell shell, ArrayList<Task> tasks, ArrayList<Person> people, int index){
+	  TaskEditor(ITardisShell shell, ArrayList<Task> tasks, ArrayList<Person> people, int index){
 		  super("Task Edit");
 		  this.index=index;
 		  this.tasks = tasks;

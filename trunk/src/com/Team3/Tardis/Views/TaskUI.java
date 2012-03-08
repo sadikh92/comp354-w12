@@ -26,7 +26,7 @@ import com.Team3.Tardis.Views.TaskEditor;
 public class TaskUI extends JPanel implements ActionListener
 {	
 	//Stores the array of Task Objects
-	private TardisShell shell;
+	private ITardisShell shell;
 	private ArrayList<Task> tasks;
 	private ArrayList<Person> people;
 	
@@ -51,7 +51,7 @@ public class TaskUI extends JPanel implements ActionListener
 	private DefaultTableModel model;
 	
 	//Constructor
-	public TaskUI(TardisShell shell, ArrayList<Task> tasks, ArrayList<Person> people)
+	public TaskUI(ITardisShell shell, ArrayList<Task> tasks, ArrayList<Person> people)
 	{
 		//Fills the taskInfo array with the values stored in the ArrayList
 		this.shell = shell;

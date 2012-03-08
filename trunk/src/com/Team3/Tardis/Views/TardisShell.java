@@ -21,7 +21,7 @@ import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.Models.Task;
 import com.Team3.Tardis.Models.XML.TaskWriter;
 
-public class TardisShell extends JFrame {
+public class TardisShell extends JFrame implements ITardisShell  {
 	//Holds the tabbed pane
 	JTabbedPane tabbedPane = new JTabbedPane();
 
