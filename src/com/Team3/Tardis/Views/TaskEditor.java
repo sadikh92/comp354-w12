@@ -24,9 +24,6 @@ public class TaskEditor extends JFrame implements ActionListener
 	 private ArrayList<Person> people;
 	 private ITardisShell shell;
 	 
-	 public int getIndex(){
-		 return index;
-	 }
 	
 	  //Constructor used for Add
 	  public TaskEditor(ITardisShell shell, ArrayList<Task> tasks, ArrayList<Person> people){
@@ -36,11 +33,13 @@ public class TaskEditor extends JFrame implements ActionListener
 		  this.people = people;
 		  this.shell = shell;
 		  
+		  //creating an array of first names for the combobox (dropdown menu) that will select personID
 		  String[] nameArray = new String[(people.size())];
 		  for(int i=0;i<(people.size());i ++){
 			  nameArray[i]=people.get(i).getFirstName();
 		  }
 		  
+		  // creating an array of the task IDs to choose from in the combobox that will select the parentID
 		  Long[] tIDArray = new Long[tasks.size()+1];
 		  for(int i=0;i<tasks.size() ;i++){
 			  tIDArray[i]= tasks.get(i).getTaskId();
@@ -76,7 +75,6 @@ public class TaskEditor extends JFrame implements ActionListener
 		  cPeople = new JComboBox(nameArray);
 		  
 		  superID = new JLabel("ID of Parent task");
-		  //cSuperL = new JLabel(""); only used in edit portion
 		  cSuper = new JComboBox(tIDArray);
 		 
 		  SUBMIT=new JButton("SUBMIT");
@@ -124,19 +122,11 @@ public class TaskEditor extends JFrame implements ActionListener
 		  this.people = people;
 		  this.shell = shell;
 		  
+		  // creating an array of first names for the combobox (drop down menu) that will select the personID
 		  String[] nameArray = new String[people.size()];
 		  for(int i=0;i<(people.size());i ++){
 			  nameArray[i]=people.get(i).getFirstName();
 		  }
-		  /*
-		  Long[] tIDArray = new Long[tasks.size()+1];
-		  for(int i=0;i<tasks.size() ;i++){
-			  tIDArray[i]= tasks.get(i).getTaskId();
-		  }
-		  tIDArray[(tIDArray.length-1)]=null;
-		  */
-		  
-		  //tIDNum = new Date().getTime(); not in Edit
 		  
 		  //Defining buttons and Fields
 		  taskID = new JLabel("Task ID #:");
@@ -158,14 +148,13 @@ public class TaskEditor extends JFrame implements ActionListener
 		  dueDateM = new JLabel("Due date Month (MM):");
 		  dueDateD = new JLabel("Due date Day (DD):");
 		  tYear = new TextField(""+(tasks.get(index).getDueDate().getYear()+1900)+"",4);
-		  tMonth = new TextField(""+tasks.get(index).getDueDate().getMonth()+"",2);
+		  tMonth = new TextField(""+(tasks.get(index).getDueDate().getMonth()+1)+"",2);
 		  tDay = new TextField(""+tasks.get(index).getDueDate().getDate()+"",2);
 		  
 		  personID = new JLabel("Task Assigned to:");
 		  cPeople = new JComboBox(nameArray);
 		  
 		  superID = new JLabel("ID of Parent task");
-		  //cSuper = new JComboBox(tIDArray); not in edit
 		  if(tasks.get(index).getSuperTask()==null)
 			  cSuperL = new JLabel("No Parent");
 		  else
@@ -215,13 +204,13 @@ public class TaskEditor extends JFrame implements ActionListener
 		 if(button.equals("SUBMIT")){
 			  boolean name = true;
 			  boolean date = true;
-			  boolean dura =true;
+			  boolean bDuration =true;
 			  
 			  //validating Title
 			  String taskTitle = tTitle.getText();
 			  for(int i=0;i<tasks.size();i++){
 				  if(taskTitle.equals(tasks.get(i).getTitle())){
-					  if(this.getIndex()>=0 && taskTitle.equals(tasks.get(this.getIndex()).getTitle())){
+					  if(index>=0 && taskTitle.equals(tasks.get(index).getTitle())){
 						  //do nothing when the title (that is being edited) matches up with itself
 					  }
 					  else
@@ -229,29 +218,45 @@ public class TaskEditor extends JFrame implements ActionListener
 				  }
 			  }
 			 
-			  //validating date
+			  //validating date does not work for leap years(there is no feb 29th)
 			  String year = tYear.getText();
 			  String month = tMonth.getText();
 			  String day = tDay.getText();
 			  int y=0,m=0,d=0;
+			  //checks if year month and day are entered as numbers and that they are the correct length. EX. year has 4 digits and month has 2...
 			  if(isInteger(year) && isInteger(month) && isInteger(day) && year.length()==4 && (month.length()==2||month.length()==1) && (day.length()==2||day.length()==1)){
 				  y = Integer.parseInt(year);
 				  m = Integer.parseInt(month);
 				  d= Integer.parseInt(day);
-				  if(y<2012 || m<1 || m>12 ||d<1 || d>31)
+				  if(y<2012 || m<1 || m>12 ||d<1 || d>31){
 					  date = false;
+				  }
+				  else{
+					  // checks for months with only 30 days
+					  if(m==4||m==6||m==9||m==11){
+						  if(d==31){
+							  date=false;
+						  }
+					  }
+					  // checks that feb would have only 28 days(no leap years)
+					  else if(m==2){
+						  if(d>28){
+							  date=false;
+						  }
+					  }
+				  }
 			  }
 			  else
 				  date =false;
 			  
 			  //validating duration
-			  String duration = tDuration.getText();
-			  int dur=0;//most descriptive name ever
-			  if(!isInteger(duration)){
-				  dura=false;
+			  String sDuration = tDuration.getText();
+			  int duration=0;//most descriptive name ever
+			  if(!isInteger(sDuration)){
+				  bDuration=false;
 			  }
 			  else
-				  dur = Integer.parseInt(duration);
+				  duration = Integer.parseInt(sDuration);
 			  
 			  //displaying error pop up if validation failed
 			  //otherwise creating new task object
@@ -259,22 +264,32 @@ public class TaskEditor extends JFrame implements ActionListener
 				  JOptionPane.showMessageDialog(this,"Incorrect Title (Current title is already in use.)","Error",JOptionPane.ERROR_MESSAGE);
 			  else if(!date)
 				  JOptionPane.showMessageDialog(this,"Incorrect Date format","Error",JOptionPane.ERROR_MESSAGE);
-			  else if(!dura)
+			  else if(!bDuration)
 				  JOptionPane.showMessageDialog(this,"Incorrect Duration (must be an integer)","Error",JOptionPane.ERROR_MESSAGE);
 			  else
 			  {
-				  if(cSuper.getSelectedIndex()==-1){
-					  taskCreator(tIDNum,taskTitle,tDesc.getText(),dur,tDeliverable.getText(),new Date(y,m,d),people.get(cPeople.getSelectedIndex()).getPersonId(),null);
+				  //if adding check if it has a parent
+				  if(index==-1){
+					  if(cSuper.getSelectedIndex()==-1){
+						  //gets called if tasks has a parent
+						  taskCreator(tIDNum,taskTitle,tDesc.getText(),duration,tDeliverable.getText(),new Date(y-1900,m-1,d),people.get(cPeople.getSelectedIndex()).getPersonId(),null);
+					  }
+					  else{
+						  //gets called if task does not have a parent
+						  taskCreator(tIDNum,taskTitle,tDesc.getText(),duration,tDeliverable.getText(),new Date(y-1900,m-1,d),people.get(cPeople.getSelectedIndex()).getPersonId(),tasks.get(cSuper.getSelectedIndex()));
+					  }
 				  }
-				  else{
-					  taskCreator(tIDNum,taskTitle,tDesc.getText(),dur,tDeliverable.getText(),new Date(y,m,d),people.get(cPeople.getSelectedIndex()).getPersonId(),tasks.get(cSuper.getSelectedIndex()));
-				  }
+				  //if editing taskCreator is called with parentID as null since this is un-editable
+				  else
+					  taskCreator(tIDNum,taskTitle,tDesc.getText(),duration,tDeliverable.getText(),new Date(y-1900,m-1,d),people.get(cPeople.getSelectedIndex()).getPersonId(),null);
 				  
+				  //updating the display and closing the TaskEditor Window
 				  shell.update();
 				  this.dispose();
 			  }
 			  
 		 }
+		 //when Cancel button is pressed closes task editor window no object is made
 		 else if(button.equals("CANCEL")){
 			 this.dispose();
 		 }
@@ -287,7 +302,8 @@ public class TaskEditor extends JFrame implements ActionListener
 	 //or Edits an existing task object
 	 public void taskCreator(long taskId, String title, String shortDescription, int duration, String deliverable, Date dueDate, int personID, Task parent){
 		 
-		 if(this.getIndex()<0){
+		 //creates new object
+		 if(index<0){
 			 Task t = new Task();
 			 t.setTaskId(taskId);
 			 t.setTitle(title);
@@ -301,18 +317,19 @@ public class TaskEditor extends JFrame implements ActionListener
 			 if(parent!=null)
 				 parent.addSubtask(t);
 		 }
+		 // edits existing object
 		 else{
-			 tasks.get(this.getIndex()).setTitle(title);
-			 tasks.get(this.getIndex()).setShortDescription(shortDescription);
-			 tasks.get(this.getIndex()).setDuration(duration);
-			 tasks.get(this.getIndex()).setDeliverable(deliverable);
-			 tasks.get(this.getIndex()).setDueDate(dueDate);
-			 tasks.get(this.getIndex()).setPersonId(personID);
+			 tasks.get(index).setTitle(title);
+			 tasks.get(index).setShortDescription(shortDescription);
+			 tasks.get(index).setDuration(duration);
+			 tasks.get(index).setDeliverable(deliverable);
+			 tasks.get(index).setDueDate(dueDate);
+			 tasks.get(index).setPersonId(personID);
 		 }
 	 }
 	 
-	 // checks if a string contains only integers
-	 //used to validate the date
+	 // returns true if string can be resolved to an integer.
+	 //used to validate the date and duration.
 	 public boolean isInteger(String in){
 		 try{
 			 Integer.parseInt(in);
