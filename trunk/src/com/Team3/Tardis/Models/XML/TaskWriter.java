@@ -24,7 +24,8 @@ public class TaskWriter implements ITasksWriter {
 	}
 	
 	private String serialize(ArrayList<Task> tasks) {
-		
+
+		Logger.log(TaskWriter.class.getName(), "serialize() - START ");
 
 		StringBuffer sb = new StringBuffer();
 		
@@ -41,13 +42,17 @@ public class TaskWriter implements ITasksWriter {
 			sb.append("\n\t\t<deliverable>"+task.getDeliverable()+"</deliverable>");
 			sb.append("\n\t\t<dueDate>"+task.getDueDate()+"</dueDate>");
 			sb.append("\n\t\t<personId>"+task.getPersonId()+"</personId>");
-			sb.append("\n\t\t<superTaskId>"+task.getSuperTask().getTaskId()+"</superTaskId>");
+			
+			//If the task has a super task, the super task's ID is printed
+			sb.append("\n\t\t<superTaskId>"+((task.getSuperTask() != null) ? task.getSuperTask().getTaskId() : "" )+
+					  "</superTaskId>");
 				
 			sb.append("\n\t</task>");
 		}
 		
 		sb.append("\n</tasks>");
-		
+
+		Logger.log(TaskWriter.class.getName(), "serialize() - END ");
 		return sb.toString();
 	}
 }
