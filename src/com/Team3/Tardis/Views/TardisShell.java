@@ -37,6 +37,9 @@ public class TardisShell extends JFrame implements ITardisShell  {
 	//constructor
 	public TardisShell(ArrayList<Task> tasks, ArrayList<Person> people) {
 		super("TARDIS Task Manager");
+		
+		//This will prevent the user from closing the window accidentally
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	    
 	    //Sets tasks and people with a shallow copy so that changes affect the arrayLists
 	    //in the main
@@ -207,23 +210,12 @@ public class TardisShell extends JFrame implements ITardisShell  {
 			{
 				//Asks the user whether or not they want to save before quitting
 				int n = JOptionPane.showConfirmDialog(null,
-						"Would you like to save your changes before exiting?",
+						"Any recent changes will not be saved. Are you sure that you want to quit?",
 						"Save Confirmation", JOptionPane.YES_NO_OPTION);
 
 				if (n == JOptionPane.YES_OPTION)
 				{
-					//*************************
-					//Call to the save function
-					//*************************
-					/*try {
-						TaskWriter writer = new TaskWriter();
-						boolean saved = writer.writeTasks(TardisController.TASKS_FILE, self.tasks);
-						
-						if(!saved)
-							JOptionPane.showMessageDialog(null, "Failed to save changes to the XML files.");
-					} catch (Exception e1) {
-						JOptionPane.showMessageDialog(null, "Failed to save changes to the XML files.");
-					}*/
+					System.exit(0);
 				}
 				else if (n == JOptionPane.NO_OPTION)
 				{
@@ -233,8 +225,6 @@ public class TardisShell extends JFrame implements ITardisShell  {
 				{
 					System.out.println("Unexpected error.");
 				}
-				
-				System.exit(0);
 			}
 		});
 		
