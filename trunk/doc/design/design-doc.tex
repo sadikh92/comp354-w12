@@ -1,5 +1,6 @@
 \documentclass[12pt]{article}
 \usepackage{graphicx}
+\usepackage{multirow}
 
 \pagestyle{empty}
 \setcounter{secnumdepth}{2}
@@ -43,10 +44,10 @@ Eric Regnier & 9332219\\
 Rahmat Jaffari & 9095926\\
 Bacacar Ndiaye & 9744258\\
 Kam Shing Yip & 9602518\\
-X & Y\\
-X & Y\\
-X & Y\\
-X & Y\\
+David Campbell & Y\\
+Adam Anderson & Y\\
+Chris Gee & Y\\
+Eric Dana & Y\\
 \hline
 \end{tabular}
 \end{center}
@@ -66,12 +67,11 @@ briefly introducing what are its goals, and what information is to be found in i
 Complete description of the system design, describing one subsystem separately in respective subsection.
 UML class diagrams are to be used, as well as a short textual description describing the purpose of each class.
 
-\include{models}
-\include{controller}
-\include{views}
-\include{util}
+\include{subsystems/models}
+\include{subsystems/controller}
+\include{subsystems/views}
+\include{subsystems/util}
 
 \include{dynamic}
-
 
 \end{document}
