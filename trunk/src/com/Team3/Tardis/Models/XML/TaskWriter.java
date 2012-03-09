@@ -34,8 +34,8 @@ public class TaskWriter implements ITasksWriter {
 		for(Task task : tasks) {
 			
 			sb.append("\n\t<task>");
-			sb.append("\n\t<id>0</id>");
-			sb.append("\n\t\t<title>"+task.getTaskId()+"</title>");
+			sb.append("\n\t<id>"+task.getTaskId()+"</id>");
+			sb.append("\n\t\t<title>"+task.getTitle()+"</title>");
 			sb.append("\n\t\t<description>"+task.getShortDescription()+"</description>");
 			sb.append("\n\t\t<duration>"+task.getDuration()+"</duration>");
 			sb.append("\n\t\t<deliverable>"+task.getDeliverable()+"</deliverable>");
