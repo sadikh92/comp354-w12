@@ -28,6 +28,8 @@ public class TaskView implements ITaskView {
 			FileWriter fileWriter = new FileWriter(path);
 			PrintWriter writer = new PrintWriter(fileWriter);
 			
+			int personID = 0;
+			
 			// Output people.
 			ArrayList<Task> personTasks = null;
 			for (int i = 0; i != tasks.size(); ++i)
@@ -41,8 +43,19 @@ public class TaskView implements ITaskView {
 				writer.println("-Deliverable: " + tasks.get(i).getDeliverable());
 				writer.println("-Due Date: " + tasks.get(i).getDueDate());
 				
-				String name = people.get(i).getFirstName() + " " + people.get(i).getLastName();
-				writer.println("-Person: " + name);
+				personID = tasks.get(i).getPersonId();
+				
+				//Looks for the name of the person with the ID read
+				for (Person tempPerson : people)
+				{
+					if (tempPerson.getPersonId() == personID)
+					{
+						String name = tempPerson.getFirstName() + " " + tempPerson.getLastName();
+						writer.println("-Person: " + name);
+						break;
+					}
+				}
+				
 				writer.println();
 			}
 			
