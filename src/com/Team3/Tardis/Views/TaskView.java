@@ -31,7 +31,6 @@ public class TaskView implements ITaskView {
 			int personID = 0;
 			
 			// Output people.
-			ArrayList<Task> personTasks = null;
 			for (int i = 0; i != tasks.size(); ++i)
 			{
 				String title = tasks.get(i).getTitle();
