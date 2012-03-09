@@ -12,11 +12,11 @@ import com.Team3.Tardis.Models.*;
 public class TaskEditor extends JFrame implements ActionListener
 {
 	 //parameters
-	 private JButton SUBMIT,CANCEL;
+	 private JButton SUBMIT, CANCEL;
 	 private JPanel panel;
-	 private JLabel taskID,tID,title,shortDesc,duration,deliverable,dueDateY,dueDateM,dueDateD,personID,superID,cSuperL;
-	 private TextField  tTitle,tDesc,tDuration,tDeliverable,tYear,tMonth,tDay;
-	 private JComboBox cPeople,cSuper;
+	 private JLabel taskID, tID, title, shortDesc, duration, deliverable, dueDateY, dueDateM, dueDateD,personID, superID, cSuperL;
+	 private TextField tTitle, tDesc, tDuration, tDeliverable, tYear, tMonth, tDay;
+	 private JComboBox cPeople, cSuper;
 	 private int index;
 	 private long tIDNum;
 	 
@@ -28,29 +28,29 @@ public class TaskEditor extends JFrame implements ActionListener
 	  //Constructor used for Add
 	  public TaskEditor(ITardisShell shell, ArrayList<Task> tasks, ArrayList<Person> people){
 		  super("Task Add");
-		  this.index=-1;
+		  this.index = -1;
 		  this.tasks = tasks;
 		  this.people = people;
 		  this.shell = shell;
 		  
 		  //creating an array of first names for the combobox (dropdown menu) that will select personID
 		  String[] nameArray = new String[(people.size())];
-		  for(int i=0;i<(people.size());i ++){
-			  nameArray[i]=people.get(i).getFirstName();
+		  for(int i = 0; i < (people.size()); i++){
+			  nameArray[i] = people.get(i).getFirstName();
 		  }
 		  
 		  // creating an array of the task IDs to choose from in the combobox that will select the parentID
 		  Long[] tIDArray = new Long[tasks.size()+1];
-		  for(int i=0;i<tasks.size() ;i++){
-			  tIDArray[i]= tasks.get(i).getTaskId();
+		  for(int i = 0; i < tasks.size(); i++){
+			  tIDArray[i] = tasks.get(i).getTaskId();
 		  }
-		  tIDArray[(tIDArray.length-1)]=null;
+		  tIDArray[(tIDArray.length - 1)] = null;
 		  
 		  tIDNum = new Date().getTime();
 		  
 		  //Defining buttons and Fields
 		  taskID = new JLabel("Task ID #:");
-		  tID = new JLabel(""+tIDNum+"");
+		  tID = new JLabel("" + tIDNum + "");
 		
 		  title = new JLabel("Task Title:");
 		  tTitle = new TextField(20);
@@ -77,12 +77,12 @@ public class TaskEditor extends JFrame implements ActionListener
 		  superID = new JLabel("ID of Parent task");
 		  cSuper = new JComboBox(tIDArray);
 		 
-		  SUBMIT=new JButton("SUBMIT");
+		  SUBMIT = new JButton("SUBMIT");
 		  
 		  CANCEL = new JButton("CANCEL");
 		  
 		  // Constructing Panel
-		  panel=new JPanel(new GridLayout(0,2));
+		  panel = new JPanel(new GridLayout(0,2));
 		  panel.add(taskID);
 		  panel.add(tID);
 		  panel.add(title);
@@ -105,7 +105,7 @@ public class TaskEditor extends JFrame implements ActionListener
 		  panel.add(cSuper);
 		  panel.add(SUBMIT);
 		  panel.add(CANCEL);
-		  add(panel,BorderLayout.CENTER);
+		  add(panel, BorderLayout.CENTER);
 		  SUBMIT.addActionListener(this);
 		  CANCEL.addActionListener(this);
 		  setTitle("Task Add");
@@ -117,55 +117,55 @@ public class TaskEditor extends JFrame implements ActionListener
 	//Constructor used for Edit
 	  TaskEditor(ITardisShell shell, ArrayList<Task> tasks, ArrayList<Person> people, int index){
 		  super("Task Edit");
-		  this.index=index;
+		  this.index = index;
 		  this.tasks = tasks;
 		  this.people = people;
 		  this.shell = shell;
 		  
 		  // creating an array of first names for the combobox (drop down menu) that will select the personID
 		  String[] nameArray = new String[people.size()];
-		  for(int i=0;i<(people.size());i ++){
-			  nameArray[i]=people.get(i).getFirstName();
+		  for(int i=0; i < (people.size()); i++){
+			  nameArray[i] = people.get(i).getFirstName();
 		  }
 		  
 		  //Defining buttons and Fields
 		  taskID = new JLabel("Task ID #:");
-		  tID = new JLabel(""+tasks.get(index).getTaskId()+"");
+		  tID = new JLabel("" + tasks.get(index).getTaskId() + "");
 		
 		  title = new JLabel("Task Title:");
-		  tTitle = new TextField(""+tasks.get(index).getTitle()+"",20);
+		  tTitle = new TextField("" + tasks.get(index).getTitle() + "", 20);
 		  
 		  shortDesc = new JLabel("Short description:");
-		  tDesc = new TextField(""+tasks.get(index).getShortDescription()+"",20);
+		  tDesc = new TextField("" + tasks.get(index).getShortDescription() + "", 20);
 		  
 		  duration = new JLabel("Duration (# of Hours):");
-		  tDuration = new TextField(""+tasks.get(index).getDuration()+"",20);
+		  tDuration = new TextField("" + tasks.get(index).getDuration() + "", 20);
 		  
 		  deliverable = new JLabel("Deliverable:");
-		  tDeliverable = new TextField(""+tasks.get(index).getDeliverable()+"",20);
+		  tDeliverable = new TextField("" + tasks.get(index).getDeliverable() + "", 20);
 		  
 		  dueDateY = new JLabel("Due date Year (YYYY):");
 		  dueDateM = new JLabel("Due date Month (MM):");
 		  dueDateD = new JLabel("Due date Day (DD):");
-		  tYear = new TextField(""+(tasks.get(index).getDueDate().getYear()+1900)+"",4);
-		  tMonth = new TextField(""+(tasks.get(index).getDueDate().getMonth()+1)+"",2);
-		  tDay = new TextField(""+tasks.get(index).getDueDate().getDate()+"",2);
+		  tYear = new TextField("" + (tasks.get(index).getDueDate().getYear()+1900) + "", 4);
+		  tMonth = new TextField("" + (tasks.get(index).getDueDate().getMonth()+1) + "", 2);
+		  tDay = new TextField("" + tasks.get(index).getDueDate().getDate() + "", 2);
 		  
 		  personID = new JLabel("Task Assigned to:");
 		  cPeople = new JComboBox(nameArray);
 		  
 		  superID = new JLabel("ID of Parent task");
-		  if(tasks.get(index).getSuperTask()==null)
+		  if(tasks.get(index).getSuperTask() == null)
 			  cSuperL = new JLabel("No Parent");
 		  else
-			  cSuperL = new JLabel(""+tasks.get(index).getSuperTask().getTaskId()+"");
+			  cSuperL = new JLabel("" + tasks.get(index).getSuperTask().getTaskId() + "");
 		 
 		  SUBMIT=new JButton("SUBMIT");
 		  
 		  CANCEL = new JButton("CANCEL");
 		  
 		  // Constructing Panel
-		  panel=new JPanel(new GridLayout(0,2));
+		  panel = new JPanel(new GridLayout(0, 2));
 		  panel.add(taskID);
 		  panel.add(tID);
 		  panel.add(title);
@@ -188,11 +188,11 @@ public class TaskEditor extends JFrame implements ActionListener
 		  panel.add(cSuperL);
 		  panel.add(SUBMIT);
 		  panel.add(CANCEL);
-		  add(panel,BorderLayout.CENTER);
+		  add(panel, BorderLayout.CENTER);
 		  SUBMIT.addActionListener(this);
 		  CANCEL.addActionListener(this);
 		  setTitle("Task Edit");
-		  this.setSize(500,400);
+		  this.setSize(500, 400);
 		  this.setVisible(true);
 		  this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	  }
@@ -208,13 +208,13 @@ public class TaskEditor extends JFrame implements ActionListener
 			  
 			  //validating Title
 			  String taskTitle = tTitle.getText();
-			  for(int i=0;i<tasks.size();i++){
+			  for(int i = 0; i < tasks.size(); i++){
 				  if(taskTitle.equals(tasks.get(i).getTitle())){
-					  if(index>=0 && taskTitle.equals(tasks.get(index).getTitle())){
+					  if(index >= 0 && taskTitle.equals(tasks.get(index).getTitle())){
 						  //do nothing when the title (that is being edited) matches up with itself
 					  }
 					  else
-						  name =false;
+						  name = false;
 				  }
 			  }
 			 
@@ -222,38 +222,40 @@ public class TaskEditor extends JFrame implements ActionListener
 			  String year = tYear.getText();
 			  String month = tMonth.getText();
 			  String day = tDay.getText();
-			  int y=0,m=0,d=0;
+			  int y = 0, m = 0, d = 0;
 			  //checks if year month and day are entered as numbers and that they are the correct length. EX. year has 4 digits and month has 2...
-			  if(isInteger(year) && isInteger(month) && isInteger(day) && year.length()==4 && (month.length()==2||month.length()==1) && (day.length()==2||day.length()==1)){
+			  if(isInteger(year) && isInteger(month) && isInteger(day) && year.length() == 4 
+			  && (month.length() == 2 || month.length() == 1) && (day.length() == 2 || day.length() == 1))
+			  {
 				  y = Integer.parseInt(year);
 				  m = Integer.parseInt(month);
-				  d= Integer.parseInt(day);
-				  if(y<2012 || m<1 || m>12 ||d<1 || d>31){
+				  d = Integer.parseInt(day);
+				  if(y < 2012 || m < 1 || m > 12 || d < 1 || d > 31){
 					  date = false;
 				  }
 				  else{
 					  // checks for months with only 30 days
-					  if(m==4||m==6||m==9||m==11){
-						  if(d==31){
-							  date=false;
+					  if(m == 4 || m == 6 || m == 9 || m == 11){
+						  if(d == 31){
+							  date = false;
 						  }
 					  }
 					  // checks that feb would have only 28 days(no leap years)
-					  else if(m==2){
-						  if(d>28){
-							  date=false;
+					  else if(m == 2){
+						  if(d > 28){
+							  date = false;
 						  }
 					  }
 				  }
 			  }
 			  else
-				  date =false;
+				  date = false;
 			  
 			  //validating duration
 			  String sDuration = tDuration.getText();
-			  int duration=0;//most descriptive name ever
+			  int duration = 0; //most descriptive name ever
 			  if(!isInteger(sDuration)){
-				  bDuration=false;
+				  bDuration = false;
 			  }
 			  else
 				  duration = Integer.parseInt(sDuration);
@@ -261,27 +263,27 @@ public class TaskEditor extends JFrame implements ActionListener
 			  //displaying error pop up if validation failed
 			  //otherwise creating new task object
 			  if(!name)
-				  JOptionPane.showMessageDialog(this,"Incorrect Title (Current title is already in use.)","Error",JOptionPane.ERROR_MESSAGE);
+				  JOptionPane.showMessageDialog(this, "Incorrect Title (Current title is already in use.)", "Error", JOptionPane.ERROR_MESSAGE);
 			  else if(!date)
-				  JOptionPane.showMessageDialog(this,"Incorrect Date format","Error",JOptionPane.ERROR_MESSAGE);
+				  JOptionPane.showMessageDialog(this, "Incorrect Date format", "Error", JOptionPane.ERROR_MESSAGE);
 			  else if(!bDuration)
-				  JOptionPane.showMessageDialog(this,"Incorrect Duration (must be an integer)","Error",JOptionPane.ERROR_MESSAGE);
+				  JOptionPane.showMessageDialog(this, "Incorrect Duration (must be an integer)", "Error", JOptionPane.ERROR_MESSAGE);
 			  else
 			  {
 				  //if adding check if it has a parent
-				  if(index==-1){
-					  if(cSuper.getSelectedIndex()==-1){
+				  if(index == -1){
+					  if(cSuper.getSelectedIndex() == -1){
 						  //gets called if tasks has a parent
-						  taskCreator(tIDNum,taskTitle,tDesc.getText(),duration,tDeliverable.getText(),new Date(y-1900,m-1,d),people.get(cPeople.getSelectedIndex()).getPersonId(),null);
+						  taskCreator(tIDNum, taskTitle, tDesc.getText(), duration, tDeliverable.getText(), new Date(y-1900,m-1,d), people.get(cPeople.getSelectedIndex()).getPersonId(), null);
 					  }
 					  else{
 						  //gets called if task does not have a parent
-						  taskCreator(tIDNum,taskTitle,tDesc.getText(),duration,tDeliverable.getText(),new Date(y-1900,m-1,d),people.get(cPeople.getSelectedIndex()).getPersonId(),tasks.get(cSuper.getSelectedIndex()));
+						  taskCreator(tIDNum, taskTitle, tDesc.getText(), duration, tDeliverable.getText(), new Date(y-1900,m-1,d), people.get(cPeople.getSelectedIndex()).getPersonId(), tasks.get(cSuper.getSelectedIndex()));
 					  }
 				  }
 				  //if editing taskCreator is called with parentID as null since this is un-editable
 				  else
-					  taskCreator(tIDNum,taskTitle,tDesc.getText(),duration,tDeliverable.getText(),new Date(y-1900,m-1,d),people.get(cPeople.getSelectedIndex()).getPersonId(),null);
+					  taskCreator(tIDNum, taskTitle, tDesc.getText(), duration,tDeliverable.getText(), new Date(y-1900,m-1,d), people.get(cPeople.getSelectedIndex()).getPersonId(), null);
 				  
 				  //updating the display and closing the TaskEditor Window
 				  shell.update();
@@ -314,7 +316,7 @@ public class TaskEditor extends JFrame implements ActionListener
 			 t.setPersonId(personID);
 			 t.setSuperTask(parent);
 			 tasks.add(t);
-			 if(parent!=null)
+			 if(parent != null)
 				 parent.addSubtask(t);
 		 }
 		 // edits existing object
