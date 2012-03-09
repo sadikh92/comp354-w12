@@ -1,5 +1,6 @@
 package com.Team3.Tardis.Views;
 
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -85,6 +86,8 @@ public class TardisShell extends JFrame implements ITardisShell  {
 	    //But I believe that this is equivalent since we're in a frame
 	    add(tabbedPane);
 	    
+	    final TardisShell self = this; 
+
 	    //Action listener for the save function
 		save.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
@@ -92,13 +95,17 @@ public class TardisShell extends JFrame implements ITardisShell  {
 				//*************************
 				//Call to the save function
 				//*************************
-				//TaskWriter writer = new TaskWriter();
-				//boolean saved = writer.writeTasks(TardisController.TASKS_FILE, this.tasks);
-				
-				//if(saved)
-					JOptionPane.showMessageDialog(null, "Your changes have been saved to the XML files.");
-				//else
-					//JOptionPane.showMessageDialog(null, "Failed to save changes to the XML files.");
+				try {
+					TaskWriter writer = new TaskWriter();
+					boolean saved = writer.writeTasks(TardisController.TASKS_FILE, self.tasks);
+					
+					if(saved)
+						JOptionPane.showMessageDialog(null, "Your changes have been saved to the XML files.");
+					else
+						JOptionPane.showMessageDialog(null, "Failed to save changes to the XML files.");
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "Failed to save changes to the XML files.");
+				}
 			}
 		});
 		
@@ -116,8 +123,15 @@ public class TardisShell extends JFrame implements ITardisShell  {
 					//*************************
 					//Call to the save function
 					//*************************
-					//TaskWriter writer = new TaskWriter();
-					//boolean saved = writer.writeTasks(TardisController.TASKS_FILE, this.tasks);
+					try {
+						TaskWriter writer = new TaskWriter();
+						boolean saved = writer.writeTasks(TardisController.TASKS_FILE, self.tasks);
+						
+						if(!saved)
+							JOptionPane.showMessageDialog(null, "Failed to save changes to the XML files.");
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(null, "Failed to save changes to the XML files.");
+					}
 				}
 				else if (n == JOptionPane.NO_OPTION)
 				{
@@ -201,8 +215,15 @@ public class TardisShell extends JFrame implements ITardisShell  {
 					//*************************
 					//Call to the save function
 					//*************************
-					//TaskWriter writer = new TaskWriter();
-					//boolean saved = writer.writeTasks(TardisController.TASKS_FILE, this.tasks);
+					/*try {
+						TaskWriter writer = new TaskWriter();
+						boolean saved = writer.writeTasks(TardisController.TASKS_FILE, self.tasks);
+						
+						if(!saved)
+							JOptionPane.showMessageDialog(null, "Failed to save changes to the XML files.");
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(null, "Failed to save changes to the XML files.");
+					}*/
 				}
 				else if (n == JOptionPane.NO_OPTION)
 				{

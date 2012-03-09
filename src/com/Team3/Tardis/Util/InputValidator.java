@@ -9,7 +9,7 @@ import org.apache.commons.jxpath.JXPathException;
 public class InputValidator implements IInputValidator {
 
 	private static final String TEXT_FIELD = "^(\\S)(.){1,75}(\\S)$";
-	private static final String NON_NEGATIVE_INTEGER_FIELD = "(\\d){1,9}";
+	private static final String NON_NEGATIVE_INTEGER_FIELD = "(\\d){1,16}";
 	private static final String INTEGER_FIELD = "(-)?" + NON_NEGATIVE_INTEGER_FIELD;
 	private static final String PHONENUMBER_FIELD = "^\\(?([2-9][0-8][0-9])\\)?[-. ]?([2-9][0-9]{2})[-. ]?([0-9]{4})$";
 	private static final String POSTAL_CODE_FIELD = "^([A-Z]\\d[A-Z]\\s\\d[A-Z]\\d)$";
