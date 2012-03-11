@@ -13,26 +13,44 @@ Functions:\\
 \hline
 Name & Parameters & Pre-conditions & Post-conditions\\
 \hline
-		getAddress		& None       			& None			& Returns the address attribue\\
-		getCity			& None				& None       	 	& Returns the city attribue \\
-		getCountry		& None				& None       	 	& Returns the country attribue \\
-		getFirstName		& None				& None       	 	& Returns the firstName attribue \\
-		getLastName		& None				& None       	 	& Returns the lastName attribue \\
-		getPersonId		& None				& None       	 	& Returns the personId attribue \\
-		getPhoneNumber	& None				& None       	 	& Returns the phoneNumber attribue \\
-		getPostalCode		& None				& None       	 	& Returns the postalCode attribue \\
-		getProvince		& None				& None       	 	& Returns the province attribue \\
-		getTasks		& ArrayList$<$Task$>$ tasks	& Requires the list 	& Returns all the tasks for this person \\
-					& 				& of all tasks 		& \\
-		setAddress		& String address  		& None			& Sets the address attribue\\
-		setCity			& String city			& None       	 	& Sets the city attribue \\
-		setCountry		& String country		& None       	 	& Sets the country attribue \\
-		setFirstName		& String firstName		& None       	 	& Sets the firstName attribue \\
-		setLastName		& String lastName		& None       	 	& Sets the lastName attribue \\
-		setPersonId		& String personId		& None       	 	& Sets the personId attribue \\
-		setPhoneNumber	& String phoneNumber	& None       	 	& Sets the phoneNumber attribue \\
-		setPostalCode		& String postalCode		& None       	 	& Sets the postalCode attribue \\
-		setProvince		& String province		& None       	 	& Sets the province attribue
+		String getAddress		& None       			& None			& Returns the address\\
+\hline
+		String getCity			& None				& None       	 	& Returns the city \\
+\hline
+		String getCountry		& None				& None       	 	& Returns the country \\
+\hline
+		String getFirstName		& None				& None       	 	& Returns the firstName \\
+\hline
+		String getLastName		& None				& None       	 	& Returns the lastName \\
+\hline
+		String getPersonId		& None				& None       	 	& Returns the personId \\
+\hline
+		String getPhoneNumber	& None				& None       	 	& Returns the phoneNumber \\
+\hline
+		String getPostalCode		& None				& None       	 	& Returns the postalCode \\
+\hline
+		String getProvince		& None				& None       	 	& Returns the province \\
+\hline
+		ArrayList$<$Task$>$ getTasks		& ArrayList$<$Task$>$ tasks	& Requires the list 	& Returns all the tasks \\
+					& 				& of all tasks 		& for this person \\
+\hline
+		void setAddress		& String address  		& None			& Sets the address\\
+\hline
+		void setCity			& String city			& None       	 	& Sets the city \\
+\hline
+		void setCountry		& String country		& None       	 	& Sets the country \\
+\hline
+		void setFirstName		& String firstName		& None       	 	& Sets the firstName \\
+\hline
+		void setLastName		& String lastName		& None       	 	& Sets the lastName \\
+\hline
+		void setPersonId		& String personId		& None       	 	& Sets the personId \\
+\hline
+		void setPhoneNumber	& String phoneNumber	& None       	 	& Sets the phoneNumber\\
+\hline
+		void setPostalCode		& String postalCode		& None       	 	& Sets the postalCode\\
+\hline
+		void setProvince		& String province		& None       	 	& Sets the province
 \\
 \hline
 \end{tabular}
@@ -74,25 +92,44 @@ Functions:\\
 \hline
 Name & Parameters & Pre-conditions & Post-conditions\\
 \hline
-		Task		& None       			& None			& Default constructor, initializes subtasks \\
-		addSubtask		& Task task			& None       	 	& Adds subtask to this task \\
-		getDeliverable		& None				& None       	 	& Returns the country attribue \\
-		getDueDate		& None				& None       	 	& Returns the firstName attribue \\
-		getDuration		& None				& None       	 	& Returns the lastName attribue \\
-		getPersonId		& None				& None       	 	& Returns the personId attribue \\
-		getShortDescription	& None				& None       	 	& Returns the phoneNumber attribue \\
-		getSubtasks		& None				& None       	 	& Returns the postalCode attribue \\
-		getSuperTask		& None				& None       	 	& Returns the province attribue \\
-		getTaskId		& None		  		& None			& Returns the province attribue \\
-		getTitle		& None				& None       	 	& Returns the province attribue \\
-		setDeliverable		& String deliverable		& None       	 	& Sets the deliverable attribue \\
-		setDueDate		& String dueDate		& None       	 	& Sets the dueDate attribue \\
-		setDuration		& String duration		& None       	 	& Sets the duration attribue \\
-		setPersonId		& String personId		& None       	 	& Sets the personId attribue \\
-		setShortDescription	& String shortDescription	& None       	 	& Sets the shortDescription attribue \\
-		setSuperTask		& String superTask		& None       	 	& Sets the superTask attribue \\
-		setTaskId		& String taskId	  		& None			& Sets the taskId attribue \\
-		setTitle			& String title			& None       	 	& Sets the title attribue
+		Task				& None       			& None			& Default constructor, \\
+						& 	       			& 			& initializes subtasks \\
+\hline
+		void addSubtask		& Task task			& None       	 	& Adds subtask to this task \\
+\hline
+		String getDeliverable		& None				& None       	 	& Returns the deliverable \\
+\hline
+		String getDueDate		& None				& None       	 	& Returns the dueDate \\
+\hline
+		String getDuration		& None				& None       	 	& Returns the duration \\
+\hline
+		String getPersonId		& None				& None       	 	& Returns the person Id \\
+\hline
+		String getShortDescription	& None				& None       	 	& Returns the short description \\
+\hline
+		String getSubtasks		& None				& None       	 	& Returns the subtasks list \\
+\hline
+		String getSuperTask		& None				& None       	 	& Returns the super task \\
+\hline
+		String getTaskId		& None		  		& None			& Returns the task Id \\
+\hline
+		String getTitle			& None				& None       	 	& Returns the title \\
+\hline
+		void setDeliverable		& String deliverable		& None       	 	& Sets the deliverable \\
+\hline
+		void setDueDate		& String dueDate		& None       	 	& Sets the dueDate \\
+\hline
+		void setDuration		& String duration		& None       	 	& Sets the duration \\
+\hline
+		void setPersonId		& String personId		& None       	 	& Sets the personId\\
+\hline
+		void setShortDescription	& String shortDescription	& None       	 	& Sets the shortDescription\\ 
+\hline
+		void setSuperTask		& String superTask		& None       	 	& Sets the superTask \\
+\hline
+		void setTaskId			& String taskId	  		& None			& Sets the taskId \\
+\hline
+		void setTitle			& String title			& None       	 	& Sets the title
 \\
 \hline
 \end{tabular}
@@ -120,7 +157,7 @@ String superTask			& Super task of this task\\
 \end{tabular}\\
 \\
 
-Purpose: Its purpose is to hold the information that is read from the XML file for a particular task and its sub-tasks.
+Purpose: Its purpose is to hold the information that is read from the XML file for a particular task and its sub-tasks. If the object has a superTask, then this task is a subtask of that superTask.
 \\
 \\
 
@@ -148,8 +185,10 @@ Name & Parameters & Pre-conditions & Post-conditions\\
 \hline
 		PeopleReader				& IInputValidator 	& None				& Default constructor, \\
 							& inputValidator	&  requires inputValidator	& \\
+\hline
 		ArrayList$<$Person$>$loadPeople 	& String path       	& Requires the path,		& Returns all people\\
                                                                                     &                         	& returns a list of people 	 &\\
+\hline
 		Person loadPerson 			& JXPathContext path & Requires the context	& Returns a Person \\
                                                                                     & personCtx                & pointer			& 
 \\
@@ -196,10 +235,12 @@ Name & Parameters & Pre-conditions & Post-conditions\\
 \hline
 		TaskReader				& IInputValidator 	& None				& Default constructor, \\
 							& inputValidator	&  requires inputValidator	& \\
+\hline
 		ArrayList$<$Task$>$loadTasks 	& String path       	& Requires the path,		& Returns all tasks\\
                                                                                     &                         	& returns a list of taks 	 &\\
-		Task loadTasks 			& JXPathContext path & Requires the context	& Returns a Task \\
-                                                                                    & taskCtx                & pointer			& 
+\hline
+		Task loadTask	 			& JXPathContext path & Requires the context	& Returns a Task \\
+                                                                                    & taskCtx                	& pointer			& 
 \\
 \hline
 \end{tabular}
@@ -228,6 +269,7 @@ Name & Parameters & Pre-conditions & Post-conditions\\
 \hline
 		boolean writeTasks 	& String path       			& Requires the path 		& Returns a flag to\\
                                                            & 					& to the tasks XML file		& indicate if save \\
+\hline
                                                            & ArrayList$<$Task$>$ tasks		& Requires list	of tasks	& was succesful
 \\
 \hline
@@ -245,6 +287,7 @@ Name & Parameters & Pre-conditions & Post-conditions\\
 \hline
 		boolean writeTasks 			& String path       			& Requires the path		& Returns a flag to indicate \\
                                                                                     & ArrayList$<$Task$>$ tasks             & and list of tasks 		 &  if save was succesful \\
+\hline
 		String serialize 			& ArrayList$<$Task$>$ tasks		& Requires list of tasks	& Returns serialized tasks
 \\
 \hline
@@ -264,12 +307,17 @@ Functions:\\
 \hline
 Name & Parameters & Pre-conditions & Post-conditions\\
 \hline
-		Document getDocument 		& Object xmlFile       			& Requires the an object	& Returns the XML document \\
-                                                                                    & 				             & than can be the filepath    &   \\
-							& 					& or an InputStream	& \\
-		Document getDocumentContext	& Object xmlFile       			& Requires the an object	& Returns the XML document \\
-                                                                                    & 				             & than can be the filepath    &   \\
-							& 					& or an InputStream	&
+		Document getDocument 		& Object xmlFile       			& Requires the an object	& Returns the XML\\
+                                                                                    & 				             & than can be the filepath    	& document \\
+							& 					& or an InputStream		& \\
+\hline
+		Document getDocumentContext	& Object xmlFile       			& Requires the an object	& Returns the XML \\
+                                                                                    & 				             & than can be the filepath    	& JXPathContext \\
+							& 					& or an InputStream		& \\
+\hline
+		NodeList getNodeList			& Document doc       			& Requires this XML 		 & Returns the list \\
+                                                                                    & String query			            & document and a    		& of nodes matching \\
+							& 					& query for nodes		& the specified query
 \\
 \hline
 \end{tabular}
@@ -277,6 +325,6 @@ Name & Parameters & Pre-conditions & Post-conditions\\
 
 Attributes: \emph{none}
 
-Purpose: Its purpose is write all the taks to the specified XML file path.
+Purpose: Its purpose is load and query any XML file in memory.
 \\
 \\
