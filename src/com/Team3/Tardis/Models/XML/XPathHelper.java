@@ -17,7 +17,6 @@ import javax.xml.transform.TransformerException;
 import org.apache.commons.jxpath.JXPathContext;
 import org.apache.xpath.XPathAPI;
 import org.w3c.dom.Document;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;

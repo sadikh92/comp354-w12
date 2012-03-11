@@ -12,7 +12,6 @@ import com.Team3.Tardis.Models.Task;
 import com.Team3.Tardis.Models.XML.PeopleReader;
 import com.Team3.Tardis.Models.XML.TaskReader;
 import com.Team3.Tardis.Util.InputValidator;
-import com.Team3.Tardis.Util.Logger;
 import com.Team3.Tardis.Views.PeopleView;
 
 /**
@@ -44,7 +43,7 @@ public class PeopleTaskReport
 			
 			// Report Generation
 			PeopleView peopleTaskView = new PeopleView();
-			peopleTaskView.view(Common.ONE_TASK_ACTUAL_FILE, people, tasks);
+			peopleTaskView.view(Common.ONE_TASK_TEST_FILE, people, tasks);
 			
 			// Test file.
 			FileInputStream testFileStream = new FileInputStream(Common.ONE_TASK_TEST_FILE);

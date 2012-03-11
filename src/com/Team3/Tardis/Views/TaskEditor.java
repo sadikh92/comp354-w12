@@ -1,8 +1,6 @@
 package com.Team3.Tardis.Views;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -10,6 +8,7 @@ import java.util.Date;
 
 import com.Team3.Tardis.Models.*;
 
+@SuppressWarnings("serial")
 public class TaskEditor extends JFrame implements ActionListener {
 	// parameters
 	private JButton SUBMIT, CANCEL;
