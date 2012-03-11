@@ -41,29 +41,8 @@ public class TasksLoad {
 			assertEquals("First task.doc", first.getDeliverable());
 			assertEquals("Mon Jan 23 00:00:00 EST 2012", first.getDueDate().toString());//adapted the test to the date format but my 1st choice was "01/23/2012"
 			assertEquals(2, first.getPersonId());
-			//Test the subtasks-INCOMPLETE - Wait for second increment.
-			//Test the subtasks(subtasks not being read yet)
-			//ArrayList<Task> subTaskList=first.getSubtasks();
-			   // The file should contain 2 subtasks.
-			   // assertEquals(2, subTaskList.size());
-			       // Test the 1st subtask.
-						//Task sub1 = subTaskList.get(0);
-						//assertEquals(0, sub1.getTaskId());
-						//assertEquals("My first sub-task", sub1.getTitle());
-						//assertEquals("This is my first sub-task...", sub1.getShortDescription());
-						//assertEquals(1, sub1.getDuration());
-						//assertEquals("First sub-task.doc", sub1.getDeliverable());
-						//assertEquals("Mon Jan 23 00:00:00 EST 2012", sub1.getDueDate().toString());
-						// Test the 2nd subtask.
 			
-						//Task sub2 = subTaskList.get(1);
-						//assertEquals(0, sub2.getTaskId());
-						//assertEquals("My second sub-task", sub2.getTitle());
-						//assertEquals("This is my second sub-task...", sub2.getShortDescription());
-					    //assertEquals(1, sub2.getDuration());
-						//assertEquals("Second sub-task.doc", sub2.getDeliverable());
-						//assertEquals("Mon Jan 23 00:00:00 EST 2012", sub2.getDueDate());
-						
+
 			// Test the 2nd task.
 						
 			Task second = tasks.get(1);

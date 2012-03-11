@@ -24,7 +24,7 @@ import com.Team3.Tardis.Views.TaskEditor;
 public class TaskEditorTests {
 
 	@Test
-	public void TestEditWithNoEditing() {
+	public void testEditWithNoEditing() {
 		try {
 			InputValidator validator = new InputValidator();
 			PeopleReader peopleReader = new PeopleReader(validator);
@@ -32,6 +32,7 @@ public class TaskEditorTests {
 			ArrayList<Person> people = peopleReader.loadPeople(Common.PEOPLE_FILE);
 			ArrayList<Task> tasks = taskReader.loadTasks(Common.TASKS_FILE);
 
+			//before values
 			String title = tasks.get(0).getTitle();
 			String deliverable = tasks.get(0).getDeliverable();
 			long personId = tasks.get(0).getPersonId();
@@ -60,7 +61,7 @@ public class TaskEditorTests {
 	}
 	
 	@Test
-	public void TestEditWithNoSuperTask() {
+	public void testEditWithNoSuperTask() {
 		try {
 			InputValidator validator = new InputValidator();
 			PeopleReader peopleReader = new PeopleReader(validator);
@@ -97,7 +98,7 @@ public class TaskEditorTests {
 		}
 	}
 	
-	public void TestEditWithSuperTask() {
+	public void testEditWithSuperTask() {
 		try {
 			InputValidator validator = new InputValidator();
 			PeopleReader peopleReader = new PeopleReader(validator);
@@ -138,7 +139,7 @@ public class TaskEditorTests {
 	}
 
 	@Test
-	public void TestAdd() {
+	public void testAdd() {
 		try {
 			InputValidator validator = new InputValidator();
 			PeopleReader peopleReader = new PeopleReader(validator);
