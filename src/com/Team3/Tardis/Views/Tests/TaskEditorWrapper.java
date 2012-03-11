@@ -13,46 +13,17 @@ import com.Team3.Tardis.Models.Task;
 import com.Team3.Tardis.Views.ITardisShell;
 import com.Team3.Tardis.Views.TaskEditor;
 
+/**
+ * @author Eric Regnier
+ */
 public class TaskEditorWrapper extends TaskEditor {
 
-	private HashMap<String, Component> componentMap;
-
-	private void createComponentMap() {
-		componentMap = new HashMap<String, Component>();
-		Component[] components = getContentPane().getComponents();
-		for (int i = 0; i < components.length; i++) {
-			componentMap.put(components[i].getName(), components[i]);
-		}
-	}
-
-	public TextField getTextFieldByName(String name) {
-		if (componentMap.containsKey(name)) {
-			return (TextField) componentMap.get(name);
-		} else
-			return null;
-	}
-	
-	public JComboBox getComboBoxByName(String name) {
-		if (componentMap.containsKey(name)) {
-			return (JComboBox) componentMap.get(name);
-		} else
-			return null;
-	}
-	
 	public TaskEditorWrapper(ITardisShell shell, ArrayList<Task> tasks, ArrayList<Person> people) {
 		super(shell, tasks, people);
-		// TODO Auto-generated constructor stub
-		
-
-		createComponentMap();
 	}
 	
 	public TaskEditorWrapper(ITardisShell shell, ArrayList<Task> tasks, ArrayList<Person> people, int index) {
 		super(shell, tasks, people, index);
-		// TODO Auto-generated constructor stub
-		
-
-		createComponentMap();
 	}
 
 	public void setTitle(String title)
@@ -79,7 +50,7 @@ public class TaskEditorWrapper extends TaskEditor {
 	{
 		tMonth.setText(date.getMonth() + "");	
 		tYear.setText(date.getYear() + "");
-		tDay.setText(date.getDay() + "");
+		tDay.setText(date.getDate() + "");
 	}
 	
 	public void setPerson(int personId)
