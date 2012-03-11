@@ -1,22 +1,32 @@
-Mark Smith
--id: 2
--phone: 514-744-3333
--address: 2370 Gold Street
--city: Saint-Laurent
--postalCode: H4M 1S3
--province: Quebec
--country: Canada
--tasks: 
-    -My first task
+My first task
+-id: 0
+-Short Description: This is my first task...
+-Duration: 1
+-Deliverable: First task.doc
+-Due Date: Mon Jan 23 00:00:00 EST 2012
+-Person: Mark Smith
 
-Joe Miller
+My second task
 -id: 1
--phone: 514-333-1444
--address: 1215 Alexis-Nihon
--city: Saint-Laurent
--postalCode: H4R 1Z3
--province: Quebec
--country: Canada
--tasks: 
-    -My second task
+-Short Description: This is my second task...
+-Duration: 3
+-Deliverable: Second task.doc
+-Due Date: Fri Jan 27 00:00:00 EST 2012
+-Person: Joe Miller
+
+My first sub-task
+-id: 2
+-Short Description: This is my first sub-task...
+-Duration: 1
+-Deliverable: First sub-task.doc
+-Due Date: Mon Jan 23 00:00:00 EST 2012
+-Person: Phillip Johnson
+
+My second sub-task
+-id: 3
+-Short Description: This is my second sub-task...
+-Duration: 1
+-Deliverable: Second sub-task.doc
+-Due Date: Sun Mar 11 00:00:00 EST 2012
+-Person: Janette Ensley
 
