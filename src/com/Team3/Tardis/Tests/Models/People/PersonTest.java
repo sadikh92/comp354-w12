@@ -39,8 +39,8 @@ public class PersonTest {
 			tasks = taskReader.loadTasks(TASKS_FILE);
 			
 			// Two people and two tasks should have been loaded.
-			assertEquals(2, people.size());
-			assertEquals(2, tasks.size());
+			assertEquals(4, people.size());
+			assertEquals(4, tasks.size());
 			
 			// Test the 1st person.
 			Person first = people.get(0);
@@ -99,8 +99,8 @@ public class PersonTest {
 			tasks = taskReader.loadTasks(TASKS_FILE);
 			
 			// Two people and two tasks should have been loaded.
-			assertEquals(2, people.size());
-			assertEquals(2, tasks.size());
+			assertEquals(4, people.size());
+			assertEquals(4, tasks.size());
 			
 			// Test the 1st person.
 			Person first = people.get(0);
