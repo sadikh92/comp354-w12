@@ -296,12 +296,6 @@ public class TaskEditor extends JFrame implements ActionListener {
 		{
 			return false;
 		}
-
-		
-		System.out.println("\nHEY HEY HEY, year is " + year);
-		System.out.println("\nHEY HEY HEY, month is " + month);
-		System.out.println("\nHEY HEY HEY, day is " + day);
-		System.out.println("\nHEY HEY HEY, we're good to go");
 		
 		return true;
 	}
