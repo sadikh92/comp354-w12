@@ -18,16 +18,26 @@
 		<deliverable>Second task.doc</deliverable>
 		<dueDate>Fri Jan 27 00:00:00 EST 2012</dueDate>
 		<personId>1</personId>
-		<superTaskId/>
+		<superTaskId></superTaskId>
 	</task>
 	<task>
-		<id>123</id>
+		<id>2</id>
 		<title>My first sub-task</title>
 		<description>This is my first sub-task...</description>
 		<duration>1</duration>
 		<deliverable>First sub-task.doc</deliverable>
 		<dueDate>Mon Jan 23 00:00:00 EST 2012</dueDate>
-		<personId>1</personId>
+		<personId>3</personId>
 		<superTaskId>0</superTaskId>
+	</task>
+	<task>
+		<id>3</id>
+		<title>My second sub-task</title>
+		<description>This is my second sub-task...</description>
+		<duration>1</duration>
+		<deliverable>Second sub-task.doc</deliverable>
+		<dueDate>Sun Mar 11 00:00:00 EST 2012</dueDate>
+		<personId>4</personId>
+		<superTaskId>1</superTaskId>
 	</task>
 </tasks>
