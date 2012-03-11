@@ -3,12 +3,10 @@
 \subsubsection{Detailed Design Diagram}
 \includegraphics{subsystems/diagrams/controller_class_diagram.jpg}
 
-UML class diagram depicting the internal structure of the subsystem,
-accompanied by a paragraph of text describing the rationale of this design.
-
-The controller is resposible for loading the data and giving it to the view.
+The controller is responsible for loading the data and giving it to the view.
 
 \subsubsection{Units Description}
+
 
 \emph{TardisController}\\
 Functions:\\
@@ -16,7 +14,7 @@ Functions:\\
 \hline
 Name & Parameters & Pre-conditions & Post-conditions\\
 \hline
-\multirow{2}{*}{main} & String[] args & Requires Nothing & Ensures that the data has been loaded\\ 
+\multirow{2}{*}{void main} & String[] args & Requires Nothing & Ensures that the data has been loaded\\ 
 			 &  & & and passed to the main view
 \\
 \hline
@@ -36,7 +34,3 @@ String VIEW\_FILE & The assumed name of the file in which to dump the people.\\
 \end{tabular}
 
 Purpose: The main program. Loads the people and tasks from the files and passes them to the main view.
-
-List each class in this subsystem and write a short description of its purpose,
-as well as notes or reminders useful for the programmers who will implement them.
-List all attributes and functions of the class.

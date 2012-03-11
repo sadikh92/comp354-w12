@@ -1,0 +1,22 @@
+\contentsline {section}{\numberline {1}Introduction}{3}
+\contentsline {subsection}{\numberline {1.1}Purpose}{3}
+\contentsline {subsection}{\numberline {1.2}Scope}{3}
+\contentsline {section}{\numberline {2}Architectural Design}{4}
+\contentsline {subsection}{\numberline {2.1}Architectural Diagram}{4}
+\contentsline {subsection}{\numberline {2.2}Subsystem Interface Specifications}{5}
+\contentsline {section}{\numberline {3}Detailed Design}{6}
+\contentsline {subsection}{\numberline {3.1}Subsystem $<$Models$>$}{7}
+\contentsline {subsubsection}{Detailed Design Diagram}{7}
+\contentsline {subsubsection}{Units Description}{7}
+\contentsline {subsection}{\numberline {3.2}Subsystem $<$Controller$>$}{12}
+\contentsline {subsubsection}{Detailed Design Diagram}{12}
+\contentsline {subsubsection}{Units Description}{12}
+\contentsline {subsection}{\numberline {3.3}Subsystem $<$Views$>$}{14}
+\contentsline {subsubsection}{Detailed Design Diagram}{14}
+\contentsline {subsubsection}{Units Description}{15}
+\contentsline {subsection}{\numberline {3.4}Subsystem $<$Util$>$}{21}
+\contentsline {subsubsection}{Detailed Design Diagram}{21}
+\contentsline {subsubsection}{Units Description}{21}
+\contentsline {section}{\numberline {4}Dynamic Design Scenarios}{23}
+\contentsline {subsection}{\numberline {4.1}Add Scenario}{23}
+\contentsline {subsection}{\numberline {4.2}Delete Scenario}{24}
