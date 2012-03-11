@@ -245,6 +245,39 @@ TextField tYear\\
 Purpose: Add and edit a task.\\
 \\
 \\
+\emph{ITaskView}\\
+Functions:\\
+\begin{tabular}{| l | l | l | l |}
+\hline
+Name & Parameters & Pre-conditions & Post-conditions\\
+\hline
+\multirow{2}{*}{view} & String path                                 & Requires that path point & Ensures that the tasks have been\\ 
+			 & ArrayList$<$Person$>$ people & to a valid location.          & written to the file pointed to by path.\\ 
+                                     & ArrayList$<$Task$>$ tasks       &                             & 
+\\
+\hline
+\end{tabular}\\
+Purpose: Describe the interface for dumping tasks to a file.
+\\
+\\
+\emph{TaskView}\\
+Functions:\\
+\begin{tabular}{| l | l | l | l |}
+\hline
+Name & Parameters & Pre-conditions & Post-conditions\\
+\hline
+\multirow{2}{*}{view} & String path                                 & Requires that path point & Ensures that the tasks have been\\ 
+			 & ArrayList$<$Person$>$ people & to a valid location.          & written to the file pointed to by path.\\ 
+                                     & ArrayList$<$Task$>$ tasks       &                             & 
+\\
+\hline
+\end{tabular}
+
+Attributes: None\\
+\\
+Purpose: Dump tasks to a file\\
+\\
+\\
 List each class in this subsystem and write a short description of its purpose,
 as well as notes or reminders useful for the programmers who will implement them.
 List all attributes and functions of the class.
