@@ -6,5 +6,5 @@ public interface IInputValidator {
 
 	String validatePerson(JXPathContext personNode);
 
-	String validateTask(JXPathContext personNode);
+	String validateTask(JXPathContext taskNode);
 }
