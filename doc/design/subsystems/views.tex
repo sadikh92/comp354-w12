@@ -20,48 +20,44 @@ Name & Parameters & Pre-conditions & Post-conditions\\
                                             & ArrayList$<$Person$>$ peopleArray & &  setup.
 \\
 \hline
-\multirow{2}{*}{peopleTablePanel} & None & Requires Nothing & Ensures that\\
+\multirow{2}{*}{void peopleTablePanel} & None & Requires Nothing & Ensures that\\
 & & & the table view\\
 & & & for people has\\
 & & & been created.
 \\
 \hline
-\multirow{2}{*}{isCellEditable} & int rowIndex & Requires Nothing & Ensures that no cell\\
-		 		  & int colIndex & & can be edited unless\\
-		 		  & & & the edit button is clicked.
+\multirow{2}{*}{void setPeopleInfo} & None & Requires a valid & Ensures that the\\
+		 		            &          & list of people.     & people data is in\\
+                                                            &         &                             & the table.
 \\
 \hline
-\multirow{2}{*}{setPeopleInfo} & None & Requires a valid & Ensures that the people\\
-		 		    &          & list of people.     & data is in the table.
-\\
-\hline
-\multirow{2}{*}{update} & None & Requires a valid & Ensures that the people\\
-		                 &          & list of people.     & data in the table is up\\
-		                 &          &                            & to date is clicked.
+\multirow{2}{*}{void update} & None & Requires a valid & Ensures that the\\
+		                 &          & list of people.     & people data in the\\
+		                 &          &                            & table is up to date.
 \\
 \hline
 \end{tabular}\\
 \\
 Attributes:\\
-\begin{tabular}{| l |}
+\begin{tabular}{| l | l |}
 \hline
-Name\\
+Name & Description\\
 \hline
-TardisShell shell\\
+TardisShell shell & The manager of the main view.\\
 \hline
-ArrayList$<$Task$>$ tasks\\
+ArrayList$<$Task$>$ tasks & The tasks that the user created.\\
 \hline
-ArrayList$<$Person$>$ people\\
+ArrayList$<$Person$>$ people & The people that can be assigned tasks.\\
 \hline
-String[] columnNames\\
+String[] columnNames & The field names that will be displayed in the table.\\
 \hline
-Object[][] peopleInfo\\
+Object[][] peopleInfo & The people in a generic format for the table.\\
 \hline
-JPanel peopleTablePanel\\
+JPanel peopleTablePanel & The panel containing the table.\\
 \hline
-JTable peopleTable\\
+JTable peopleTable & The table containing the people.\\
 \hline
-DefaultTableModel model\\
+DefaultTableModel model & The generic model used by the JTable.\\
 \hline
 \end{tabular}
 
@@ -74,63 +70,67 @@ Functions:\\
 \hline
 Name & Parameters & Pre-conditions & Post-conditions\\
 \hline
-\multirow{2}{*}{TaskUI}{} & ITardisShell shell & Requires Nothing & Ensures that the task\\ 
-			        & ArrayList$<$Task$>$ tasks & & layout has been\\ 
+\multirow{2}{*}{TaskUI}{} & ITardisShell shell & Requires Nothing & Ensures that the\\ 
+			        & ArrayList$<$Task$>$ tasks & & task layout has been\\ 
                                             & ArrayList$<$Person$>$ people & & setup.
 \\
 \hline
-\multirow{2}{*}{actionPerformed} & ActionEvent e & Requires that e            & Ensures that\\
-                                                        &                        & is a valid action event. & the button press\\
-                                                        &                        &                                      & was interpreted.
+\multirow{2}{*}{void actionPerformed} & ActionEvent e & Requires that e            & Ensures that\\
+                                                                &                        & is a valid action event. & the button press\\
+                                                                &                        &                                      & was interpreted.
 \\
 \hline
-\multirow{2}{*}{delete} & int row         & Requires that row points & Ensures that the task \\
-		 	    &                     & to an existing row.          & and its subtasks\\
-		 	    &                     &                                         & were deleted.\\
- 			    &                     &                                         & Ensures that the task\\
-                                        &                     &                                         & view was updated.
+\multirow{2}{*}{void delete} & int row         & Requires that row points & Ensures that the task \\
+		 	           &                     & to an existing row.          & and its subtasks\\
+		 	           &                     &                                         & were deleted.\\
+ 			           &                     &                                         & Ensures that the task\\
+                                               &                     &                                         & view was updated.
 \\
 \hline
-\multirow{2}{*}{setTaskInfo} & None & Requires a valid list & Ensures that the task \\
-		 		&          & of tasks.                   & data is in the table. 
+\multirow{2}{*}{void setTaskInfo} & None & Requires a valid list & Ensures that the task \\
+		 		        &          & of tasks.                   & data is in the table. 
 \\
 \hline
-\multirow{2}{*}{update} & None & Requires a valid list & Ensures that the task\\
-		 	     &          & of tasks.                  & data in the table is up\\
-			     &          &                                 & to date.
+\multirow{2}{*}{void update} & None & Requires a valid list & Ensures that the task\\
+		 	             &          & of tasks.                  & data in the table is\\
+			             &          &                                 & up to date.
 \\
 \hline
-\multirow{2}{*}{taskButtonPanel} & None & Requires Nothing & Ensures that the add,\\
-		 	                    &          &                             & edit and delete buttons\\
-                                                        &          &                             & have been created.
+\multirow{2}{*}{void taskButtonPanel} & None & Requires Nothing & Ensures that the\\
+		 	                            &          &                             & add, edit and delete\\
+                                                                &          &                             & buttons have been\\
+					    &          &                             & created.
 \\
 \hline
-\multirow{2}{*}{taskTablePanel} & None & Requires Nothing & Ensures that the table\\
-		 	                 &           &                             & view was created.
+\multirow{2}{*}{void taskTablePanel} & None & Requires Nothing & Ensures that the\\
+		 	                         &           &                             & table view was\\
+				             &           &                             & created.
 \\
 \hline
 \end{tabular}
 
 Attributes:\\
-\begin{tabular}{| l |}
+\begin{tabular}{| l | l |}
 \hline
-String[] columnNames\\
+Name & Description\\
 \hline
-DefaultTableModel model\\
+String[] columnNames & The field names that will be displayed in the table.\\
 \hline
-ArrayList$<$Person$>$ people\\
+DefaultTableModel model & The generic model used by the JTable.\\
 \hline
-ITardisShell shell\\
+ArrayList$<$Person$>$ people & The people that can be assigned tasks.\\
 \hline
-JPanel taskButtonPanel\\
+ITardisShell shell & The manager of the main view.\\
 \hline
-Object[][] taskInfo\\
+JPanel taskButtonPanel & The panel containing the add, edit and delete buttons.\\
 \hline
-ArrayList$<$Task$>$ tasks\\
+Object[][] taskInfo & The tasks in a generic format for the table.\\
 \hline
-JTable taskTable\\
+ArrayList$<$Task$>$ tasks & The tasks that the user created.\\
 \hline
-JPanel taskTablePanel\\
+JTable taskTable & The table containing the tasks.\\
+\hline
+JPanel taskTablePanel & The panel containing the tasks table.\\
 \hline
 \end{tabular}\\
 \\
@@ -165,7 +165,7 @@ Name & Parameters & Pre-conditions & Post-conditions\\
 		 	                &               &                             & integer.
 \\
 \hline
-\multirow{2}{*}{taskCreator} & long taskId                    & Requires Nothing & Ensures that either\\
+\multirow{2}{*}{void taskCreator} & long taskId                    & Requires Nothing & Ensures that either\\
 		 	             & String title                     &                             & a new task was created\\
                                                  & String shortDescription &                             & or an existing task\\
 				 & int duration                   &                             & was modified.\\
@@ -194,65 +194,67 @@ Name & Parameters & Pre-conditions & Post-conditions\\
 \end{tabular}
 
 Attributes:\\
-\begin{tabular}{| l |}
+\begin{tabular}{| l | l |}
 \hline
-JButton CANCEL\\
+JButton CANCEL & The button to close the task window without making changes.\\
 \hline
-JComboBox cPeople\\
+JComboBox cPeople & The control to select who the task is assigned to.\\
 \hline
-JComboBox cSuper\\
+JComboBox cSuper & The control to select the super task.\\
 \hline
-JLabel cSuperL\\
+JLabel cSuperL & The label containing the supertask description.\\
 \hline
-JLabel deliverable\\
+JLabel deliverable & The label containing the deliverable description.\\
 \hline
-JLabel dueDateD\\
+JLabel dueDateD & The label containing the description of the day part of the due date.\\
 \hline
-JLabel dueDateM\\
+JLabel dueDateM & The label containing the description of the month part of the due date.\\
 \hline
-JLabel dueDateY\\
+JLabel dueDateY & The label containing the description of the year part of the due date.\\
 \hline
-JLabel duration\\
+JLabel duration & The label containing the description of the duration.\\
 \hline
-int index\\
+int index & The position in the list of tasks.\\
 \hline
-JPanel panel\\
+JPanel panel & The panel containing the task controls.\\
 \hline
-ArrayList$<$Person$>$ people\\
+ArrayList$<$Person$>$ people & The people that can be assigned tasks.\\
 \hline
-JLabel personID\\
+JLabel personID & The description of the person id.\\
 \hline
-ITardisShell shell\\
+ITardisShell shell & The manager of the main view.\\
 \hline
-JLabel shortDesc\\
+JLabel shortDesc & The description of the short description.\\
 \hline
-JButton SUBMIT\\
+\multirow{2}{*}{JButton SUBMIT} & The button to save a new task or\\
+				       & the modifications made to an existing task.
+\\
 \hline
-JLabel superID\\
+JLabel superID & The label containing the supertask id.\\
 \hline
-JLabel taskID\\
+JLabel taskID & The label containing the description of the task id.\\
 \hline
-ArrayList$<$Task$>$ tasks\\
+ArrayList$<$Task$>$ tasks & The tasks that the user created.\\
 \hline
-TextField tDay\\
+TextField tDay & The day part of the due date.\\
 \hline
-TextField tDeliverable\\
+TextField tDeliverable & The deliverable of the task.\\
 \hline
-TextField tDesc\\
+TextField tDesc & The description of the task.\\
 \hline
-TextField tDuration\\
+TextField tDuration & The duration of the task.\\
 \hline
-JLabel tID\\
+JLabel tID & The label containing the task id.\\
 \hline
-long tIDNum\\
+long tIDNum & The task id.\\
 \hline
-JLabel title\\
+JLabel title & The descripton of the title.\\
 \hline
-TextField tMonth\\
+TextField tMonth & The month part of the due date.\\
 \hline
-TextField tTitle\\
+TextField tTitle & The title of the task.\\
 \hline
-TextField tYear\\
+TextField tYear & The year part of the due date.\\
 \hline
 \end{tabular}\\
 \\
@@ -265,12 +267,13 @@ Functions:\\
 \hline
 Name & Parameters & Pre-conditions & Post-conditions\\
 \hline
-\multirow{2}{*}{view} & String path                                 & Requires that path point & Ensures that the tasks have been\\ 
-			 & ArrayList$<$Person$>$ people & to a valid location.          & written to the file pointed to by path.\\ 
-                                     & ArrayList$<$Task$>$ tasks       &                                         & 
+\multirow{2}{*}{void view} & String path                                 & Requires that path point & Ensures that the tasks have been\\ 
+			         & ArrayList$<$Person$>$ people & to a valid location.          & written to the file pointed to\\ 
+                                             & ArrayList$<$Task$>$ tasks       &                                         & by path.
 \\
 \hline
 \end{tabular}\\
+\\
 Purpose: Describe the interface for dumping tasks to a file.
 \\
 \\
@@ -280,9 +283,9 @@ Functions:\\
 \hline
 Name & Parameters & Pre-conditions & Post-conditions\\
 \hline
-\multirow{2}{*}{view} & String path                                 & Requires that path point & Ensures that the tasks have been\\ 
-			 & ArrayList$<$Person$>$ people & to a valid location.          & written to the file pointed to by path.\\ 
-                                     & ArrayList$<$Task$>$ tasks       &                                         & 
+\multirow{2}{*}{void view} & String path                                 & Requires that path point & Ensures that the tasks have been\\ 
+			        & ArrayList$<$Person$>$ people & to a valid location.          & written to the file pointed to\\ 
+                                            & ArrayList$<$Task$>$ tasks       &                                         & by path.
 \\
 \hline
 \end{tabular}
@@ -297,12 +300,13 @@ Functions:\\
 \hline
 Name & Parameters & Pre-conditions & Post-conditions\\
 \hline
-\multirow{2}{*}{view} & String path                                 & Requires that path point & Ensures that the people have been\\ 
-			 & ArrayList$<$Person$>$ people & to a valid location.          & written to the file pointed to by path.\\ 
-                                     & ArrayList$<$Task$>$ tasks       &                                         & 
+\multirow{2}{*}{void view} & String path                                 & Requires that path point & Ensures that the people have\\ 
+			         & ArrayList$<$Person$>$ people & to a valid location.          & been written to the file pointed to\\ 
+                                             & ArrayList$<$Task$>$ tasks       &                                         & by path.
 \\
 \hline
 \end{tabular}\\
+\\
 Purpose: Describe the interface for dumping people to a file.
 \\
 \\
@@ -312,9 +316,9 @@ Functions:\\
 \hline
 Name & Parameters & Pre-conditions & Post-conditions\\
 \hline
-\multirow{2}{*}{view} & String path                                 & Requires that path point & Ensures that the people have been\\ 
-			 & ArrayList$<$Person$>$ people & to a valid location.          & written to the file pointed to by path.\\ 
-                                     & ArrayList$<$Task$>$ tasks       &                                         & 
+\multirow{2}{*}{void view} & String path                                 & Requires that path point & Ensures that the people have\\ 
+			        & ArrayList$<$Person$>$ people & to a valid location.          & been written to the file pointed to\\ 
+                                            & ArrayList$<$Task$>$ tasks       &                                         & by path.
 \\
 \hline
 \end{tabular}
@@ -333,6 +337,7 @@ void update & None & Requires Nothing & Ensures that the people and task panels 
 \\
 \hline
 \end{tabular}\\
+\\
 Purpose: Describe the interface for updating the main screen.
 \\
 \\
@@ -367,17 +372,19 @@ Name & Parameters & Pre-conditions & Post-conditions\\
 \end{tabular}\\
 \\
 Attributes: \\
-\begin{tabular}{| l |}
+\begin{tabular}{| l | l |}
 \hline
-ArrayList$<$Person$>$ people\\
+Name & Description\\
 \hline
-PeopleUI peoplePanel\\
+ArrayList$<$Person$>$ people & The list of people that can be assigned tasks.\\
 \hline
-JTabbedPane tabbedPane\\
+PeopleUI peoplePanel & The panel containing the people table.\\
 \hline
-TaskUI taskPanel\\
+JTabbedPane tabbedPane & The view selection pane.\\
 \hline
-ArrayList$<$Task$>$ tasks\\
+TaskUI taskPanel & The panel containing the tasks table.\\
+\hline
+ArrayList$<$Task$>$ tasks & The list of tasks that can be assigned.\\
 \hline
 \end{tabular}\\
 \\
@@ -385,6 +392,3 @@ ArrayList$<$Task$>$ tasks\\
 Purpose: Manages and displays the main screen.\\
 \\
 \\
-List each class in this subsystem and write a short description of its purpose,
-as well as notes or reminders useful for the programmers who will implement them.
-List all attributes and functions of the class.
