@@ -26,18 +26,18 @@ Name & Parameters & Pre-conditions & Post-conditions\\
 & & & been created.
 \\
 \hline
-\multirow{2}{*}{isCellEditable} & int rowIndex & Requires Nothing & Ensures that no cell can be\\
-		 		  & int colIndex & & edited unless the edit button\\
-		 		  & & &  is clicked.
+\multirow{2}{*}{isCellEditable} & int rowIndex & Requires Nothing & Ensures that no cell\\
+		 		  & int colIndex & & can be edited unless\\
+		 		  & & & the edit button is clicked.
 \\
 \hline
-\multirow{2}{*}{setPeopleInfo} & None & Requires a valid list of people. & Ensures that the people data is in the table\\
-		 		    & & & edited unless the edit button
+\multirow{2}{*}{setPeopleInfo} & None & Requires a valid & Ensures that the people\\
+		 		    &          & list of people.     & data is in the table.
 \\
 \hline
-\multirow{2}{*}{update} & None & Requires a valid list of people. & Ensures that the people data in the table\\
-		 		      & & & is up to date\\
-		 		      & & &  is clicked.
+\multirow{2}{*}{update} & None & Requires a valid & Ensures that the people\\
+		                 &          & list of people.     & data in the table is up\\
+		                 &          &                            & to date is clicked.
 \\
 \hline
 \end{tabular}\\
@@ -95,17 +95,18 @@ Name & Parameters & Pre-conditions & Post-conditions\\
 		 		&          & of tasks.                   & data is in the table. 
 \\
 \hline
-\multirow{2}{*}{update} & None & Requires a valid list & Ensures that the task data\\
-		 	     &          & of tasks.                  & in the table is up to date.
+\multirow{2}{*}{update} & None & Requires a valid list & Ensures that the task\\
+		 	     &          & of tasks.                  & data in the table is up\\
+			     &          &                                 & to date.
 \\
 \hline
-\multirow{2}{*}{taskButtonPanel} & None & Requires Nothing & Ensures that the add, edit\\
-		 	                    &          &                             & and delete buttons have\\
-                                                        &          &                             & been created.
+\multirow{2}{*}{taskButtonPanel} & None & Requires Nothing & Ensures that the add,\\
+		 	                    &          &                             & edit and delete buttons\\
+                                                        &          &                             & have been created.
 \\
 \hline
-\multirow{2}{*}{taskTablePanel} & None & Requires Nothing & Ensures that the table view\\
-		 	                 &           &                             & was created.
+\multirow{2}{*}{taskTablePanel} & None & Requires Nothing & Ensures that the table\\
+		 	                 &           &                             & view was created.
 \\
 \hline
 \end{tabular}
@@ -149,32 +150,45 @@ Name & Parameters & Pre-conditions & Post-conditions\\
 \hline
 \multirow{2}{*}{TaskEditor} & ITardisShell shell                         & Requires Nothing & Ensures that the task\\ 
 			          & ArrayList$<$Task$>$ tasks       &                             & editor has been created\\ 
-                                              & ArrayList$<$Person$>$ people &                             & and populated with the data\\
-			          & int index                                      &                             & of the selected element.
+                                              & ArrayList$<$Person$>$ people &                             & and populated with\\
+			          & int index                                      &                            & the data of the\\
+			          &                                                     &                            & selected element.
 \\
 \hline
-\multirow{2}{*}{actionPerformed} & ActionEvent e & Requires that e            & Ensures that\\
+\multirow{2}{*}{void actionPerformed} & ActionEvent e & Requires that e            & Ensures that\\
                                                         &                        & is a valid action event. & the button press\\
                                                         &                        &                                      & was interpreted.
 \\
 \hline
-\multirow{2}{*}{int getIndex} & None & Requires Nothing & Ensures that the index.\\
-		                         &           &                             & is returned.
+\multirow{2}{*}{bool isInteger} & String in & Requires Nothing & Ensures that the\\
+		 	                &               &                             & input is a valid\\
+		 	                &               &                             & integer.
 \\
 \hline
-\multirow{2}{*}{bool isInteger} & String in & Requires Nothing & Ensures that the question,\\
-		 	                &               &                             & is the string an integer\\
-		 	                &               &                             & is answered.
-\\
-\hline
-\multirow{2}{*}{taskCreator} & long taskId                    & Requires Nothing & Ensures that either a new task\\
-		 	             & String title                     &                             & was created or an existing\\
-                                                 & String shortDescription &                             & task was modified.\\
-				 & int duration                   &                             & \\
+\multirow{2}{*}{taskCreator} & long taskId                    & Requires Nothing & Ensures that either\\
+		 	             & String title                     &                             & a new task was created\\
+                                                 & String shortDescription &                             & or an existing task\\
+				 & int duration                   &                             & was modified.\\
 				 & String deliverable          &                             &\\
 		       		 & Date dueDate               &                             &\\
 				 & int personID                  &                             &\\
 				 & Task parent                   &                             &
+\\
+\hline
+\multirow{2}{*}{void updateTask} & None & Requires Nothing & Ensures that the task\\
+		                               &           &                             & has been modified.
+\\
+\hline
+\multirow{2}{*}{bool validateDate} & None & Requires Nothing & Ensures that the date\\
+		                                  &           &                            & is valid. 
+\\
+\hline
+\multirow{2}{*}{bool validateDuration} & None & Requires Nothing & Ensures that the\\
+		                                        &           &                            & duration is valid.
+\\
+\hline
+\multirow{2}{*}{bool validateTitle} & None & Requires Nothing & Ensures that the title\\
+		                                &           &                             & is valid.
 \\
 \hline
 \end{tabular}
@@ -253,7 +267,7 @@ Name & Parameters & Pre-conditions & Post-conditions\\
 \hline
 \multirow{2}{*}{view} & String path                                 & Requires that path point & Ensures that the tasks have been\\ 
 			 & ArrayList$<$Person$>$ people & to a valid location.          & written to the file pointed to by path.\\ 
-                                     & ArrayList$<$Task$>$ tasks       &                             & 
+                                     & ArrayList$<$Task$>$ tasks       &                                         & 
 \\
 \hline
 \end{tabular}\\
@@ -268,14 +282,107 @@ Name & Parameters & Pre-conditions & Post-conditions\\
 \hline
 \multirow{2}{*}{view} & String path                                 & Requires that path point & Ensures that the tasks have been\\ 
 			 & ArrayList$<$Person$>$ people & to a valid location.          & written to the file pointed to by path.\\ 
-                                     & ArrayList$<$Task$>$ tasks       &                             & 
+                                     & ArrayList$<$Task$>$ tasks       &                                         & 
 \\
 \hline
 \end{tabular}
 
 Attributes: None\\
+Purpose: Dump tasks to a file.\\
 \\
-Purpose: Dump tasks to a file\\
+\\
+\emph{IPeopleView}\\
+Functions:\\
+\begin{tabular}{| l | l | l | l |}
+\hline
+Name & Parameters & Pre-conditions & Post-conditions\\
+\hline
+\multirow{2}{*}{view} & String path                                 & Requires that path point & Ensures that the people have been\\ 
+			 & ArrayList$<$Person$>$ people & to a valid location.          & written to the file pointed to by path.\\ 
+                                     & ArrayList$<$Task$>$ tasks       &                                         & 
+\\
+\hline
+\end{tabular}\\
+Purpose: Describe the interface for dumping people to a file.
+\\
+\\
+\emph{PeopleView}\\
+Functions:\\
+\begin{tabular}{| l | l | l | l |}
+\hline
+Name & Parameters & Pre-conditions & Post-conditions\\
+\hline
+\multirow{2}{*}{view} & String path                                 & Requires that path point & Ensures that the people have been\\ 
+			 & ArrayList$<$Person$>$ people & to a valid location.          & written to the file pointed to by path.\\ 
+                                     & ArrayList$<$Task$>$ tasks       &                                         & 
+\\
+\hline
+\end{tabular}
+
+Attributes: None\\
+Purpose: Dump people to a file.\\
+\\
+\\
+\emph{ITardisShell}\\
+Functions:\\
+\begin{tabular}{| l | l | l | l |}
+\hline
+Name & Parameters & Pre-conditions & Post-conditions\\
+\hline
+void update & None & Requires Nothing & Ensures that the people and task panels are updated.
+\\
+\hline
+\end{tabular}\\
+Purpose: Describe the interface for updating the main screen.
+\\
+\\
+\emph{TardisShell}\\
+Functions:\\
+\begin{tabular}{| l | l | l | l |}
+\hline
+Name & Parameters & Pre-conditions & Post-conditions\\
+\hline
+\multirow{2}{*}{void createAndShowGUI} & ArrayList$<$Task$>$ tasks        & Requires Nothing & Ensures that the main\\ 
+			                                 & ArrayList$<$Person$>$ people &                             & screen is displayed. 
+\\
+\hline
+\multirow{2}{*}{TardisShell} & ArrayList$<$Task$>$ tasks       & Requires Nothing & Ensures that the main\\ 
+			          & ArrayList$<$Person$>$ people &                             & screen is setup. 
+\\
+\hline
+\multirow{2}{*}{void peoplePrinter} & None & Requires Nothing & Ensures that the people\\ 
+			                       &          &                             & have been dumped to\\
+			                       &          &                             & a file.
+\\
+\hline
+\multirow{2}{*}{void taskPrinter} & None & Requires Nothing & Ensures that the tasks\\ 
+                       	                               &          &                             & have been dumped to\\
+                                                       &          &                             & a file. 
+\\
+\hline
+\multirow{2}{*}{void update} & None & Requires Nothing & Ensures that the main\\ 
+			            &           &                             & screen is updated. 
+\\
+\hline
+\end{tabular}\\
+\\
+Attributes: \\
+\begin{tabular}{| l |}
+\hline
+ArrayList$<$Person$>$ people\\
+\hline
+PeopleUI peoplePanel\\
+\hline
+JTabbedPane tabbedPane\\
+\hline
+TaskUI taskPanel\\
+\hline
+ArrayList$<$Task$>$ tasks\\
+\hline
+\end{tabular}\\
+\\
+\\
+Purpose: Manages and displays the main screen.\\
 \\
 \\
 List each class in this subsystem and write a short description of its purpose,
