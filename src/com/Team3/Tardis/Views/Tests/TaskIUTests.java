@@ -5,10 +5,12 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import com.Team3.Tardis.Controller.TardisController;
 import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.Models.Task;
 import com.Team3.Tardis.Models.XML.PeopleReader;
 import com.Team3.Tardis.Models.XML.TaskReader;
+import com.Team3.Tardis.Models.XML.TaskWriter;
 import com.Team3.Tardis.Util.InputValidator;
 import com.Team3.Tardis.Views.TaskEditor;
 import com.Team3.Tardis.Views.TaskUI;
@@ -131,6 +133,56 @@ public class TaskIUTests {
 			}
 		}
 		return true;//delete runs as expected
+	}
+	
+	@Test
+	public void TestSave()
+	{
+		try{
+			InputValidator validator = new InputValidator();
+			TaskReader taskReader = new TaskReader(validator);
+			ArrayList<Task> tasks = taskReader.loadTasks(Common.TASKS_FILE);
+			
+			assertTrue(testSav(tasks));
+		}
+		catch (Exception e)
+		{
+		}
+	}
+	
+	private boolean testSav(ArrayList<Task> oldTaskList)
+	{
+		try
+		{	
+			ArrayList<Task> newTaskList = new ArrayList<Task>();
+			for(int i=0; i<oldTaskList.size(); i++)
+			{
+				newTaskList.add(oldTaskList.get(i));
+			}
+			Task newTask = new Task();
+			newTask.setTitle("new task for save testing");
+			newTaskList.add(newTask);
+			
+			TaskWriter writer = new TaskWriter();
+			writer.writeTasks(Common.TASKS_FILE, newTaskList);//save
+			
+			InputValidator validator = new InputValidator();
+			TaskReader taskReader = new TaskReader(validator);
+			ArrayList<Task> loadTasks = taskReader.loadTasks(Common.TASKS_FILE);//load
+			
+			if(loadTasks.equals(newTaskList))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
 	}
 	
 	private void TestAdd()
