@@ -130,8 +130,8 @@ Functions:\\
 \hline
 Name & Parameters & Pre-conditions & Post-conditions\\
 \hline
-		ArrayList$<$Person$>$loadPeople 	& String path       & Requires the path 	& Returns the list of people\\
-                                                                                    &                          & to the people XML file	& 
+		ArrayList$<$Person$>$loadPeople 	& String path       			& Requires the path 	& Returns the list of people\\
+                                                                                    &                         			 & to the people XML file	& 
 \\
 \hline
 \end{tabular}
@@ -146,15 +146,137 @@ Functions:\\
 \hline
 Name & Parameters & Pre-conditions & Post-conditions\\
 \hline
-		ArrayList$<$Person$>$loadPeople 	& String path       & Requires the path 	& Returns the list of people\\
-                                                                                    &                          & to the people XML file	& 
+		PeopleReader				& IInputValidator 	& None				& Default constructor, \\
+							& inputValidator	&  requires inputValidator	& \\
+		ArrayList$<$Person$>$loadPeople 	& String path       	& Requires the path,		& Returns all people\\
+                                                                                    &                         	& returns a list of people 	 &\\
+		Person loadPerson 			& JXPathContext path & Requires the context	& Returns a Person \\
+                                                                                    & personCtx                & pointer			& 
 \\
 \hline
 \end{tabular}
 \\
 
-Attributes: \emph{none}\\
+Attributes:\\
+\begin{tabular}{| l | l |}
+\hline
+ Name                                     	 	& Description\\
+\hline
+IInputValidator inputValidator		& Input validator for reading the XML file\\
+\hline
+\end{tabular}\\
+\\
 
 Purpose: Its purpose is load all the people from the specified XML file path.
+\\
+\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\emph{ITaskReader}\\
+Functions:\\
+\begin{tabular}{| l | l | l | l |}
+\hline
+Name & Parameters & Pre-conditions & Post-conditions\\
+\hline
+		ArrayList$<$Task$>$loadTasks 	& String path       			& Requires the path 	& Returns the list of task\\
+                                                                                    &                         			 & to the tasks XML file	& 
+\\
+\hline
+\end{tabular}
+\\
+
+Purpose: The interface for loading the tasks XML file.
+\\
+\\
+\emph{TaskReader}\\
+Functions:\\
+\begin{tabular}{| l | l | l | l |}
+\hline
+Name & Parameters & Pre-conditions & Post-conditions\\
+\hline
+		TaskReader				& IInputValidator 	& None				& Default constructor, \\
+							& inputValidator	&  requires inputValidator	& \\
+		ArrayList$<$Task$>$loadTasks 	& String path       	& Requires the path,		& Returns all tasks\\
+                                                                                    &                         	& returns a list of taks 	 &\\
+		Task loadTasks 			& JXPathContext path & Requires the context	& Returns a Task \\
+                                                                                    & taskCtx                & pointer			& 
+\\
+\hline
+\end{tabular}
+\\
+
+Attributes:\\
+\begin{tabular}{| l | l |}
+\hline
+ Name                                     	 	& Description\\
+\hline
+IInputValidator inputValidator		& Input validator for reading the XML file\\
+\hline
+\end{tabular}\\
+\\
+
+Purpose: Its purpose is load all the taks from the specified XML file path.
+\\
+\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\emph{ITasksWriter}\\
+Functions:\\
+\begin{tabular}{| l | l | l | l |}
+\hline
+Name & Parameters & Pre-conditions & Post-conditions\\
+\hline
+		boolean writeTasks 	& String path       			& Requires the path 		& Returns a flag to\\
+                                                           & 					& to the tasks XML file		& indicate if save \\
+                                                           & ArrayList$<$Task$>$ tasks		& Requires list	of tasks	& was succesful
+\\
+\hline
+\end{tabular}
+\\
+
+Purpose: The interface for writing the tasks XML file.
+\\
+\\
+\emph{TasksWriter}\\
+Functions:\\
+\begin{tabular}{| l | l | l | l |}
+\hline
+Name & Parameters & Pre-conditions & Post-conditions\\
+\hline
+		boolean writeTasks 			& String path       			& Requires the path		& Returns a flag to indicate \\
+                                                                                    & ArrayList$<$Task$>$ tasks             & and list of tasks 		 &  if save was succesful \\
+		String serialize 			& ArrayList$<$Task$>$ tasks		& Requires list of tasks	& Returns serialized tasks
+\\
+\hline
+\end{tabular}
+\\
+
+Attributes: \emph{none}
+
+Purpose: Its purpose is write all the taks to the specified XML file path.
+\\
+\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\emph{XPathHelper}\\
+Functions:\\
+\begin{tabular}{| l | l | l | l |}
+\hline
+Name & Parameters & Pre-conditions & Post-conditions\\
+\hline
+		Document getDocument 		& Object xmlFile       			& Requires the an object	& Returns the XML document \\
+                                                                                    & 				             & than can be the filepath    &   \\
+							& 					& or an InputStream	& \\
+		Document getDocumentContext	& Object xmlFile       			& Requires the an object	& Returns the XML document \\
+                                                                                    & 				             & than can be the filepath    &   \\
+							& 					& or an InputStream	&
+\\
+\hline
+\end{tabular}
+\\
+
+Attributes: \emph{none}
+
+Purpose: Its purpose is write all the taks to the specified XML file path.
 \\
 \\
