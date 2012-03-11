@@ -2,7 +2,6 @@ package com.Team3.Tardis.Models.XML;
 
 import java.util.ArrayList;
 
-import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.Models.Task;
 import com.Team3.Tardis.Models.IO.FileHelper;
 import com.Team3.Tardis.Util.Logger;
