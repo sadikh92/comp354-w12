@@ -224,7 +224,7 @@ public class TaskEditor extends JFrame implements ActionListener {
 		m = Integer.parseInt(month);
 		d = Integer.parseInt(day);
 
-		Date dueDate = new Date(y, m, d);
+		Date dueDate = new Date(y-1900, m-1, d);
 
 		String sDuration = tDuration.getText();
 		int duration = Integer.parseInt(sDuration);
