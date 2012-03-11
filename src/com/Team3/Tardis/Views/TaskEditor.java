@@ -253,47 +253,56 @@ public class TaskEditor extends JFrame implements ActionListener {
 					return false;
 			}
 		}
+		
 		return true;
 	}
 
 	private boolean validateDate() {
 		// validating date does not work for leap years(there is no feb
 		// 29th)
-		String year = tYear.getText();
+		String year = tYear.getText();		
 		String month = tMonth.getText();
 		String day = tDay.getText();
 
 		// checks if year month and day are entered as numbers and that they
 		// are the correct length. EX. year has 4 digits and month has 2...
-		if (isInteger(year) && isInteger(month) && isInteger(day) && year.length() == 4 && (month.length() == 2 || month.length() == 1) && (day.length() == 2 || day.length() == 1)) {
+		if (isInteger(year) && isInteger(month) && isInteger(day) && year.length() == 4 && (month.length() == 2 || month.length() == 1) && (day.length() == 2 || day.length() == 1))
+		{
 			int y = 0, m = 0, d = 0;
-			// checks if year month and day are entered as numbers and that they
-			// are the correct length. EX. year has 4 digits and month has 2...
-			if (isInteger(year) && isInteger(month) && isInteger(day) && year.length() == 4 && (month.length() == 2 || month.length() == 1) && (day.length() == 2 || day.length() == 1)) {
-				y = Integer.parseInt(year);
-				m = Integer.parseInt(month);
-				d = Integer.parseInt(day);
-				if (y < 2012 || m < 1 || m > 12 || d < 1 || d > 31) {
-					return false;
-				} else {
-					// checks for months with only 30 days
-					if (m == 4 || m == 6 || m == 9 || m == 11) {
-						if (d == 31) {
-							return false;
-						}
-					}
-					// checks that feb would have only 28 days(no leap years)
-					else if (m == 2) {
-						if (d > 28) {
-							return false;
-						}
-					}
-				}
-			} else
-				return false;
-		} else
-			return false;
 
+			y = Integer.parseInt(year);
+			m = Integer.parseInt(month);
+			d = Integer.parseInt(day);
+			
+			if (y < 2012 || m < 1 || m > 12 || d < 1 || d > 31)
+			{
+				return false;
+			}
+			else
+			{
+				// checks for months with only 30 days
+				if ((m == 4 || m == 6 || m == 9 || m == 11) && d == 31)
+				{
+					return false;
+				}
+				// checks that feb would have only 28 days(no leap years)
+				else if (m == 2 && d > 28)
+				{
+					return false;
+				}
+			}
+		}
+		else
+		{
+			return false;
+		}
+
+		
+		System.out.println("\nHEY HEY HEY, year is " + year);
+		System.out.println("\nHEY HEY HEY, month is " + month);
+		System.out.println("\nHEY HEY HEY, day is " + day);
+		System.out.println("\nHEY HEY HEY, we're good to go");
+		
 		return true;
 	}
 
@@ -311,11 +320,11 @@ public class TaskEditor extends JFrame implements ActionListener {
 
 		if (button.equals("SUBMIT")) {
 
-			if (validateDate())
+			if (!validateDate())
 				JOptionPane.showMessageDialog(this, "Incorrect Date format", "Error", JOptionPane.ERROR_MESSAGE);
-			else if (validateTitle())
+			else if (!validateTitle())
 				JOptionPane.showMessageDialog(this, "Incorrect Title (Current title is already in use.)", "Error", JOptionPane.ERROR_MESSAGE);
-			else if (validateDuration())
+			else if (!validateDuration())
 				JOptionPane.showMessageDialog(this, "Incorrect Duration (must be an integer)", "Error", JOptionPane.ERROR_MESSAGE);
 			else {
 				updateTask();
