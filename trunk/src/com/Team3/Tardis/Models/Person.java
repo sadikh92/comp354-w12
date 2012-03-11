@@ -2,10 +2,10 @@ package com.Team3.Tardis.Models;
 
 import java.util.ArrayList;
 
-import com.Team3.Tardis.Models.*;
-
-import java.util.ArrayList;
-
+/**
+ * @author Eric Regnier
+ * @Description Person entity
+ */
 public class Person {
 
 	private int personId;

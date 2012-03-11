@@ -1,22 +1,23 @@
 package com.Team3.Tardis.Util;
 
 import java.util.regex.Pattern;
-
 import org.apache.commons.jxpath.JXPathContext;
 import org.apache.commons.jxpath.JXPathException;
 
-
+/**
+ * @author Eric Regnier
+ * @Version 2. Added logging functionality.
+ */
 public class InputValidator implements IInputValidator {
 
 	private static final String TEXT_FIELD = "^(\\S)(.){1,75}(\\S)$";
 	private static final String NON_NEGATIVE_INTEGER_FIELD = "(\\d){1,16}";
-	private static final String INTEGER_FIELD = "(-)?" + NON_NEGATIVE_INTEGER_FIELD;
 	private static final String PHONENUMBER_FIELD = "^\\(?([2-9][0-8][0-9])\\)?[-. ]?([2-9][0-9]{2})[-. ]?([0-9]{4})$";
 	private static final String POSTAL_CODE_FIELD = "^([A-Z]\\d[A-Z]\\s\\d[A-Z]\\d)$";
 
-	private static final String DATE_FIELD = "^[0-1][0-9]/[0-3][0-9]/\\d{2}$";
-
-	//@Override
+	/**
+	 * Validates all the Person fields from the XML file.
+	 */
 	public String validatePerson(JXPathContext personCtx) {
 
 		StringBuilder errorMessage = new StringBuilder();
@@ -30,7 +31,7 @@ public class InputValidator implements IInputValidator {
 		} catch (JXPathException e) {
 			errorMessage.append("Missing person ID node\n");
 		}
-		
+
 		Logger.log(InputValidator.class.getName(), "START: first name check");
 		try {
 			if (personCtx.getValue("firstName") == null || !Pattern.matches(TEXT_FIELD, personCtx.getValue("firstName").toString()))
@@ -102,11 +103,11 @@ public class InputValidator implements IInputValidator {
 			Logger.log(InputValidator.class.getName(), "END: country check " + errorMessage);
 		} catch (JXPathException e) {
 		}
-		
+
 		return errorMessage.toString();
 	}
 
-	//@Override
+	// @Override
 	public String validateTask(JXPathContext taskCtx) {
 
 		StringBuilder errorMessage = new StringBuilder();
@@ -135,7 +136,12 @@ public class InputValidator implements IInputValidator {
 
 		try {
 			Object value = taskCtx.getValue("duration");
-			if (value != null && !value.toString().equals("") && !Pattern.matches(NON_NEGATIVE_INTEGER_FIELD, value.toString()))//fixed error here,not a text field
+			if (value != null && !value.toString().equals("") && !Pattern.matches(NON_NEGATIVE_INTEGER_FIELD, value.toString()))// fixed
+																																// error
+																																// here,not
+																																// a
+																																// text
+																																// field
 				errorMessage.append("Invalid duration\n");
 		} catch (JXPathException e) {
 		}
@@ -156,7 +162,13 @@ public class InputValidator implements IInputValidator {
 
 		try {
 			Object value = taskCtx.getValue("dueDate");
-			if (value != null && !value.toString().equals("") && !Pattern.matches(TEXT_FIELD, value.toString()))//isn't it supposed to be DATE_FIELD here
+			if (value != null && !value.toString().equals("") && !Pattern.matches(TEXT_FIELD, value.toString()))// isn't
+																												// it
+																												// supposed
+																												// to
+																												// be
+																												// DATE_FIELD
+																												// here
 				errorMessage.append("Invalid dueDate\n");
 		} catch (JXPathException e) {
 		}

@@ -1,31 +1,28 @@
 package com.Team3.Tardis.Views.Tests;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
-
 import java.util.ArrayList;
 import java.util.Date;
-
-import junit.framework.AssertionFailedError;
-
 import org.junit.Test;
-
 import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.Models.Task;
 import com.Team3.Tardis.Models.XML.PeopleReader;
 import com.Team3.Tardis.Models.XML.TaskReader;
 import com.Team3.Tardis.Util.InputValidator;
-import com.Team3.Tardis.Views.TaskEditor;
-
 
 /**
  * @author Eric Regnier
+ * @Description Tests the TaskEditor (task edit popup).
  */
 public class TaskEditorTests {
 
 	@Test
+	/**
+	 * @Description We tests the edit, but without actually editing any data.
+	 */
 	public void testEditWithNoEditing() {
 		try {
+			//sets up the needed classes
 			InputValidator validator = new InputValidator();
 			PeopleReader peopleReader = new PeopleReader(validator);
 			TaskReader taskReader = new TaskReader(validator);
@@ -33,27 +30,29 @@ public class TaskEditorTests {
 			ArrayList<Task> tasks = taskReader.loadTasks(Common.TASKS_FILE);
 
 			//before values
-			String title = tasks.get(0).getTitle();
-			String deliverable = tasks.get(0).getDeliverable();
-			long personId = tasks.get(0).getPersonId();
-			String desc = tasks.get(0).getShortDescription();
-			long id = tasks.get(0).getTaskId();
-			Date dueDate =  tasks.get(0).getDueDate();
+			Task before = tasks.get(0);
+			String title = before.getTitle();
+			String deliverable = before.getDeliverable();
+			long personId =before.getPersonId();
+			String desc = before.getShortDescription();
+			long id = before.getTaskId();
+			Date dueDate = before.getDueDate();
 			
 			TaskEditorWrapper taskEdit = new TaskEditorWrapper(new TardisShellMock(), tasks, people, 0);	
-
+			
+			//just call update. Nothing actually got edited
 			taskEdit.updateTask();			
 			
-			Task t = tasks.get(0);
-			assertEquals(title, t.getTitle());
-			assertEquals(deliverable, t.getDeliverable());
-			assertEquals(personId, t.getPersonId());
-			assertEquals(desc, t.getShortDescription());
-			assertEquals(id, t.getTaskId());
-			assertEquals(dueDate.getMonth(), t.getDueDate().getMonth());
-			assertEquals(dueDate.getDate(), t.getDueDate().getDate());
-			assertEquals(dueDate.getYear(), t.getDueDate().getYear());
-			assertNull(t.getSuperTask());
+			Task after = tasks.get(0);
+			assertEquals(title, after.getTitle());
+			assertEquals(deliverable, after.getDeliverable());
+			assertEquals(personId, after.getPersonId());
+			assertEquals(desc, after.getShortDescription());
+			assertEquals(id, after.getTaskId());
+			assertEquals(dueDate.getMonth(), after.getDueDate().getMonth());
+			assertEquals(dueDate.getDate(), after.getDueDate().getDate());
+			assertEquals(dueDate.getYear(), after.getDueDate().getYear());
+			assertNull(after.getSuperTask());
 
 		} catch (Exception ex) {
 			fail("exception occured");
@@ -61,21 +60,26 @@ public class TaskEditorTests {
 	}
 	
 	@Test
+	/**
+	 * @Description Test edit with a task that contains no super task.
+	 */
 	public void testEditWithNoSuperTask() {
 		try {
+			//sets up the needed classes
 			InputValidator validator = new InputValidator();
 			PeopleReader peopleReader = new PeopleReader(validator);
 			TaskReader taskReader = new TaskReader(validator);
 			ArrayList<Person> people = peopleReader.loadPeople(Common.PEOPLE_FILE);
 			ArrayList<Task> tasks = taskReader.loadTasks(Common.TASKS_FILE);
 
+			//save the ID to make sure they stay the same after editing
 			long taskAt0Id = tasks.get(0).getTaskId();
 			
 			TaskEditorWrapper taskEdit = new TaskEditorWrapper(new TardisShellMock(), tasks, people, 0);
 			
+			//edit the task
 			taskEdit.setTitle("Test title");
-			Date testDate = new Date();
-			
+			Date testDate = new Date();			
 			taskEdit.setDueDate(testDate);
 			taskEdit.setDuration(10);
 			taskEdit.setDeliverable("Test deliverable");
@@ -83,6 +87,7 @@ public class TaskEditorTests {
 			taskEdit.setPerson(people.get(0).getPersonId());
 			taskEdit.updateTask();			
 			
+			//check the values
 			Task t = tasks.get(0);
 			assertEquals("Test title", t.getTitle());
 			assertEquals("Test deliverable", t.getDeliverable());
@@ -98,14 +103,19 @@ public class TaskEditorTests {
 		}
 	}
 	
+	/**
+	 * @Description Test edit with a task that contains a super task.
+	 */
 	public void testEditWithSuperTask() {
 		try {
+			//sets up the needed classes
 			InputValidator validator = new InputValidator();
 			PeopleReader peopleReader = new PeopleReader(validator);
 			TaskReader taskReader = new TaskReader(validator);
 			ArrayList<Person> people = peopleReader.loadPeople(Common.PEOPLE_FILE);
 			ArrayList<Task> tasks = taskReader.loadTasks(Common.TASKS_FILE);
 
+			//save the before values to make sure they stay the same after editing
 			long taskAt0Id = tasks.get(2).getTaskId();
 			long taskAt0Super = tasks.get(0).getSuperTask().getTaskId();
 			
@@ -121,13 +131,13 @@ public class TaskEditorTests {
 			taskEdit.setPerson(people.get(0).getPersonId());
 			taskEdit.updateTask();			
 			
+			//check if everything are equal
 			Task t = tasks.get(0);
 			assertEquals("Test title", t.getTitle());
 			assertEquals("Test deliverable", t.getDeliverable());
 			assertEquals(tasks.get(0).getPersonId(), people.get(0).getPersonId());
 			assertEquals("Test desc", t.getShortDescription());
-			assertEquals(taskAt0Id, t.getTaskId());
-			
+			assertEquals(taskAt0Id, t.getTaskId());			
 			assertEquals(testDate.getMonth(), t.getDueDate().getMonth());
 			assertEquals(testDate.getDate(), t.getDueDate().getDate());
 			assertEquals(testDate.getYear(), t.getDueDate().getYear());
@@ -139,8 +149,12 @@ public class TaskEditorTests {
 	}
 
 	@Test
+	/**
+	 * @Description Test the add task.
+	 */
 	public void testAdd() {
 		try {
+			//sets up the needed classes
 			InputValidator validator = new InputValidator();
 			PeopleReader peopleReader = new PeopleReader(validator);
 			TaskReader taskReader = new TaskReader(validator);
@@ -149,9 +163,9 @@ public class TaskEditorTests {
 
 			TaskEditorWrapper taskEdit = new TaskEditorWrapper(new TardisShellMock(), tasks, people);
 			
+			//sets the data for the new task
 			taskEdit.setTitle("Test title");
-			Date testDate = new Date();
-			
+			Date testDate = new Date();			
 			taskEdit.setDueDate(testDate);
 			taskEdit.setDuration(10);
 			taskEdit.setDeliverable("Test deliverable");
@@ -159,6 +173,7 @@ public class TaskEditorTests {
 			taskEdit.setPerson(people.get(0).getPersonId());
 			taskEdit.updateTask();			
 			
+			//the last task is the one that just got added
 			Task t = tasks.get(tasks.size() - 1);
 			assertEquals("Test title", t.getTitle());
 			assertEquals("Test deliverable", t.getDeliverable());

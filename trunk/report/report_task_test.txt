@@ -1,0 +1,32 @@
+My first task
+-id: 0
+-Short Description: This is my first task...
+-Duration: 1
+-Deliverable: First task.doc
+-Due Date: Mon Jan 23 00:00:00 EST 2012
+-Person: Mark Smith
+
+My second task
+-id: 1
+-Short Description: This is my second task...
+-Duration: 3
+-Deliverable: Second task.doc
+-Due Date: Fri Jan 27 00:00:00 EST 2012
+-Person: Joe Miller
+
+My first sub-task
+-id: 2
+-Short Description: This is my first sub-task...
+-Duration: 1
+-Deliverable: First sub-task.doc
+-Due Date: Mon Jan 23 00:00:00 EST 2012
+-Person: Phillip Johnson
+
+My second sub-task
+-id: 3
+-Short Description: This is my second sub-task...
+-Duration: 1
+-Deliverable: Second sub-task.doc
+-Due Date: Sun Mar 11 00:00:00 EST 2012
+-Person: Janette Ensley
+

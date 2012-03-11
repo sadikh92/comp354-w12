@@ -1,13 +1,7 @@
 package com.Team3.Tardis.Views.Tests;
 
-import java.awt.Component;
-import java.awt.TextField;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-
-import javax.swing.JComboBox;
-
 import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.Models.Task;
 import com.Team3.Tardis.Views.ITardisShell;
@@ -15,7 +9,9 @@ import com.Team3.Tardis.Views.TaskEditor;
 
 /**
  * @author Eric Regnier
+ * @Description Exposes the text field so we can set some text in the unit tests.
  */
+@SuppressWarnings("serial")
 public class TaskEditorWrapper extends TaskEditor {
 
 	public TaskEditorWrapper(ITardisShell shell, ArrayList<Task> tasks, ArrayList<Person> people) {

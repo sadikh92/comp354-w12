@@ -7,8 +7,6 @@ import com.Team3.Tardis.Models.XML.PeopleReader;
 import com.Team3.Tardis.Models.XML.TaskReader;
 import com.Team3.Tardis.Util.InputValidator;
 import com.Team3.Tardis.Views.TaskEditor;
-import com.Team3.Tardis.Views.TaskUI;
-
 import junit.framework.*;
 
 /*@author Eric Regnier
