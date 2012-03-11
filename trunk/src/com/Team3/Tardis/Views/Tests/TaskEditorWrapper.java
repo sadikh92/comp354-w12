@@ -48,8 +48,8 @@ public class TaskEditorWrapper extends TaskEditor {
 	
 	public void setDueDate(Date date)
 	{
-		tMonth.setText(date.getMonth() + "");	
-		tYear.setText(date.getYear() + "");
+		tMonth.setText(date.getMonth() + 1 + "");	
+		tYear.setText(date.getYear() + 1900 + "");
 		tDay.setText(date.getDate() + "");
 	}
 	
