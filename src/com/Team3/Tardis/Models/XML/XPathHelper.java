@@ -31,13 +31,9 @@ import com.Team3.Tardis.Util.Logger;
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
 public class XPathHelper 
-{
-	public static final String className = XPathHelper.class.getName();
-	
+{	
 	public static Document getDocument(Object xmlFile)
 	{
-		Logger.log(XPathHelper.class.getName(), "getDocument - START");
-
 		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder;
 		Document doc = null;
