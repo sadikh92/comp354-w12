@@ -22,4 +22,26 @@
 		<province>Quebec</province>
 		<country>Canada</country>
 	</person>
+	<person>
+		<id>3</id>
+		<firstName>Phillip</firstName>
+		<lastName>Johnson</lastName>
+		<phoneNumber>514-223-1123</phoneNumber>
+		<address>966 Port Washington Road</address>
+		<city>Banff</city>
+		<postalCode>T0L 0C0</postalCode>
+		<province>Alberta</province>
+		<country>Canada</country>
+	</person>
+	<person>
+		<id>4</id>
+		<firstName>Janette</firstName>
+		<lastName>Ensley</lastName>
+		<phoneNumber>514 311 1220</phoneNumber>
+		<address>624 Barrydowne Road</address>
+		<city>Sudbury</city>
+		<postalCode>P3E 5K3</postalCode>
+		<province>Ontario</province>
+		<country>Canada</country>
+	</person>
 </people>
