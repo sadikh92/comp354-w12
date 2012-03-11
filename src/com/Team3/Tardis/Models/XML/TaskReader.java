@@ -114,7 +114,7 @@ public class TaskReader implements ITaskReader{
 			Task task = new Task();
 			
 			// required fields
-			task.setTaskId(Integer.parseInt(taskCtx.getValue("id").toString()));
+			task.setTaskId(Long.parseLong(taskCtx.getValue("id").toString()));
 			task.setTitle(taskCtx.getValue("title").toString());
 			task.setShortDescription(taskCtx.getValue("description").toString());
 
