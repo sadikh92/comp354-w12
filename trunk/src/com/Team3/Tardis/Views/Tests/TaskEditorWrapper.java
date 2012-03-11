@@ -2,8 +2,8 @@ package com.Team3.Tardis.Views.Tests;
 
 import java.awt.Component;
 import java.awt.TextField;
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.swing.JComboBox;
@@ -57,45 +57,43 @@ public class TaskEditorWrapper extends TaskEditor {
 
 	public void setTitle(String title)
 	{
-		getTextFieldByName("title").setText(title);		
-	}
-
-	public void setId(int id)
-	{
-		getTextFieldByName("id").setText(id + "");		
+		tTitle.setText(title);		
 	}
 	
 	public void setDescription(String desc)
 	{
-		getTextFieldByName("desc").setText(desc);		
+		tDesc.setText(desc);		
 	}
 	
 	public void setDuration(int duration)
 	{
-		getTextFieldByName("duration").setText(duration + "");		
+		tDuration.setText(duration + "");		
 	}
 	
-	public void setDuration(String deliverable)
+	public void setDeliverable(String deliverable)
 	{
-		getTextFieldByName("deliverable").setText(deliverable);		
+		tDeliverable.setText(deliverable);		
 	}
 	
-	public void setDueDate(Date dueDate)
+	public void setDueDate(Date date)
 	{
-		getTextFieldByName("month").setText(dueDate.getMonth() + "");	
-		getTextFieldByName("year").setText(dueDate.getYear() + "");
-		getTextFieldByName("day").setText(dueDate.getDay() + "");
+		tMonth.setText(date.getMonth() + "");	
+		tYear.setText(date.getYear() + "");
+		tDay.setText(date.getDay() + "");
 	}
 	
 	public void setPerson(int personId)
 	{
-		getComboBoxByName("people").setSelectedItem(personId + "");		
+		cPeople.setSelectedItem(personId + "");		
 	}
 
+	public void setParentTaskLabel(int taskId)
+	{
+		cSuperL.setText(taskId + "");	
+	}
+	
 	public void setParentTask(int taskId)
 	{
-		getTextFieldByName("superL").setText(taskId + "");
-		//getComboBoxByName("superL").setSelectedItem(taskId + "");		
+		cSuper.setSelectedItem(taskId + "");		
 	}
-
 }

@@ -14,9 +14,9 @@ public class TaskEditor extends JFrame implements ActionListener {
 	// parameters
 	private JButton SUBMIT, CANCEL;
 	private JPanel panel;
-	private JLabel taskID, tID, title, shortDesc, duration, deliverable, dueDateY, dueDateM, dueDateD, personID, superID, cSuperL;
-	private TextField tTitle, tDesc, tDuration, tDeliverable, tYear, tMonth, tDay;
-	private JComboBox cPeople, cSuper;
+	protected JLabel taskID, tID, title, shortDesc, duration, deliverable, dueDateY, dueDateM, dueDateD, personID, superID, cSuperL;
+	protected TextField tTitle, tDesc, tDuration, tDeliverable, tYear, tMonth, tDay;
+	protected JComboBox cPeople, cSuper;
 	private int index;
 	private long tIDNum;
 
@@ -154,13 +154,13 @@ public class TaskEditor extends JFrame implements ActionListener {
 		dueDateY = new JLabel("Due date Year (YYYY):");
 		dueDateM = new JLabel("Due date Month (MM):");
 		dueDateD = new JLabel("Due date Day (DD):");
-		tYear = new TextField("" + (tasks.get(index).getDueDate().getYear() + 1900) + "", 4);
+		tYear = new TextField((tasks.get(index).getDueDate().getYear() + 1900) + "", 4);
 		tYear.setName("year");
 
-		tMonth = new TextField("" + (tasks.get(index).getDueDate().getMonth() + 1) + "", 2);
+		tMonth = new TextField((tasks.get(index).getDueDate().getMonth() + 1) + "", 2);
 		tMonth.setName("tMonth");
 
-		tDay = new TextField("" + tasks.get(index).getDueDate().getDate() + "", 2);
+		tDay = new TextField(tasks.get(index).getDueDate().getDate() + "", 2);
 		tDay.setName("day");
 
 		personID = new JLabel("Task Assigned to:");
@@ -212,7 +212,6 @@ public class TaskEditor extends JFrame implements ActionListener {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
-
 	public void updateTask() {
 
 		String taskTitle = tTitle.getText();
@@ -225,7 +224,7 @@ public class TaskEditor extends JFrame implements ActionListener {
 		m = Integer.parseInt(month);
 		d = Integer.parseInt(day);
 
-		Date dueDate = new Date(y - 1900, m - 1, d);
+		Date dueDate = new Date(y, m, d);
 
 		String sDuration = tDuration.getText();
 		int duration = Integer.parseInt(sDuration);
