@@ -69,7 +69,6 @@ public class TaskEditorTests {
 			ArrayList<Task> tasks = taskReader.loadTasks(Common.TASKS_FILE);
 
 			long taskAt0Id = tasks.get(0).getTaskId();
-		//	long taskAt0Super = tasks.get(0).getSuperTask().getTaskId();
 			
 			TaskEditorWrapper taskEdit = new TaskEditorWrapper(new TardisShellMock(), tasks, people, 0);
 			

@@ -1,4 +1,4 @@
-package com.Team3.Tardis.Tests.Views;
+package com.Team3.Tardis.Views.Tests;
 
 import static org.junit.Assert.*;
 
@@ -22,16 +22,7 @@ import com.Team3.Tardis.Views.PeopleView;
  *
  */
 public class PeopleTaskReport 
-{
-	static final String ONE_TASK_TEST_FILE = "report/report_test.txt";
-	static final String ONE_TASK_ACTUAL_FILE = "report/report_one_task.txt";
-	static final String PEOPLE_FILE = "tests/people_one_task.xml";
-	static final String ONE_TASK_TASKS_FILE = "tests/tasks_one_task.xml";
-	static final String NO_TASK_TEST_FILE = "report/report_unassigned.txt";
-	static final String NO_TASK_ACTUAL_FILE = "report/report_no_task.txt";
-	static final String NO_TASK_TASKS_FILE = "tests/tasks_unassigned.xml";
-	
-	
+{	
 	@Test
 	/*
 	 * @description Everyone is assigned at least one task.
@@ -46,22 +37,22 @@ public class PeopleTaskReport
 		
 		try {
 			// Load people.
-			people = peopleReader.loadPeople(PEOPLE_FILE);
+			people = peopleReader.loadPeople(Common.PEOPLE_FILE);
 			
 			// Load tasks
-			tasks = taskReader.loadTasks(ONE_TASK_TASKS_FILE);
+			tasks = taskReader.loadTasks(Common.ONE_TASK_TASKS_FILE);
 			
 			// Report Generation
 			PeopleView peopleTaskView = new PeopleView();
-			peopleTaskView.view(ONE_TASK_ACTUAL_FILE, people, tasks);
+			peopleTaskView.view(Common.ONE_TASK_ACTUAL_FILE, people, tasks);
 			
 			// Test file.
-			FileInputStream testFileStream = new FileInputStream(ONE_TASK_TEST_FILE);
+			FileInputStream testFileStream = new FileInputStream(Common.ONE_TASK_TEST_FILE);
 			InputStreamReader testInputStream = new InputStreamReader(testFileStream);
 			BufferedReader testReader = new BufferedReader(testInputStream);
 			
 			// Actual report file.
-			FileInputStream reportFileStream = new FileInputStream(ONE_TASK_ACTUAL_FILE);
+			FileInputStream reportFileStream = new FileInputStream(Common.ONE_TASK_ACTUAL_FILE);
 			InputStreamReader reportInputStream = new InputStreamReader(reportFileStream);
 			BufferedReader reportReader = new BufferedReader(reportInputStream);
 			
@@ -76,8 +67,8 @@ public class PeopleTaskReport
 				reportLine = reportReader.readLine();
 			}
 			// Both files must have the same number of lines.
-			assertNull(ONE_TASK_ACTUAL_FILE + " has more lines than " + ONE_TASK_TEST_FILE, reportLine);
-			assertNull(ONE_TASK_TEST_FILE + " has more lines than " + ONE_TASK_ACTUAL_FILE, testLine);	
+			assertNull(Common.ONE_TASK_ACTUAL_FILE + " has more lines than " + Common.ONE_TASK_TEST_FILE, reportLine);
+			assertNull(Common.ONE_TASK_TEST_FILE + " has more lines than " + Common.ONE_TASK_ACTUAL_FILE, testLine);	
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -98,22 +89,22 @@ public class PeopleTaskReport
 		
 		try {
 			// Load people.
-			people = peopleReader.loadPeople(PEOPLE_FILE);
+			people = peopleReader.loadPeople(Common.PEOPLE_FILE);
 			
 			// Load tasks
-			tasks = taskReader.loadTasks(NO_TASK_TASKS_FILE);
+			tasks = taskReader.loadTasks(Common.NO_TASK_TASKS_FILE);
 			
 			// Report Generation
 			PeopleView peopleTaskView = new PeopleView();
-			peopleTaskView.view(NO_TASK_ACTUAL_FILE, people, tasks);
+			peopleTaskView.view(Common.NO_TASK_ACTUAL_FILE, people, tasks);
 			
 			// Test file.
-			FileInputStream testFileStream = new FileInputStream(NO_TASK_TEST_FILE);
+			FileInputStream testFileStream = new FileInputStream(Common.NO_TASK_TEST_FILE);
 			InputStreamReader testInputStream = new InputStreamReader(testFileStream);
 			BufferedReader testReader = new BufferedReader(testInputStream);
 			
 			// Actual report file.
-			FileInputStream reportFileStream = new FileInputStream(NO_TASK_ACTUAL_FILE);
+			FileInputStream reportFileStream = new FileInputStream(Common.NO_TASK_ACTUAL_FILE);
 			InputStreamReader reportInputStream = new InputStreamReader(reportFileStream);
 			BufferedReader reportReader = new BufferedReader(reportInputStream);
 			
@@ -128,8 +119,8 @@ public class PeopleTaskReport
 				reportLine = reportReader.readLine();
 			}
 			// Both files must have the same number of lines.
-			assertNull(NO_TASK_ACTUAL_FILE + " has more lines than " + NO_TASK_TEST_FILE, reportLine);
-			assertNull(NO_TASK_TEST_FILE + " has more lines than " + NO_TASK_ACTUAL_FILE, testLine);
+			assertNull(Common.NO_TASK_ACTUAL_FILE + " has more lines than " + Common.NO_TASK_TEST_FILE, reportLine);
+			assertNull(Common.NO_TASK_TEST_FILE + " has more lines than " + Common.NO_TASK_ACTUAL_FILE, testLine);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
