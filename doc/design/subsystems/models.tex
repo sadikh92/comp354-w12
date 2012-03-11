@@ -1,12 +1,160 @@
 \subsection{Subsystem $<$Models$>$}
 
 \subsubsection{Detailed Design Diagram}
+\includegraphics{subsystems/diagrams/models_class_diagram}
 
-UML class diagram depicting the internal structure of the subsystem,
-accompanied by a paragraph of text describing the rationale of this design.
+This package stores all the classes that belong to the modeling layer of the system. Modeling classes are classes that are used to read and write the data from/to the XML files. It contains the Person, Task, IPeopleReader, PeopleReader, ITaskReader, TaskReader, ITaskWriter, TaskWriter, FileHelper and XPathHelper classes.
 
 \subsubsection{Units Description}
 
-List each class in this subsystem and write a short description of its purpose,
-as well as notes or reminders useful for the programmers who will implement them.
-List all attributes and functions of the class.
+\emph{Person}\\
+Functions:\\
+\begin{tabular}{| l | l | l | l |}
+\hline
+Name & Parameters & Pre-conditions & Post-conditions\\
+\hline
+		getAddress		& None       			& None			& Returns the address attribue\\
+		getCity			& None				& None       	 	& Returns the city attribue \\
+		getCountry		& None				& None       	 	& Returns the country attribue \\
+		getFirstName		& None				& None       	 	& Returns the firstName attribue \\
+		getLastName		& None				& None       	 	& Returns the lastName attribue \\
+		getPersonId		& None				& None       	 	& Returns the personId attribue \\
+		getPhoneNumber	& None				& None       	 	& Returns the phoneNumber attribue \\
+		getPostalCode		& None				& None       	 	& Returns the postalCode attribue \\
+		getProvince		& None				& None       	 	& Returns the province attribue \\
+		getTasks		& ArrayList$<$Task$>$ tasks	& Requires the list 	& Returns all the tasks for this person \\
+					& 				& of all tasks 		& \\
+		setAddress		& String address  		& None			& Sets the address attribue\\
+		setCity			& String city			& None       	 	& Sets the city attribue \\
+		setCountry		& String country		& None       	 	& Sets the country attribue \\
+		setFirstName		& String firstName		& None       	 	& Sets the firstName attribue \\
+		setLastName		& String lastName		& None       	 	& Sets the lastName attribue \\
+		setPersonId		& String personId		& None       	 	& Sets the personId attribue \\
+		setPhoneNumber	& String phoneNumber	& None       	 	& Sets the phoneNumber attribue \\
+		setPostalCode		& String postalCode		& None       	 	& Sets the postalCode attribue \\
+		setProvince		& String province		& None       	 	& Sets the province attribue
+\\
+\hline
+\end{tabular}
+\\
+
+Attributes:\\
+\begin{tabular}{| l | l |}
+\hline
+ Name                                       & Description\\
+\hline
+String address		 	 & Address of this person\\
+\hline
+String city		 	 & City of this person\\
+\hline
+String country		 	 & Country of this person\\
+\hline
+String firstName		  & First name of this person\\
+\hline
+String lastName		  & Last name of this person\\
+\hline
+String personId		  & Id of this person\\
+\hline
+String phoneNumber		  & Phone number of this person\\
+\hline
+String postalCode		  & Postal code of this person\\
+\hline
+String province		  & Province of this person\\
+\hline
+\end{tabular}\\
+\\
+
+Purpose: Its purpose is to hold the information that is read from the XML file for a particular person.
+\\
+\\
+
+\emph{Task}\\
+Functions:\\
+\begin{tabular}{| l | l | l | l |}
+\hline
+Name & Parameters & Pre-conditions & Post-conditions\\
+\hline
+		Task		& None       			& None			& Default constructor, initializes subtasks \\
+		addSubtask		& Task task			& None       	 	& Adds subtask to this task \\
+		getDeliverable		& None				& None       	 	& Returns the country attribue \\
+		getDueDate		& None				& None       	 	& Returns the firstName attribue \\
+		getDuration		& None				& None       	 	& Returns the lastName attribue \\
+		getPersonId		& None				& None       	 	& Returns the personId attribue \\
+		getShortDescription	& None				& None       	 	& Returns the phoneNumber attribue \\
+		getSubtasks		& None				& None       	 	& Returns the postalCode attribue \\
+		getSuperTask		& None				& None       	 	& Returns the province attribue \\
+		getTaskId		& None		  		& None			& Returns the province attribue \\
+		getTitle		& None				& None       	 	& Returns the province attribue \\
+		setDeliverable		& String deliverable		& None       	 	& Sets the deliverable attribue \\
+		setDueDate		& String dueDate		& None       	 	& Sets the dueDate attribue \\
+		setDuration		& String duration		& None       	 	& Sets the duration attribue \\
+		setPersonId		& String personId		& None       	 	& Sets the personId attribue \\
+		setShortDescription	& String shortDescription	& None       	 	& Sets the shortDescription attribue \\
+		setSuperTask		& String superTask		& None       	 	& Sets the superTask attribue \\
+		setTaskId		& String taskId	  		& None			& Sets the taskId attribue \\
+		setTitle			& String title			& None       	 	& Sets the title attribue
+\\
+\hline
+\end{tabular}
+\\
+
+Attributes:\\
+\begin{tabular}{| l | l |}
+\hline
+ Name                                     	 	& Description\\
+\hline
+String deliverable			& Deliverable of this task\\
+\hline
+String dueDate			& Due date of this task\\
+\hline
+String duration		 		& Duration of this task\\
+\hline
+String personId			& ID of the person this task belongs to\\
+\hline
+String shortDescription		& Short description of this task\\
+\hline
+ArrayList$<$Task$>$ subTasks	& Sub-tasks of this task\\
+\hline
+String superTask			& Super task of this task\\
+\hline
+\end{tabular}\\
+\\
+
+Purpose: Its purpose is to hold the information that is read from the XML file for a particular task and its sub-tasks.
+\\
+\\
+
+\emph{IPeopleReader}\\
+Functions:\\
+\begin{tabular}{| l | l | l | l |}
+\hline
+Name & Parameters & Pre-conditions & Post-conditions\\
+\hline
+		ArrayList$<$Person$>$loadPeople 	& String path       & Requires the path 	& Returns the list of people\\
+                                                                                    &                          & to the people XML file	& 
+\\
+\hline
+\end{tabular}
+\\
+
+Purpose: The interface for loading the people XML file.
+\\
+\\
+\emph{PeopleReader}\\
+Functions:\\
+\begin{tabular}{| l | l | l | l |}
+\hline
+Name & Parameters & Pre-conditions & Post-conditions\\
+\hline
+		ArrayList$<$Person$>$loadPeople 	& String path       & Requires the path 	& Returns the list of people\\
+                                                                                    &                          & to the people XML file	& 
+\\
+\hline
+\end{tabular}
+\\
+
+Attributes: \emph{none}\\
+
+Purpose: Its purpose is load all the people from the specified XML file path.
+\\
+\\
