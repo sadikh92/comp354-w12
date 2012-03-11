@@ -13,8 +13,8 @@ Functions:\\
 \hline
 Name & Parameters & Pre-conditions & Post-conditions\\
 \hline
-\multirow{2}{*}{log} & String className, String log & Requires Nothing & Logs \emph{className} and \emph{log} parameters to console
-\\&  & & and passed to the main view
+	void log	& String className, String log 	& Requires Nothing 		& Logs \emph{className} and \emph{log} parameters\\
+			&  					& 				& to console and passed to the main view
 \\
 \hline
 \end{tabular}
@@ -33,8 +33,15 @@ Functions:\\
 \hline
 Name & Parameters & Pre-conditions & Post-conditions\\
 \hline
-\multirow{2}{*}{view} & JXPathContext personNode       & Requires the JXPathContext	&  Validates the tasks and\\							
-			 & JXPathContext taskNode           & pointer to a valid location.        & people from the XML file
+	String validatePerson	 	& JXPathContext personNode       & Requires the 		& Validates the people \\	
+					& 				       & JXPathContex 		& from the XML file \\	
+					& 				       & pointer to a 		& \\
+					& 				       & valid location 		& \\
+\hline						
+	String validateTask		& JXPathContext taskNode           & Requires the       	 & Validates the tasks \\
+					& 				       & JXPathContex 		& from the XML file \\	
+					& 				       & pointer to a 		& \\
+					& 				       & valid location 		&
 \\
 \hline
 \end{tabular}
@@ -49,8 +56,15 @@ Functions:\\
 \hline
 Name & Parameters & Pre-conditions & Post-conditions\\
 \hline
-\multirow{2}{*}{view} & JXPathContext personNode       & Requires the JXPathContext	&  Validates the tasks and\\							
-			 & JXPathContext taskNode           & pointer to a valid location.        & people from the XML file
+	String validatePerson	 	& JXPathContext personNode       & Requires the 		& Validates the people \\	
+					& 				       & JXPathContex 		& from the XML file \\	
+					& 				       & pointer to a 		& \\
+					& 				       & valid location 		& \\
+\hline						
+	String validateTask		& JXPathContext taskNode           & Requires the       	 & Validates the tasks \\
+					& 				       & JXPathContex 		& from the XML file \\	
+					& 				       & pointer to a 		& \\
+					& 				       & valid location 		&
 \\
 \hline
 \end{tabular}
