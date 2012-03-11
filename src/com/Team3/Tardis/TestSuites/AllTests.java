@@ -11,6 +11,7 @@ import com.Team3.Tardis.Tests.Models.Tasks.EmptyTasksFile;
 import com.Team3.Tardis.Tests.Models.Tasks.TasksFileNotFound;
 import com.Team3.Tardis.Tests.Models.Tasks.TasksLoad;
 import com.Team3.Tardis.Tests.Views.*;
+import com.Team3.Tardis.Views.Tests.PeopleTaskReport;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
