@@ -1,15 +1,29 @@
+
 \section{Architectural Design} \label{sec:arch}
 
-This section must give a high-level description of the system in terms of its modules
-and their respective purpose and exact interfaces.
+
 
 \subsection{Architectural Diagram}
+\vspace*{0.5in}
 \includegraphics{diagrams/package_diagram}
-\\
-A UML class diagram or package diagram depicting the high-level structure of the system,
-accompanied by a one-paragraph text describing the rationale of this design.
-It is mandatory that the system be divided into at least two subsystems,
-and that the purpose of each of these subsystems be exposed here.
+\centerline {Figure 1: Package diagram}
+\vspace*{0.2in}
+
+Our system is designed with extensibility and scalability in mind.  We are taking great care in designing a framework which can be updated easily.  Many of the anticipated changes to our system in future phases will only require adding new types of data and changing the user presentation code to make use of these new data.  The framework we have designed will only require "plugging in" these new types of data without refactoring the logic that allows the user to view and manipulate the entered data, retrieves and updates the save file, etc.  There are four basic, logical components of the system: the Controller, the Models, the Views, and the Util.
+
+\begin{itemize}
+
+\item {\bf Controller}: The main controller that runs the tardis task manager.
+
+\item {\bf Models}: Reader and Writer methods.
+
+\item {\bf Views}: Display the output in one of four views.
+
+\item {\bf Util} : Logger and input validators
+
+\end{itemize}
+
+
 
 \subsection{Subsystem Interface Specifications}
 
