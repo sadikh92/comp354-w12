@@ -15,7 +15,7 @@ public class TaskEditor extends JFrame implements ActionListener {
 	private JButton SUBMIT, CANCEL;
 	private JPanel panel;
 	protected JLabel taskID, tID, title, shortDesc, duration, deliverable, dueDateY, dueDateM, dueDateD, personID, superID, cSuperL;
-	protected TextField tTitle, tDesc, tDuration, tDeliverable, tYear, tMonth, tDay;
+	protected JTextField tTitle, tDesc, tDuration, tDeliverable, tYear, tMonth, tDay;
 	protected JComboBox cPeople, cSuper;
 	private int index;
 	private long tIDNum;
@@ -54,23 +54,23 @@ public class TaskEditor extends JFrame implements ActionListener {
 		tID = new JLabel("" + tIDNum + "");
 
 		title = new JLabel("Task Title:");
-		tTitle = new TextField(20);
+		tTitle = new JTextField(20);
 
 		shortDesc = new JLabel("Short description:");
-		tDesc = new TextField(20);
+		tDesc = new JTextField(20);
 
 		duration = new JLabel("Duration (# of Hours):");
-		tDuration = new TextField(20);
+		tDuration = new JTextField(20);
 
 		deliverable = new JLabel("Deliverable:");
-		tDeliverable = new TextField(20);
+		tDeliverable = new JTextField(20);
 
 		dueDateY = new JLabel("Due date Year (YYYY):");
 		dueDateM = new JLabel("Due date Month (MM):");
 		dueDateD = new JLabel("Due date Day (DD):");
-		tYear = new TextField(4);
-		tMonth = new TextField(2);
-		tDay = new TextField(2);
+		tYear = new JTextField(4);
+		tMonth = new JTextField(2);
+		tDay = new JTextField(2);
 
 		personID = new JLabel("Task Assigned to:");
 		cPeople = new JComboBox(nameArray);
