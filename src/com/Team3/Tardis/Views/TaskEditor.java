@@ -132,35 +132,35 @@ public class TaskEditor extends JFrame implements ActionListener {
 
 		// Defining buttons and Fields
 		taskID = new JLabel("Task ID #:");
-		tID = new JLabel("" + tasks.get(index).getTaskId() + "");
+		tID = new JLabel(tasks.get(index).getTaskId() + "");
 		tID.setName("id");
 
 		title = new JLabel("Task Title:");
-		tTitle = new TextField("" + tasks.get(index).getTitle() + "", 20);
+		tTitle = new JTextField(tasks.get(index).getTitle() + "", 20);
 		tTitle.setName("title");
 
 		shortDesc = new JLabel("Short description:");
-		tDesc = new TextField("" + tasks.get(index).getShortDescription() + "", 20);
+		tDesc = new JTextField(tasks.get(index).getShortDescription() + "", 20);
 		tDesc.setName("desc");
 
 		duration = new JLabel("Duration (# of Hours):");
-		tDuration = new TextField("" + tasks.get(index).getDuration() + "", 20);
+		tDuration = new JTextField(tasks.get(index).getDuration() + "", 20);
 		tDuration.setName("duration");
 
 		deliverable = new JLabel("Deliverable:");
-		tDeliverable = new TextField("" + tasks.get(index).getDeliverable() + "", 20);
+		tDeliverable = new JTextField(tasks.get(index).getDeliverable() + "", 20);
 		tDeliverable.setName("deliverable");
 
 		dueDateY = new JLabel("Due date Year (YYYY):");
 		dueDateM = new JLabel("Due date Month (MM):");
 		dueDateD = new JLabel("Due date Day (DD):");
-		tYear = new TextField((tasks.get(index).getDueDate().getYear() + 1900) + "", 4);
+		tYear = new JTextField((tasks.get(index).getDueDate().getYear() + 1900) + "", 4);
 		tYear.setName("year");
 
-		tMonth = new TextField((tasks.get(index).getDueDate().getMonth() + 1) + "", 2);
+		tMonth = new JTextField((tasks.get(index).getDueDate().getMonth() + 1) + "", 2);
 		tMonth.setName("tMonth");
 
-		tDay = new TextField(tasks.get(index).getDueDate().getDate() + "", 2);
+		tDay = new JTextField(tasks.get(index).getDueDate().getDate() + "", 2);
 		tDay.setName("day");
 
 		personID = new JLabel("Task Assigned to:");
@@ -172,7 +172,7 @@ public class TaskEditor extends JFrame implements ActionListener {
 		if (tasks.get(index).getSuperTask() == null)
 			cSuperL = new JLabel("No Parent");
 		else
-			cSuperL = new JLabel("" + tasks.get(index).getSuperTask().getTaskId() + "");
+			cSuperL = new JLabel(tasks.get(index).getSuperTask().getTaskId() + "");
 
 		cSuperL.setName("superL");
 		
