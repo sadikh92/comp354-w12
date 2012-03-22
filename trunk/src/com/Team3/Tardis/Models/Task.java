@@ -15,10 +15,11 @@ public class Task {
 	private ArrayList<Task> subTasks;
 	private Task superTask;
 	
-	//Deafault constructor to get rig of the empty arrayList problem
+	//Default constructor to get rig of the empty arrayList problem
 	public Task()
 	{
 		subTasks = new ArrayList<Task>();
+		superTask = null;
 	}
 	
 	public long getTaskId() {

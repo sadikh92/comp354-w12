@@ -1,6 +1,7 @@
 package com.Team3.Tardis.Views;
 
 import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -32,7 +33,8 @@ public class TardisShell extends JFrame implements ITardisShell {
 	// Stores the panels created by TaskUI and PeopleUI
 	private TaskUI taskPanel;
 	private PeopleUI peoplePanel;
-
+	private TreeView treePanel;
+	
 	// constructor
 	public TardisShell(ArrayList<Task> tasks, ArrayList<Person> people) {
 		super("TARDIS Task Manager");
@@ -73,7 +75,7 @@ public class TardisShell extends JFrame implements ITardisShell {
 		peoplePanel = new PeopleUI(this, this.tasks, this.people);
 
 		// Creates the tree panel
-		JPanel treePanel = new JPanel();
+		treePanel = new TreeView(this, this.tasks);
 
 		// Creates the GANTT panel
 		JPanel ganttPanel = new JPanel();
@@ -168,6 +170,7 @@ public class TardisShell extends JFrame implements ITardisShell {
 	public void update() {
 		taskPanel.update();
 		peoplePanel.update();
+		treePanel.update();
 	}
 
 	// Prints a text file of the Table View of Tasks
