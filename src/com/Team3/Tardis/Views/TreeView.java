@@ -9,6 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.plaf.TreeUI;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.Models.Task;
@@ -28,7 +29,7 @@ public class TreeView extends JPanel {
 	private ArrayList<Task> tasks;
 	
 	private JPanel treePanel;
-	//private TreeModel treeModel;
+	private DefaultTreeModel treeModel;
 	private TreeUI treeUI;
 	private JTree tree;
 	
@@ -54,7 +55,9 @@ public class TreeView extends JPanel {
 		DefaultMutableTreeNode root = new DefaultMutableTreeNode("Root");
 		
 		root = setTaskInfo(root);
-		tree = new JTree(root);
+		treeModel = new DefaultTreeModel(root);
+		
+		tree = new JTree(treeModel);
 		treePanel = new JPanel();
 		treePanel.setLayout(new GridLayout(1, 0));
 		
@@ -103,9 +106,10 @@ public class TreeView extends JPanel {
 	
 	public void update()
 	{
-		/*DefaultMutableTreeNode root;
+		DefaultMutableTreeNode root = new DefaultMutableTreeNode("Root");
+		setTaskInfo(root);
 		
-		root = (DefaultMutableTreeNode)tree.getComponent(0);
-		setTaskInfo();*/
+		treeModel = new DefaultTreeModel(root);
+		tree.setModel(treeModel);
 	}
 }
