@@ -5,7 +5,7 @@ import org.apache.commons.jxpath.JXPathContext;
 import org.apache.commons.jxpath.JXPathException;
 
 /**
- * @author Eric Regnier
+ * @author Eric Regnier,Babacar Ndiaye
  * @Version 2. Added logging functionality.
  */
 public class InputValidator implements IInputValidator {
@@ -136,12 +136,7 @@ public class InputValidator implements IInputValidator {
 
 		try {
 			Object value = taskCtx.getValue("duration");
-			if (value != null && !value.toString().equals("") && !Pattern.matches(NON_NEGATIVE_INTEGER_FIELD, value.toString()))// fixed
-																																// error
-																																// here,not
-																																// a
-																																// text
-																																// field
+			if (value != null && !value.toString().equals("") && !Pattern.matches(NON_NEGATIVE_INTEGER_FIELD, value.toString()))
 				errorMessage.append("Invalid duration\n");
 		} catch (JXPathException e) {
 		}
@@ -152,27 +147,20 @@ public class InputValidator implements IInputValidator {
 				errorMessage.append("Invalid deliverable\n");
 		} catch (JXPathException e) {
 		}
-
-		try {
-			Object value = taskCtx.getValue("deliverable");
-			if (value != null && !value.toString().equals("") && !Pattern.matches(TEXT_FIELD, value.toString()))
-				errorMessage.append("Invalid deliverable\n");
-		} catch (JXPathException e) {
-		}
+		
 
 		try {
 			Object value = taskCtx.getValue("dueDate");
-			if (value != null && !value.toString().equals("") && !Pattern.matches(TEXT_FIELD, value.toString()))// isn't
-																												// it
-																												// supposed
-																												// to
-																												// be
-																												// DATE_FIELD
-																												// here
+			if (value != null && !value.toString().equals("") && !Pattern.matches(TEXT_FIELD, value.toString()))
 				errorMessage.append("Invalid dueDate\n");
 		} catch (JXPathException e) {
 		}
+		try {
+			if (taskCtx.getValue("completionPercentage") == null || !Pattern.matches(NON_NEGATIVE_INTEGER_FIELD, taskCtx.getValue("completionPercentage").toString()))
+				errorMessage.append("Invalid percentageCompletion\n");
 
+		} catch (JXPathException e) {			
+		}
 		return errorMessage.toString();
 	}
 }

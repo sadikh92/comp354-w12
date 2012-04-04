@@ -60,8 +60,7 @@ public class TaskReader implements ITaskReader{
 
 			if (ctx != null) {
 
-				Iterator<Pointer> tasksIt = ctx
-						.iteratePointers("/tasks/task");
+				Iterator<Pointer> tasksIt = ctx.iteratePointers("/tasks/task");
 
 				while (tasksIt.hasNext()) {
 
@@ -104,6 +103,8 @@ public class TaskReader implements ITaskReader{
 		
 		//Stores the ID of the super task
 		long idLong;
+		//Stores the ID of the successor
+		long pidLong;
 		
 		Logger.log(PeopleReader.class.getName(), "loadPerson() - START ");
 		
@@ -128,6 +129,7 @@ public class TaskReader implements ITaskReader{
 			task.setPersonId(taskCtx.getValue("personId") == null ? 0
 					: Integer.parseInt(taskCtx.getValue("personId").toString()));
 			
+			
 			//Setting the super task/sub task relationship
 			
 			//If the task has a super task
@@ -151,6 +153,29 @@ public class TaskReader implements ITaskReader{
 					}
 				}
 			}
+			//completion
+			task.setCompletionPercentage(taskCtx.getValue("completionPercentage") == null ? 0
+					: Integer.parseInt(taskCtx.getValue("completionPercentage").toString()));
+			//Setting the successor relationship
+			
+			//If the task has a successor
+			if(taskCtx.getValue("successorId") != null && !"".equals(taskCtx.getValue("successorId")))
+			{
+				//Read in the id of the successor task
+				pidLong = Long.parseLong(taskCtx.getValue("successorId").toString());
+				
+				//Search the arrayList of tasks to find the successor
+				for (Task tempTask1 : tasks)
+				{
+					if (tempTask1.getTaskId() == pidLong)
+					{
+						//Set the successor of the new task to the task found
+						task.setSuccessor(tempTask1);														
+						break;
+					}
+				}
+			}
+			
 			
 			Logger.log(PeopleReader.class.getName(), "loadPerson() - END ");
 			return task;

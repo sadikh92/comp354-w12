@@ -14,6 +14,10 @@ public class Task {
 	private int personId;
 	private ArrayList<Task> subTasks;
 	private Task superTask;
+	private int completionPercentage;
+	private Task successor;//this task must finish before successor to start
+	//private Task predecessor;
+	//private ArrayList<Task> beforeTasks;
 	
 	//Default constructor to get rig of the empty arrayList problem
 	public Task()
@@ -94,4 +98,19 @@ public class Task {
 	public void setSuperTask(Task superTask){
 		this.superTask = superTask;
 	}
+	public int getCompletionPercentage() {
+		return completionPercentage;
+	}
+
+	public void setCompletionPercentage(int completionPercentage) {
+		this.completionPercentage = completionPercentage;
+	}
+	public Task getSuccessor(){
+		return successor;
+	}
+	
+	public void setSuccessor(Task successor){
+		this.successor = successor;
+	}
+	
 }

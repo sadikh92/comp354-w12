@@ -42,9 +42,15 @@ public class TaskWriter implements ITasksWriter {
 			sb.append("\n\t\t<dueDate>"+task.getDueDate()+"</dueDate>");
 			sb.append("\n\t\t<personId>"+task.getPersonId()+"</personId>");
 			
+			
 			//If the task has a super task, the super task's ID is printed
 			sb.append("\n\t\t<superTaskId>"+((task.getSuperTask() != null) ? task.getSuperTask().getTaskId() : "" )+
 					  "</superTaskId>");
+			//completion
+			sb.append("\n\t\t<completionPercentage>"+task.getCompletionPercentage()+"</completionPercentage>");
+			//If the task has a successor , the successor ID is printed
+			sb.append("\n\t\t<successorId>"+((task.getSuccessor() != null) ? task.getSuccessor().getTaskId() : "" )+
+					  "</successorId>");
 				
 			sb.append("\n\t</task>");
 		}

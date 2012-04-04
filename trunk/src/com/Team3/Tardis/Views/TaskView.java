@@ -9,7 +9,7 @@ import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.Models.Task;
 
 /*
- * @author David Campbell
+ * @author David Campbell,Babacar Ndiaye
  * @description Prepare and output table 1
  */
 public class TaskView implements ITaskView {
@@ -41,6 +41,7 @@ public class TaskView implements ITaskView {
 
 				writer.println("-Deliverable: " + tasks.get(i).getDeliverable());
 				writer.println("-Due Date: " + tasks.get(i).getDueDate());
+				writer.println("-completionPercentage : " + tasks.get(i).getCompletionPercentage());
 
 				personID = tasks.get(i).getPersonId();
 

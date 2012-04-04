@@ -37,7 +37,9 @@ public class TaskUI extends JPanel implements ActionListener
             						"Duration",
             						"Deliverable",
             						"Deadline",
-            						"Assigned Person"};
+            						"Assigned Person",
+            						"Successor",
+            						"Completion(%)"};
 	
 	//Stores the Task information
 	private Object[][] taskInfo;
@@ -134,7 +136,7 @@ public class TaskUI extends JPanel implements ActionListener
 	private void setTaskInfo()
 	{		
 		//Sets the two dimensional array to the correct size
-		taskInfo = new Object[tasks.size()][7];
+		taskInfo = new Object[tasks.size()][9];
 		boolean breakIf = false;
 		
 		//Loads the array with the correct values
@@ -146,6 +148,9 @@ public class TaskUI extends JPanel implements ActionListener
 			taskInfo[i][3] = tasks.get(i).getDuration();
 			taskInfo[i][4] = tasks.get(i).getDeliverable();	
 			taskInfo[i][5] = tasks.get(i).getDueDate();
+			taskInfo[i][8] = tasks.get(i).getCompletionPercentage();
+			if(tasks.get(i).getSuccessor()!=null)
+			taskInfo[i][7] = tasks.get(i).getSuccessor().getTaskId();
 			
 			//Rather than adding a person's ID, the ID is used to find
 			//the person in the people arrayList to print to show their name instead
