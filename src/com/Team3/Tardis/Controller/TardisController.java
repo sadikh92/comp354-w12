@@ -36,6 +36,17 @@ public class TardisController {
 			
 			// Load tasks
 			tasks = taskReader.loadTasks(TASKS_FILE);
+			//Set status
+			for (Task tempTask : tasks)
+			{
+				if (tempTask.getPredecessors().isEmpty()&&tempTask.getCompletionPercentage()==0)
+				{
+					tempTask.setStatus("WaitingToRun");
+				}
+				else if(!tempTask.getPredecessors().isEmpty()){
+					tempTask.setStatus("WaitingForPredecessorToStart");
+				}
+			}
 			
 			//Create the interactive GUI
 			TardisShell.createAndShowGUI(tasks, people);

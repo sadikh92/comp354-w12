@@ -154,10 +154,13 @@ public class TaskReader implements ITaskReader{
 					}
 				}
 			}
-			//completion
+			
+			//completion percentagw
 			task.setCompletionPercentage(taskCtx.getValue("completionPercentage") == null ? 0
 					: Integer.parseInt(taskCtx.getValue("completionPercentage").toString()));
-			//Setting the successor relationship
+			
+			
+			//Setting the successor and predecessor relationship
 			
 			//If the task has a successor
 			if(taskCtx.getValue("successorId") != null && !"".equals(taskCtx.getValue("successorId")))
@@ -188,7 +191,6 @@ public class TaskReader implements ITaskReader{
 			Logger.log(PeopleReader.class.getName(), "loadPerson() - Error = " + errorMessage);
 			throw new Exception(errorMessage);
 		}
-		//here
 		
 	}
 }
