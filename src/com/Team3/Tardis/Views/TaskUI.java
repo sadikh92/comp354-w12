@@ -38,6 +38,7 @@ public class TaskUI extends JPanel implements ActionListener
             						"Deliverable",
             						"Deadline",
             						"Assigned Person",
+            						"Parent ID",
             						"Successor",
             						"Completion(%)"};
 	
@@ -136,7 +137,7 @@ public class TaskUI extends JPanel implements ActionListener
 	private void setTaskInfo()
 	{		
 		//Sets the two dimensional array to the correct size
-		taskInfo = new Object[tasks.size()][9];
+		taskInfo = new Object[tasks.size()][10];
 		boolean breakIf = false;
 		
 		//Loads the array with the correct values
@@ -147,11 +148,7 @@ public class TaskUI extends JPanel implements ActionListener
 			taskInfo[i][2] = tasks.get(i).getShortDescription();
 			taskInfo[i][3] = tasks.get(i).getDuration();
 			taskInfo[i][4] = tasks.get(i).getDeliverable();	
-			taskInfo[i][5] = tasks.get(i).getDueDate();
-			taskInfo[i][8] = tasks.get(i).getCompletionPercentage();
-			if(tasks.get(i).getSuccessor()!=null)
-			taskInfo[i][7] = tasks.get(i).getSuccessor().getTaskId();
-			
+			taskInfo[i][5] = tasks.get(i).getDueDate();		
 			//Rather than adding a person's ID, the ID is used to find
 			//the person in the people arrayList to print to show their name instead
 			for (int j = 0; j != people.size() && !breakIf; ++j)
@@ -166,6 +163,13 @@ public class TaskUI extends JPanel implements ActionListener
 					breakIf = true;
 				}
 			}
+			if(tasks.get(i).getSuperTask()!=null)
+				taskInfo[i][7] = tasks.get(i).getSuperTask().getTaskId();
+			
+			if(tasks.get(i).getSuccessor()!=null)
+				taskInfo[i][8] = tasks.get(i).getSuccessor().getTaskId();
+			
+			taskInfo[i][9] = tasks.get(i).getCompletionPercentage();
 			
 			breakIf = false;
 		}
