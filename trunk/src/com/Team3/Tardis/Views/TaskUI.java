@@ -40,6 +40,7 @@ public class TaskUI extends JPanel implements ActionListener
             						"Assigned Person",
             						"Parent ID",
             						"Successor",
+            						"Status",
             						"Completion(%)"};
 	
 	//Stores the Task information
@@ -137,7 +138,7 @@ public class TaskUI extends JPanel implements ActionListener
 	private void setTaskInfo()
 	{		
 		//Sets the two dimensional array to the correct size
-		taskInfo = new Object[tasks.size()][10];
+		taskInfo = new Object[tasks.size()][11];
 		boolean breakIf = false;
 		
 		//Loads the array with the correct values
@@ -169,7 +170,8 @@ public class TaskUI extends JPanel implements ActionListener
 			if(tasks.get(i).getSuccessor()!=null)
 				taskInfo[i][8] = tasks.get(i).getSuccessor().getTaskId();
 			
-			taskInfo[i][9] = tasks.get(i).getCompletionPercentage();
+			taskInfo[i][9] = tasks.get(i).getStatus();
+			taskInfo[i][10] = tasks.get(i).getCompletionPercentage();
 			
 			breakIf = false;
 		}

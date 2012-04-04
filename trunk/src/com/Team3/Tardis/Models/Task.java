@@ -17,8 +17,9 @@ public class Task {
 	private int completionPercentage;
 	private Task successor;//this task must finish before successor to start,a task can only have one successor	
 	private ArrayList<Task> predecessors;//a task can have a lot of predecessors
+	private String status;
 	
-	//Default constructor to get rig of the empty arrayList problem
+	//Default constructor to get rid of the empty arrayList problem
 	public Task()
 	{
 		predecessors = new ArrayList<Task>();
@@ -119,6 +120,13 @@ public class Task {
 	
 	public void addPredecessor(Task task) {
 		predecessors.add(task);
+	}
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }
