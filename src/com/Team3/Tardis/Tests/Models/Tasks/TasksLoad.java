@@ -28,7 +28,7 @@ public class TasksLoad {
 		Logger.log("Testing", "Tasks");
 		try {
 			tasks = reader.loadTasks(TASKS_FILE);
-			// The file should contain 2 tasks.
+			// The file should contain 4 tasks.
 			assertEquals(4, tasks.size());
 			
 			// Test the 1st task.
@@ -39,9 +39,11 @@ public class TasksLoad {
 			assertEquals("This is my first task...", first.getShortDescription());
 			assertEquals(1, first.getDuration());
 			assertEquals("First task.doc", first.getDeliverable());
-			assertEquals("Mon Jan 23 00:00:00 EST 2012", first.getDueDate().toString());//adapted the test to the date format but my 1st choice was "01/23/2012"
+			assertEquals("Mon Jan 23 00:00:00 EST 2012", first.getDueDate().toString());
 			assertEquals(2, first.getPersonId());
 			assertEquals(null, first.getSuperTask());
+			assertEquals(0, first.getCompletionPercentage());
+			assertEquals(null, first.getSuccessor());
 						
 			Task second = tasks.get(1);
 			assertEquals(1, second.getTaskId());
@@ -52,6 +54,9 @@ public class TasksLoad {
 			assertEquals("Fri Jan 27 00:00:00 EST 2012", second.getDueDate().toString());
 			assertEquals(1, second.getPersonId());
 			assertEquals(null, second.getSuperTask());
+			assertEquals(0, second.getCompletionPercentage());
+			assertEquals(0, second.getSuccessor().getTaskId());
+			
 			
 			Task third = tasks.get(2);
 			assertEquals(2, third.getTaskId());
@@ -62,6 +67,8 @@ public class TasksLoad {
 			assertEquals("Mon Jan 23 00:00:00 EST 2012", third.getDueDate().toString());
 			assertEquals(3, third.getPersonId());
 			assertEquals(0, third.getSuperTask().getTaskId());
+			assertEquals(0, third.getCompletionPercentage());
+			assertEquals(1, third.getSuccessor().getTaskId());
 			
 			Task fourth = tasks.get(3);
 			assertEquals(3, fourth.getTaskId());
@@ -72,6 +79,8 @@ public class TasksLoad {
 			assertEquals("Sun Mar 11 00:00:00 EST 2012", fourth.getDueDate().toString());
 			assertEquals(4, fourth.getPersonId());
 			assertEquals(1, fourth.getSuperTask().getTaskId());
+			assertEquals(0, fourth.getCompletionPercentage());
+			assertEquals(1, fourth.getSuccessor().getTaskId());
 		}
 		
 		catch (Exception e) {
