@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
+
 import org.apache.commons.jxpath.JXPathContext;
 import org.apache.commons.jxpath.Pointer;
 
@@ -170,7 +171,10 @@ public class TaskReader implements ITaskReader{
 					if (tempTask1.getTaskId() == pidLong)
 					{
 						//Set the successor of the new task to the task found
-						task.setSuccessor(tempTask1);														
+						task.setSuccessor(tempTask1);
+						
+						//this task is added to the predecessor list of its successor
+						task.getSuccessor().addPredecessor(task);
 						break;
 					}
 				}
@@ -184,5 +188,7 @@ public class TaskReader implements ITaskReader{
 			Logger.log(PeopleReader.class.getName(), "loadPerson() - Error = " + errorMessage);
 			throw new Exception(errorMessage);
 		}
+		//here
+		
 	}
 }

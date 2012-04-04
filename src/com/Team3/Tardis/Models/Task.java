@@ -15,15 +15,16 @@ public class Task {
 	private ArrayList<Task> subTasks;
 	private Task superTask;
 	private int completionPercentage;
-	private Task successor;//this task must finish before successor to start
-	//private Task predecessor;
-	//private ArrayList<Task> beforeTasks;
+	private Task successor;//this task must finish before successor to start,a task can only have one successor	
+	private ArrayList<Task> predecessors;//a task can have a lot of predecessors
 	
 	//Default constructor to get rig of the empty arrayList problem
 	public Task()
 	{
+		predecessors = new ArrayList<Task>();
 		subTasks = new ArrayList<Task>();
 		superTask = null;
+		successor = null;
 	}
 	
 	public long getTaskId() {
@@ -111,6 +112,13 @@ public class Task {
 	
 	public void setSuccessor(Task successor){
 		this.successor = successor;
+	}
+	public ArrayList<Task> getPredecessors() {
+		return predecessors;
+	}
+	
+	public void addPredecessor(Task task) {
+		predecessors.add(task);
 	}
 	
 }
