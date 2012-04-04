@@ -35,14 +35,38 @@ public class TaskView implements ITaskView {
 			for (int i = 0; i != tasks.size(); ++i) {
 				String title = tasks.get(i).getTitle();
 				writer.println(title);
-				writer.println("-id: " + tasks.get(i).getTaskId());
+				writer.println("-ID: " + tasks.get(i).getTaskId());
 				writer.println("-Short Description: " + tasks.get(i).getShortDescription());
 				writer.println("-Duration: " + tasks.get(i).getDuration());
-
 				writer.println("-Deliverable: " + tasks.get(i).getDeliverable());
 				writer.println("-Due Date: " + tasks.get(i).getDueDate());
-				writer.println("-completionPercentage : " + tasks.get(i).getCompletionPercentage());
+				writer.println("-Completion Percentage : " + tasks.get(i).getCompletionPercentage());
+				
+				if (tasks.get(i).getSuperTask() != null)
+				{
+					writer.println("-Parent Task: " + tasks.get(i).getSuperTask().getTitle());
+				}
+				else
+				{
+					writer.println("-Parent Task: none");
+				}
 
+				/*
+				writer.println("-Predecessor Task(s):");
+				if (tasks.get(i).getPredecessors() != null)
+				{
+					//Prints the tasks that need to be completed before it
+					for (Task beforeTask : tasks.get(i).getPredecessors())
+					{
+						writer.println(" " + beforeTask.getTaskId());
+					}
+				}
+				else
+				{
+					writer.println(" none");
+				}
+				*/
+				
 				personID = tasks.get(i).getPersonId();
 
 				// Looks for the name of the person with the ID read
