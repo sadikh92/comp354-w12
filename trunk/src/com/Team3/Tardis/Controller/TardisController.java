@@ -45,22 +45,45 @@ public class TardisController {
 				{
 					tempTask.setStatus("WaitingToRun");
 				}
+				else if(tempTask.getPredecessors().isEmpty()&&tempTask.getCompletionPercentage()==100){
+					tempTask.setStatus("Complete");
+					//other option: maybe delete from list of predecessor of its successor
+				}
 				else if(tempTask.getPredecessors().isEmpty()&&tempTask.getCompletionPercentage()!=0){
 					tempTask.setStatus("In progress");
 				}
-				else if(tempTask.getPredecessors().isEmpty()&&tempTask.getCompletionPercentage()==100){
-					tempTask.setStatus("Complete");
-				}
 				
-				//if task has predecessors that are not complete yet
-				else if(!tempTask.getPredecessors().isEmpty()){
+				
+				//if task has predecessors 
+				else if(!tempTask.getPredecessors().isEmpty()){		
+					//compute percentage in predecessor array list
+					int temp=0;
+					for(int i=0;i<tempTask.getPredecessors().size();i++){
+					temp=temp+(tempTask.getPredecessors().get(i).getCompletionPercentage());
+					}
+					int result=temp/(tempTask.getPredecessors().size());
 					
+					//if all predecessors are completed,task is ready to start
+					if(result==100&&tempTask.getCompletionPercentage()==0)
+					tempTask.setStatus("WaitingToRun");	
+					
+					//if all predecessors are completed and task ran to completion
+					else if(result==100&&tempTask.getCompletionPercentage()==100)
+					tempTask.setStatus("Complete");	
+					
+					//if all predecessors are completed and task is running
+					else if(result==100&&tempTask.getCompletionPercentage()!=0)
+					tempTask.setStatus("In progress");
+					
+					//if predecessors are not completed yet
+					else if (result!=100){
 					tempTask.setStatus("WaitingForPredecessorToComplete");
+					tempTask.setCompletionPercentage(0);
+					}
 				}
-				
-				
+								
 				else {
-					tempTask.setStatus("Unknown Status");
+					tempTask.setStatus("Unknown/Invalid Status");
 				}				
 			}
 			

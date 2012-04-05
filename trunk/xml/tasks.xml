@@ -33,7 +33,7 @@
 		<dueDate>Mon Jan 23 00:00:00 EST 2012</dueDate>
 		<personId>3</personId>
 		<superTaskId>0</superTaskId>
-		<completionPercentage>90</completionPercentage>
+		<completionPercentage>0</completionPercentage>
 		<successorId>0</successorId>
 	</task>
 	<task>
@@ -45,7 +45,7 @@
 		<dueDate>Sun Mar 11 00:00:00 EST 2012</dueDate>
 		<personId>4</personId>
 		<superTaskId>1</superTaskId>
-		<completionPercentage>20</completionPercentage>
+		<completionPercentage>0</completionPercentage>
 		<successorId>1</successorId>
 	</task>
 </tasks>
