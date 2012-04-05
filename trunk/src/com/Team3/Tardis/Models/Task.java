@@ -15,8 +15,11 @@ public class Task {
 	private ArrayList<Task> subTasks;
 	private Task superTask;
 	private int completionPercentage;
-	private Task successor;//this task must finish before successor to start,a task can only have one successor	
-	private ArrayList<Task> predecessors;//a task can have a lot of predecessors
+	//this task must finish before successor to start,a task can  have only ONE successor,
+	//subtasks of the SAME parent can depend on each other but at least for one subtask the successor must be the parent task.
+	private Task successor;	
+	//a task can have more than one predecessors
+	private ArrayList<Task> predecessors;
 	private String status;
 	
 	//Default constructor to get rid of the empty arrayList problem

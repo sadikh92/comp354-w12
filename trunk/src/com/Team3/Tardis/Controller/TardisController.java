@@ -9,7 +9,7 @@ import com.Team3.Tardis.Util.Logger;
 import com.Team3.Tardis.Views.TardisShell;
 
 /**
- * @author Alex Landovskis
+ * @author Alex Landovskis,Babacar Ndiaye
  * @description The main controller that runs the TARDIS task manager.
  *
  */
@@ -36,16 +36,32 @@ public class TardisController {
 			
 			// Load tasks
 			tasks = taskReader.loadTasks(TASKS_FILE);
+			
 			//Set status
 			for (Task tempTask : tasks)
 			{
+				//if task has no predecessors
 				if (tempTask.getPredecessors().isEmpty()&&tempTask.getCompletionPercentage()==0)
 				{
 					tempTask.setStatus("WaitingToRun");
 				}
-				else if(!tempTask.getPredecessors().isEmpty()){
-					tempTask.setStatus("WaitingForPredecessorToStart");
+				else if(tempTask.getPredecessors().isEmpty()&&tempTask.getCompletionPercentage()!=0){
+					tempTask.setStatus("In progress");
 				}
+				else if(tempTask.getPredecessors().isEmpty()&&tempTask.getCompletionPercentage()==100){
+					tempTask.setStatus("Complete");
+				}
+				
+				//if task has predecessors that are not complete yet
+				else if(!tempTask.getPredecessors().isEmpty()){
+					
+					tempTask.setStatus("WaitingForPredecessorToComplete");
+				}
+				
+				
+				else {
+					tempTask.setStatus("Unknown Status");
+				}				
 			}
 			
 			//Create the interactive GUI

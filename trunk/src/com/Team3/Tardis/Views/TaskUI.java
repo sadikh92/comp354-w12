@@ -168,7 +168,7 @@ public class TaskUI extends JPanel implements ActionListener
 				taskInfo[i][7] = tasks.get(i).getSuperTask().getTaskId();
 			
 			if(tasks.get(i).getSuccessor()!=null)
-				taskInfo[i][8] = tasks.get(i).getSuccessor().getTaskId();
+				taskInfo[i][8] = tasks.get(i).getSuccessor().getTitle();
 			
 			taskInfo[i][9] = tasks.get(i).getStatus();
 			taskInfo[i][10] = tasks.get(i).getCompletionPercentage();
@@ -269,6 +269,9 @@ public class TaskUI extends JPanel implements ActionListener
 				if (tasks.get(index).getSuperTask().getSubtasks().get(i).getTaskId() == tasks.get(index).getTaskId())
 				{
 					tasks.get(index).getSuperTask().getSubtasks().remove(i);
+					
+					//delete from list of predecessor of its successor
+					tasks.get(index).getSuperTask().getPredecessors().remove(i);
 					breakIf = true;
 				}
 				else
@@ -317,6 +320,9 @@ public class TaskUI extends JPanel implements ActionListener
 		}
 
 		//Once all of the subtasks have been deleted, the task itself is deleted
+		
+		//delete from list of predecessor of its successor
+		tasks.get(index).getSuccessor().getPredecessors().remove(index);
 		tasks.remove(index);			
 		
 		//The shell is updated after each deletion
