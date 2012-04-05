@@ -269,9 +269,44 @@ public class TaskUI extends JPanel implements ActionListener
 				if (tasks.get(index).getSuperTask().getSubtasks().get(i).getTaskId() == tasks.get(index).getTaskId())
 				{
 					tasks.get(index).getSuperTask().getSubtasks().remove(i);
-					
-					//delete from list of predecessor of its successor
+					breakIf = true;
+				}
+				else
+				{
+					++i;
+				}
+			}
+			
+			//BreakIf is reset
+			breakIf = false;
+			
+			//The task will be removed from the super task's list of predecessors
+			for (int i = 0; i != tasks.get(index).getSuperTask().getPredecessors().size() && !breakIf;)
+			{
+				if (tasks.get(index).getSuperTask().getPredecessors().get(i).getTaskId() == tasks.get(index).getTaskId())
+				{
 					tasks.get(index).getSuperTask().getPredecessors().remove(i);
+					breakIf = true;
+				}
+				else
+				{
+					++i;
+				}
+			}
+		}
+		
+		//BreakIf is reset
+		breakIf = false;
+		
+		//The task removes itself from its successor's list of predecessors
+		if (tasks.get(index).getSuccessor() != null)
+		{
+			//delete from list of predecessor of its successor
+			for (int i = 0; i != tasks.get(index).getSuccessor().getPredecessors().size() && !breakIf;)
+			{
+				if (tasks.get(index).getSuccessor().getPredecessors().get(i).getTaskId() == tasks.get(index).getTaskId())
+				{
+					tasks.get(index).getSuccessor().getPredecessors().remove(i);
 					breakIf = true;
 				}
 				else
@@ -318,11 +353,14 @@ public class TaskUI extends JPanel implements ActionListener
 				}
 			}
 		}
-
-		//Once all of the subtasks have been deleted, the task itself is deleted
 		
-		//delete from list of predecessor of its successor
-		tasks.get(index).getSuccessor().getPredecessors().remove(index);
+		//The task must now remove itself as its predecessor's successor
+		for (int i = 0; i != tasks.get(index).getPredecessors().size(); ++i)
+		{
+			tasks.get(index).getPredecessors().get(i).setSuccessor(null);
+		}
+		
+		//Once all of the subtasks have been deleted, the task itself is deleted
 		tasks.remove(index);			
 		
 		//The shell is updated after each deletion
