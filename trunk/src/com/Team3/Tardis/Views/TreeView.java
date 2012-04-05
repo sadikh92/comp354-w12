@@ -11,7 +11,6 @@ import javax.swing.plaf.TreeUI;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
-import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.Models.Task;
 
 //import org.eclipse
@@ -71,39 +70,28 @@ public class TreeView extends JPanel {
 	private DefaultMutableTreeNode setTaskInfo(DefaultMutableTreeNode root)
 	{
 		Task task;
-		Task subTask;
 		int i;
-		int j;
-		int m;
 		int n = tasks.size();
 		DefaultMutableTreeNode taskNode;
-		DefaultMutableTreeNode subTaskNode;
-		ArrayList<Task> subTasks;
 		
 		// Put task title into the tree.
 		for (i = 0; i < n; i++)
 		{
 			task = tasks.get(i);
+			taskNode = new DefaultMutableTreeNode(task.getTitle());
 			
 			if (task.getSuperTask() == null) // The current task is not a subtask.
 			{
-				subTasks = task.getSubtasks();
-				m = subTasks.size();
-			
-				taskNode = new DefaultMutableTreeNode(task.getTitle());
-				// Put subtasks in the tree.
-				for (j = 0; j < m; j++)
-				{
-					subTask = subTasks.get(j);
-					subTaskNode = new DefaultMutableTreeNode(subTask.getTitle());
-					taskNode.add(subTaskNode);
-				}
+				taskNode = traverse(task);
 				root.add(taskNode);
 			}
 		}
 		return root;
 	}
 	
+	/*
+	 * @description Update the tree.
+	 */
 	public void update()
 	{
 		DefaultMutableTreeNode root = new DefaultMutableTreeNode("Root");
@@ -111,5 +99,28 @@ public class TreeView extends JPanel {
 		
 		treeModel = new DefaultTreeModel(root);
 		tree.setModel(treeModel);
+	}
+	
+	/*
+	 * @description Traverse the tasks and subtasks to build a tree.
+	 */
+	public DefaultMutableTreeNode traverse(Task task)
+	{
+		int i;
+		int n;
+		Task subTask;
+		ArrayList<Task> subTasks = task.getSubtasks();
+		DefaultMutableTreeNode treeNode = new DefaultMutableTreeNode(task.getTitle());
+		DefaultMutableTreeNode subNode;
+		n = subTasks.size();
+
+		// Keep traversing subtasks until the leaf task is found.
+		for (i = 0; i < n; i++)
+		{
+			subTask = subTasks.get(i);
+			subNode = traverse(subTask);
+			treeNode.add(subNode);
+		}
+		return treeNode;
 	}
 }
