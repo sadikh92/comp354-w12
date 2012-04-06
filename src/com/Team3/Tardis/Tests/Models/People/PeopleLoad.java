@@ -9,13 +9,13 @@ import org.junit.Test;
 import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.Models.XML.PeopleReader;
 import com.Team3.Tardis.Util.InputValidator;
-
 /**
- * @author Alex Landovskis
- * @description This is a test case to verify that the 
+ * @author Alex Landovskis,Jaffari Rahmatullah
+ * @Description This is a test case to verify that the 
  * 				people reader successfully loads non-empty people files.
- *
+ * @Last modified 3/5/12 10:51
  */
+
 public class PeopleLoad {
 
 	static final String PEOPLE_FILE = "tests/people_one_task.xml";
