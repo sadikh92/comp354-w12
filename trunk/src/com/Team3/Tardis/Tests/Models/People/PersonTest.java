@@ -14,9 +14,10 @@ import com.Team3.Tardis.Models.XML.TaskReader;
 import com.Team3.Tardis.Util.InputValidator;
 
 
-/*
- * @author David Campell
- * @description Test the methods of the Person class.
+/**
+ * @author Alex Landovskis,Jaffari Rahmatullah,Adam Anderson
+ * @Description Test the methods of the Person class.
+ * @Last modified 3/11/12 12:20
  */
 public class PersonTest {
 	static final String PEOPLE_FILE = "xml/people.xml";
