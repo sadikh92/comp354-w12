@@ -125,6 +125,8 @@ public class TaskReader implements ITaskReader{
 					: Integer.parseInt(taskCtx.getValue("duration").toString()));
 			task.setDeliverable(taskCtx.getValue("deliverable") == null ? "" : taskCtx
 					.getValue("deliverable").toString());
+			task.setBeginDate(taskCtx.getValue("beginDate") == null ? null : 
+				new Date(taskCtx.getValue("beginDate").toString()));
 			task.setDueDate(taskCtx.getValue("dueDate") == null ? null : 
 					new Date(taskCtx.getValue("dueDate").toString()));
 			task.setPersonId(taskCtx.getValue("personId") == null ? 0
