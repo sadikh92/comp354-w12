@@ -20,3 +20,24 @@ Joe Miller
 -tasks: 
     -My second task
 
+Phillip Johnson
+-id: 3
+-phone: 514-223-1123
+-address: 966 Port Washington Road
+-city: Banff
+-postalCode: T0L 0C0
+-province: Alberta
+-country: Canada
+-tasks: 
+    -My first sub-task
+
+Janette Ensley
+-id: 4
+-phone: 514 311 1220
+-address: 624 Barrydowne Road
+-city: Sudbury
+-postalCode: P3E 5K3
+-province: Ontario
+-country: Canada
+-tasks: 
+    -My second sub-task
