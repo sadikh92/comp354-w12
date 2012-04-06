@@ -21,7 +21,11 @@ import com.Team3.Tardis.Controller.TardisController;
 import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.Models.Task;
 import com.Team3.Tardis.Models.XML.TaskWriter;
-
+/**
+ * @author Eric Dana,Eric Regnier,Alex Landovskis,Jaffari Rahmatullah,David Campbell
+ * @description tardisShell
+ * @Last modified 3/21/12 11:48
+ */
 public class TardisShell extends JFrame implements ITardisShell {
 	// Holds the tabbed pane
 	JTabbedPane tabbedPane = new JTabbedPane();

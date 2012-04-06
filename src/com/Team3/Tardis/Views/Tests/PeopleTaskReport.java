@@ -13,13 +13,13 @@ import com.Team3.Tardis.Models.XML.PeopleReader;
 import com.Team3.Tardis.Models.XML.TaskReader;
 import com.Team3.Tardis.Util.InputValidator;
 import com.Team3.Tardis.Views.PeopleView;
-
 /**
- * @author Alex Landovskis
- * @description This is a test case to verify that the 
+ * @author Eric Regnier,Alex Landovskis,Alex Landovskis,Jaffari Rahmatullah,David Campbell
+ * @description  This is a test case to verify that the 
  * 				people table is successfully created.
- *
+ * @Last modified 3/11/12 13:09
  */
+
 public class PeopleTaskReport 
 {	
 	@Test
