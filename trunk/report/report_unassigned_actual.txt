@@ -1,0 +1,40 @@
+Mark Smith
+-id: 2
+-phone: 514-744-3333
+-address: 2370 Gold Street
+-city: Saint-Laurent
+-postalCode: H4M 1S3
+-province: Quebec
+-country: Canada
+-tasks: None
+
+Joe Miller
+-id: 1
+-phone: 514-333-1444
+-address: 1215 Alexis-Nihon
+-city: Saint-Laurent
+-postalCode: H4R 1Z3
+-province: Quebec
+-country: Canada
+-tasks: 
+    -My second task
+
+Phillip Johnson
+-id: 3
+-phone: 514-223-1123
+-address: 966 Port Washington Road
+-city: Banff
+-postalCode: T0L 0C0
+-province: Alberta
+-country: Canada
+-tasks: None
+
+Janette Ensley
+-id: 4
+-phone: 514 311 1220
+-address: 624 Barrydowne Road
+-city: Sudbury
+-postalCode: P3E 5K3
+-province: Ontario
+-country: Canada
+-tasks: None
