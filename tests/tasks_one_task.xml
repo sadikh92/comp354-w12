@@ -22,7 +22,7 @@
 		<personId>1</personId>
 		<superTaskId></superTaskId>
 		<completionPercentage>0</completionPercentage>
-		<successorId></successorId>
+		<successorId>0</successorId>
 	</task>
 	<task>
 		<id>2</id>
