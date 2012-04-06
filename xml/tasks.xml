@@ -54,8 +54,8 @@
 	</task>
 	<task>
 		<id>4</id>
-		<title>My first subtask's sub-task</title>
-		<description>This is my second sub-task...</description>
+		<title>My first sub-task's sub-task</title>
+		<description>This is my first sub-task's sub-task...</description>
 		<duration>1</duration>
 		<deliverable>Second level sub-task.doc</deliverable>
 		<beginDate>Sun Mar 4 00:00:00 EST 2012</beginDate>
