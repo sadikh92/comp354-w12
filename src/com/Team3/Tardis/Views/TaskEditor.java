@@ -357,12 +357,12 @@ public class TaskEditor extends JFrame implements ActionListener {
 			tSuccessor = tasks.get(cSuccessor.getSelectedIndex());
 		
 		// if the task has no successor then the task must not have a parent
-		if(tSuccessor ==null&& parent != null)
+		if(tSuccessor == null && parent != null)
 			return false;
-		else if(parent!= null && tSuccessor == null)
+		else if(parent != null && tSuccessor == null)
 			return false;
 		// if task has no parent then the successor must not have a parent either
-		else if (parent == null && tSuccessor.getSuperTask()!= null)
+		else if (parent == null && tSuccessor != null && tSuccessor.getSuperTask() != null)
 			return false;
 		// if task has a parent and the successor is not the parent then the successor must be in the Subtasks of the parent
 		else if(parent != null && tSuccessor.getTaskId()!=parent.getTaskId()){

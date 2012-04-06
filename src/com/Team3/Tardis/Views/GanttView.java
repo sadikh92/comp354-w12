@@ -39,8 +39,6 @@ public class GanttView extends JPanel {
 		this.shell = shell;
 		this.tasks = tasks;
 		
-		setLayout(new BorderLayout());
-		
 		//Creates the gannt chart for the tasks and subtasks in the system
 		createGanttPanel();
 	}
@@ -50,6 +48,8 @@ public class GanttView extends JPanel {
 	 */
 	private void createGanttPanel()
 	{
+		setLayout(new BorderLayout());
+		
         IntervalCategoryDataset tasksDataset = createTasksDataset();
         JFreeChart ganttChart = createGanttChart(tasksDataset);
 
@@ -66,6 +66,7 @@ public class GanttView extends JPanel {
 	public void update()
 	{
 		// update gantt chart here
+		this.removeAll(); 
 		createGanttPanel();
 	}	
 	
@@ -82,7 +83,6 @@ public class GanttView extends JPanel {
         
     	for (Task task : this.tasks)
     	{
-    		//System.err.println(task.getLevel() + " - " + task.getTitle());
 			if (task.getSuperTask() == null) // The current task is not a subtask.
 			{
 				TaskSeries series;
