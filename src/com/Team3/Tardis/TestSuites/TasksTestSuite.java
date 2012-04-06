@@ -9,12 +9,12 @@ import org.junit.runners.Suite;
 import com.Team3.Tardis.Tests.Models.Tasks.*;
 import com.Team3.Tardis.Views.Tests.TaskEditorTests;
 import com.Team3.Tardis.Views.Tests.TaskViewTests;
-
 /**
- * @author Alex Landovskis
+ * @author Eric Regnier,Alex Landovskis
  * @description This is a test suite that runs all Task test cases.
- * @version 2. Updated by Eric Regnier
+ * @Last modified 3/11/12 13:09
  */
+
 @RunWith(Suite.class)
 @Suite.SuiteClasses( { EmptyTasksFile.class,
 					   TasksFileNotFound.class,

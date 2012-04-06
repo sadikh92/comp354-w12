@@ -14,12 +14,12 @@ import com.Team3.Tardis.Views.Tests.TaskEditorTests;
 import com.Team3.Tardis.Views.Tests.TaskViewTests;
 import junit.framework.Test;
 import junit.framework.TestSuite;
-
 /**
- * @author Alex Landovskis
+ * @author Eric Regnier,Alex Landovskis
  * @description This is a test suite that runs all test cases.
- * @version 2. Updated by Eric Regnier
+ * @Last modified 3/11/12 13:09
  */
+
 @RunWith(Suite.class)
 @Suite.SuiteClasses( { EmptyPersonFile.class,
 					   PeopleFileNotFound.class,
