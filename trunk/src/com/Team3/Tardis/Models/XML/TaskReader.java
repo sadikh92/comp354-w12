@@ -17,11 +17,12 @@ import org.apache.commons.jxpath.Pointer;
 import com.Team3.Tardis.Models.Task;
 import com.Team3.Tardis.Util.IInputValidator;
 import com.Team3.Tardis.Util.Logger;
-
 /**
- * @description Reads tasks from a file.
- *
+ * @author Kam Yip,Alex Landovskis,Jaffari Rahmatullah,David Campbell,Babacar Ndiaye
+ * @Description Reads tasks from a file.
+ * @Last modified 4/5/12 20:34
  */
+
 public class TaskReader implements ITaskReader{
 
 	private IInputValidator inputValidator;
