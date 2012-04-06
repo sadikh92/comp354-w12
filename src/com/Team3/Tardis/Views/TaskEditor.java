@@ -13,9 +13,9 @@ public class TaskEditor extends JFrame implements ActionListener {
 	// parameters
 	private JButton SUBMIT, CANCEL;
 	private JPanel panel;
-	protected JLabel taskID, tID, title, shortDesc, duration, deliverable, dueDateY, dueDateM, dueDateD, personID, superID, cSuperL;
+	protected JLabel taskID, tID, title, shortDesc, duration, deliverable, dueDateY, dueDateM, dueDateD, personID, superID, cSuperL, successor, successorEdit;
 	protected JTextField tTitle, tDesc, tDuration, tDeliverable, tYear, tMonth, tDay;
-	protected JComboBox cPeople, cSuper;
+	protected JComboBox cPeople, cSuper, cSuccessor;
 	private int index;
 	private long tIDNum;
 
@@ -45,6 +45,12 @@ public class TaskEditor extends JFrame implements ActionListener {
 			tIDArray[i] = tasks.get(i).getTaskId();
 		}
 		tIDArray[(tIDArray.length - 1)] = null;
+		
+		String[] successorArray = new String[tasks.size()+1];
+		for(int i=0; i < tasks.size();i++){
+			successorArray[i] = tasks.get(i).getTitle();
+		}
+		successorArray[successorArray.length -1]=null;
 
 		tIDNum = new Date().getTime();
 
@@ -76,6 +82,9 @@ public class TaskEditor extends JFrame implements ActionListener {
 
 		superID = new JLabel("ID of Parent task");
 		cSuper = new JComboBox(tIDArray);
+		
+		successor = new JLabel("Successor");
+		cSuccessor = new JComboBox(successorArray);
 
 		SUBMIT = new JButton("SUBMIT");
 
@@ -103,6 +112,8 @@ public class TaskEditor extends JFrame implements ActionListener {
 		panel.add(cPeople);
 		panel.add(superID);
 		panel.add(cSuper);
+		panel.add(successor);
+		panel.add(cSuccessor);
 		panel.add(SUBMIT);
 		panel.add(CANCEL);
 		add(panel, BorderLayout.CENTER);
@@ -175,6 +186,12 @@ public class TaskEditor extends JFrame implements ActionListener {
 
 		cSuperL.setName("superL");
 		
+		successor = new JLabel("Successor");
+		if(tasks.get(index).getSuccessor()==null)
+			successorEdit = new JLabel("No Successor");
+		else
+			successorEdit = new JLabel(tasks.get(index).getSuccessor().getTitle());
+		
 		SUBMIT = new JButton("SUBMIT");
 
 		CANCEL = new JButton("CANCEL");
@@ -201,6 +218,8 @@ public class TaskEditor extends JFrame implements ActionListener {
 		panel.add(cPeople);
 		panel.add(superID);
 		panel.add(cSuperL);
+		panel.add(successor);
+		panel.add(successorEdit);
 		panel.add(SUBMIT);
 		panel.add(CANCEL);
 		add(panel, BorderLayout.CENTER);
@@ -229,15 +248,25 @@ public class TaskEditor extends JFrame implements ActionListener {
 		int duration = Integer.parseInt(sDuration);
 
 		if (index == -1) {
-			if (cSuper.getSelectedIndex() == -1) {
-				// gets called if tasks has a parent
-				taskCreator(tIDNum, taskTitle, tDesc.getText(), duration, tDeliverable.getText(), dueDate, people.get(cPeople.getSelectedIndex()).getPersonId(), null);
-			} else {
-				// gets called if task does not have a parent
-				taskCreator(tIDNum, taskTitle, tDesc.getText(), duration, tDeliverable.getText(), dueDate, people.get(cPeople.getSelectedIndex()).getPersonId(), tasks.get(cSuper.getSelectedIndex()));
+			if (cSuper.getSelectedIndex() == -1 && cSuccessor.getSelectedIndex()==-1) {
+				// gets called if tasks does not have a parent does not have a successor
+				taskCreator(tIDNum, taskTitle, tDesc.getText(), duration, tDeliverable.getText(), dueDate, people.get(cPeople.getSelectedIndex()).getPersonId(), null, null);
+			} 
+			else if (cSuper.getSelectedIndex() == -1 && cSuccessor.getSelectedIndex()!=-1) {
+				// gets called if tasks does not have a parent but has a successor a successor
+				taskCreator(tIDNum, taskTitle, tDesc.getText(), duration, tDeliverable.getText(), dueDate, people.get(cPeople.getSelectedIndex()).getPersonId(), null, tasks.get(cSuccessor.getSelectedIndex()));
+			} 
+			else if (cSuccessor.getSelectedIndex()==-1){
+				// gets called if tasks has a parent but no successor
+				taskCreator(tIDNum, taskTitle, tDesc.getText(), duration, tDeliverable.getText(), dueDate, people.get(cPeople.getSelectedIndex()).getPersonId(), tasks.get(cSuper.getSelectedIndex()), null);
 			}
-		} else
-			taskCreator(tIDNum, taskTitle, tDesc.getText(), duration, tDeliverable.getText(), dueDate, people.get(cPeople.getSelectedIndex()).getPersonId(), null);
+			else{
+				// gets called if tasks has a parent and a successor
+				taskCreator(tIDNum, taskTitle, tDesc.getText(), duration, tDeliverable.getText(), dueDate, people.get(cPeople.getSelectedIndex()).getPersonId(), tasks.get(cSuper.getSelectedIndex()),tasks.get(cSuccessor.getSelectedIndex()));
+			}
+		} 
+		else
+			taskCreator(tIDNum, taskTitle, tDesc.getText(), duration, tDeliverable.getText(), dueDate, people.get(cPeople.getSelectedIndex()).getPersonId(), null, null);
 	}
 
 	private boolean validateTitle() {
@@ -306,6 +335,24 @@ public class TaskEditor extends JFrame implements ActionListener {
 
 		return true;
 	}
+	
+	// verifies that the successor and subtask relationship is consistent
+	private boolean validateSuccessor() {
+		Task parent = tasks.get(cSuper.getSelectedIndex());
+		Task successor = tasks.get(cSuccessor.getSelectedIndex());
+		// if task has no parent then the successor must not have a parent either
+		if (parent == null && successor.getSuperTask()!= null)
+			return false;
+		else if(parent != null && successor.getTaskId()!=parent.getTaskId()){
+			for(int i = 0;i< parent.getSubtasks().size();i++){
+				if(parent.getSubtasks().get(i).getTaskId()==successor.getTaskId())
+					return true;
+			}
+		return false;
+		}
+		else
+			return true;
+	}
 
 	// validation method activated upon Submit
 	public void actionPerformed(ActionEvent e) {
@@ -319,6 +366,8 @@ public class TaskEditor extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(this, "Incorrect Title (Current title is already in use.)", "Error", JOptionPane.ERROR_MESSAGE);
 			else if (!validateDuration())
 				JOptionPane.showMessageDialog(this, "Incorrect Duration (must be an integer)", "Error", JOptionPane.ERROR_MESSAGE);
+			else if(!validateSuccessor())
+				JOptionPane.showMessageDialog(this, "Invalid Successor - Subtask relationship", "Error", JOptionPane.ERROR_MESSAGE);
 			else {
 				updateTask();
 
@@ -338,7 +387,7 @@ public class TaskEditor extends JFrame implements ActionListener {
 
 	// Creates new task object
 	// or Edits an existing task object
-	private void taskCreator(long taskId, String title, String shortDescription, int duration, String deliverable, Date dueDate, int personID, Task parent) {
+	private void taskCreator(long taskId, String title, String shortDescription, int duration, String deliverable, Date dueDate, int personID, Task parent, Task successor) {
 
 		// creates new object
 		if (index < 0) {
@@ -351,6 +400,7 @@ public class TaskEditor extends JFrame implements ActionListener {
 			t.setDueDate(dueDate);
 			t.setPersonId(personID);
 			t.setSuperTask(parent);
+			t.setSuccessor(successor);
 			tasks.add(t);
 			if (parent != null)
 				parent.addSubtask(t);
