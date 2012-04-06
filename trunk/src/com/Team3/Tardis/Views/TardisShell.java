@@ -38,6 +38,7 @@ public class TardisShell extends JFrame implements ITardisShell {
 	private TaskUI taskPanel;
 	private PeopleUI peoplePanel;
 	private TreeView treePanel;
+	private GanttView ganttPanel;
 	
 	// constructor
 	public TardisShell(ArrayList<Task> tasks, ArrayList<Person> people) {
@@ -82,13 +83,13 @@ public class TardisShell extends JFrame implements ITardisShell {
 		treePanel = new TreeView(this, this.tasks);
 
 		// Creates the GANTT panel
-		JPanel ganttPanel = new JPanel();
+		ganttPanel = new GanttView(this, this.tasks);
 
 		// Adds a tab to the frame for each panel
 		tabbedPane.addTab("Tasks", taskPanel);
 		tabbedPane.addTab("People", peoplePanel);
 		tabbedPane.addTab("Tree", treePanel);
-		tabbedPane.addTab("GANTT", ganttPanel);
+		tabbedPane.addTab("GANTT Chart", ganttPanel);
 
 		// Adds the tabbed pane
 		add(tabbedPane);
@@ -175,6 +176,7 @@ public class TardisShell extends JFrame implements ITardisShell {
 		taskPanel.update();
 		peoplePanel.update();
 		treePanel.update();
+		ganttPanel.update();
 	}
 
 	// Prints a text file of the Table View of Tasks
