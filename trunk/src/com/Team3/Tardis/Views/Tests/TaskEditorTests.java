@@ -11,9 +11,9 @@ import com.Team3.Tardis.Models.XML.TaskReader;
 import com.Team3.Tardis.Util.InputValidator;
 
 /**
- * @author Eric Regnier
+ * @author Eric Regnier, David Campbell
  * @Description Tests the TaskEditor (task edit popup).
- * @Last modified 3/11/12 13:09
+ * @Last modified 6/4/12 2:09
  */
 public class TaskEditorTests {
 
