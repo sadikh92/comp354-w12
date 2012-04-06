@@ -22,14 +22,13 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 import com.Team3.Tardis.Util.Logger;
-
-
 /**
- * @author team3
- *
- * To change the template for this generated type comment go to
- * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
+ * @author Eric Regnier,Alex Landovskis,Jaffari Rahmatullah
+ * @Description To change the template for this generated type comment go to
+ *  Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
+ * @Last modified 3/11/12 17:49
  */
+
 public class XPathHelper 
 {	
 	public static Document getDocument(Object xmlFile)

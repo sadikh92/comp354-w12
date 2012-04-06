@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import com.Team3.Tardis.Models.Person;
 
 /**
- * @author Eric Regnier
- * @description Interface for the People Reader
- *
+ * @author Eric Regnier,Alex Landovskis
+ * @Description Interface for the people reader
+ * @Last modified 3/7/12 20:10
  */
 public interface IPeopleReader {
 

@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import com.Team3.Tardis.Models.Task;
 import com.Team3.Tardis.Models.IO.FileHelper;
 import com.Team3.Tardis.Util.Logger;
-
+/**
+ * @author Jaffari Rahmatullah,David Campbell,Babacar Ndiaye
+ * @Description write tasks to a file.
+ * @Last modified 4/5/12 20:34
+ */
 public class TaskWriter implements ITasksWriter {
 
 	static final String XML_START = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>";

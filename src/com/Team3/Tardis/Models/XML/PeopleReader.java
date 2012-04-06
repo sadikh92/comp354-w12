@@ -13,12 +13,12 @@ import org.apache.commons.jxpath.Pointer;
 import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.Util.IInputValidator;
 import com.Team3.Tardis.Util.Logger;
-
 /**
- * @author Eric Regnier
- * @description Reads people from a file.
- *
+ * @author Eric Regnier,Alex Landovskis,Jaffari Rahmatullah
+ * @Description Reads people from a file.
+ * @Last modified 3/7/12 20:10
  */
+
 public class PeopleReader implements IPeopleReader {
 
 	private IInputValidator inputValidator;
