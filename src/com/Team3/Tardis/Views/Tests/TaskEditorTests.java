@@ -32,12 +32,16 @@ public class TaskEditorTests {
 
 			//before values
 			Task before = tasks.get(0);
-			String title = before.getTitle();
-			String deliverable = before.getDeliverable();
-			long personId =before.getPersonId();
-			String desc = before.getShortDescription();
 			long id = before.getTaskId();
+			String title = before.getTitle();
+			String desc = before.getShortDescription();
+			int duration = before.getDuration();
+			String deliverable = before.getDeliverable();
 			Date dueDate = before.getDueDate();
+			long personId = before.getPersonId();
+			Task superTask = before.getSuperTask();
+			int completionPercentage = before.getCompletionPercentage();
+			Task successor = before.getSuccessor();
 			
 			TaskEditorWrapper taskEdit = new TaskEditorWrapper(new TardisShellMock(), tasks, people, 0);	
 			
@@ -45,15 +49,19 @@ public class TaskEditorTests {
 			taskEdit.updateTask();			
 			
 			Task after = tasks.get(0);
-			assertEquals(title, after.getTitle());
-			assertEquals(deliverable, after.getDeliverable());
-			assertEquals(personId, after.getPersonId());
-			assertEquals(desc, after.getShortDescription());
 			assertEquals(id, after.getTaskId());
+			assertEquals(title, after.getTitle());
+			assertEquals(desc, after.getShortDescription());
+			assertEquals(duration, after.getDuration());
+			assertEquals(deliverable, after.getDeliverable());
 			assertEquals(dueDate.getMonth(), after.getDueDate().getMonth());
 			assertEquals(dueDate.getDate(), after.getDueDate().getDate());
 			assertEquals(dueDate.getYear(), after.getDueDate().getYear());
-			assertNull(after.getSuperTask());
+			assertEquals(personId, after.getPersonId());
+			assertEquals(superTask, after.getSuperTask());
+			assertEquals(completionPercentage, after.getCompletionPercentage());
+			assertEquals(successor, after.getSuccessor());
+			//assertNull(after.getSuperTask());
 
 		} catch (Exception ex) {
 			fail("exception occured");
