@@ -11,10 +11,10 @@ import com.Team3.Tardis.Util.InputValidator;
 import com.Team3.Tardis.Util.Logger;
 
 /**
- * @author Bacabar Ndiaye, David Campell
+ * @author Eric Regnier,Alex Landovskis,Jaffari Rahmatullah,David Campbell,Babacar Ndiaye
  * @description This is a test case to verify that the 
  * 				task reader successfully loads non-empty task files.
- *
+ * @Last modified 4/5/12 20:01
  */
 public class TasksLoad {
 	static final String TASKS_FILE = "tests/tasks_one_task.xml";
@@ -68,7 +68,7 @@ public class TasksLoad {
 			assertEquals(3, third.getPersonId());
 			assertEquals(0, third.getSuperTask().getTaskId());
 			assertEquals(0, third.getCompletionPercentage());
-			assertEquals(1, third.getSuccessor().getTaskId());
+			assertEquals(0, third.getSuccessor().getTaskId());
 			
 			Task fourth = tasks.get(3);
 			assertEquals(3, fourth.getTaskId());
