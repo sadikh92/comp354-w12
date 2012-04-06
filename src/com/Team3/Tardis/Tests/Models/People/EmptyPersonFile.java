@@ -10,13 +10,13 @@ import com.Team3.Tardis.Models.XML.PeopleReader;
 import com.Team3.Tardis.Util.InputValidator;
 
 import static org.junit.Assert.*;
-
 /**
- * @author Alex Landovskis
- * @description This is a test case to verify that the 
+ * @author Eric Regnier,Alex Landovskis,Jaffari Rahmatullah
+ * @Description This is a test case to verify that the 
  * 				people reader handles empty files correctly.
- *
+ * @Last modified 3/5/12 10:51
  */
+
 public class EmptyPersonFile {
 
 	static final String EMPTY_PEOPLE_FILE = "xml/empty_people.xml";
