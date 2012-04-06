@@ -2,7 +2,12 @@ package com.Team3.Tardis.Models;
 
 import java.util.ArrayList;
 import java.util.Date;
-
+/**
+ * @author Eric Regnier,Kam Yip,Alex Landovskis,Adam Anderson,Jaffari Rahmatullah,
+ * David Campbell,Babacar Ndiaye
+ * @Description Task class
+ * @Last modified 4/5/12 19:44
+ */
 public class Task {
 
 	private long taskId;
