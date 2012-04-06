@@ -9,9 +9,9 @@ import com.Team3.Tardis.Util.Logger;
 import com.Team3.Tardis.Views.TardisShell;
 
 /**
- * @author Alex Landovskis,Babacar Ndiaye
+ * @author Alex Landovskis,Jaffari Rahmatullah,David Campbell,Babacar Ndiaye
  * @description The main controller that runs the TARDIS task manager.
- *
+ * @Last modified 4/5/12 19:44
  */
 public class TardisController {
 
