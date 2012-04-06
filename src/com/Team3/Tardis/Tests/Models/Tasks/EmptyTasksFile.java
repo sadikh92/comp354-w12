@@ -10,11 +10,12 @@ import org.junit.Test;
 import com.Team3.Tardis.Models.Task;
 import com.Team3.Tardis.Models.XML.TaskReader;
 import com.Team3.Tardis.Util.InputValidator;
-
-/*
- * @author Babacar Ndiaye
- * @description Test the case where the task file is empty.
+/**
+ * @author Alex Landovskis,Jaffari Rahmatullah,Babacar Ndiaye
+ * @Description Test the case where the task file is empty. 
+ * @Last modified 3/5/12 10:52
  */
+
 public class EmptyTasksFile {
 	static final String EMPTY_TASK_FILE = "xml/empty_task.xml";
 	static final String NO_TASK_FILE = "xml/empty_task_xml_tags.xml";

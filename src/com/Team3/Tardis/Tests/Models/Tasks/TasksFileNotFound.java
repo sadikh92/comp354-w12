@@ -10,12 +10,12 @@ import org.junit.Test;
 import com.Team3.Tardis.Models.Task;
 import com.Team3.Tardis.Models.XML.TaskReader;
 import com.Team3.Tardis.Util.InputValidator;
-
-
-/*
- * @author Babacar Ndiaye
- * @description Test the case where the task file is not found.
+/**
+ * @author Alex Landovskis,Jaffari Rahmatullah
+ * @Description Test the case where the task file is not found. 
+ * @Last modified 3/5/12 10:52
  */
+
 public class TasksFileNotFound {
 
 	static final String TASKS_NON_EXISTING_FILE = "xml/alltasks.xml";
