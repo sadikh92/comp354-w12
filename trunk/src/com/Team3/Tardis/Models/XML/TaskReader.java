@@ -132,7 +132,8 @@ public class TaskReader implements ITaskReader{
 					new Date(taskCtx.getValue("dueDate").toString()));
 			task.setPersonId(taskCtx.getValue("personId") == null ? 0
 					: Integer.parseInt(taskCtx.getValue("personId").toString()));
-			
+			//by default, the task is a super task, if we find that it's a subtask, we update the level then
+			task.setLevel(0);
 			
 			//Setting the super task/sub task relationship
 			
@@ -149,7 +150,8 @@ public class TaskReader implements ITaskReader{
 					{
 						//Set the super task of the new task to the task found
 						task.setSuperTask(tempTask);
-						
+						//Update the level that this task belongs to
+						task.setLevel(task.getSuperTask().getLevel()+1);
 						//Add the new task to the super task's sub task arrayList
 						task.getSuperTask().addSubtask(task);
 						
