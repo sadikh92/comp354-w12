@@ -13,25 +13,28 @@ import javax.swing.tree.DefaultTreeModel;
 
 import com.Team3.Tardis.Models.Task;
 
-//import org.eclipse
-/*
- * @author Alex Landovskis
- * Parts of TreeView from PeopleUI class.
- * @description Displays the tasks and subtasks as a tree.
- */
 public class TreeView extends JPanel {
-	/**
-	 * 
+	/*
+	 * @description Displays the tasks and subtasks as a tree.
+	 * @modified Alex Landovskis March 21, 2012
+	 * @modified Alex Landovskis April 3, 2012
+	 * @modified Alex Landovskis April 4, 2012
 	 */
+	 
 	private static final long serialVersionUID = 8025858802929065772L;
 	private TardisShell shell;
 	private ArrayList<Task> tasks;
 	
 	private JPanel treePanel;
 	private DefaultTreeModel treeModel;
-	private TreeUI treeUI;
 	private JTree tree;
 	
+	/*
+	 * @description Initialize the tree view.
+	 * @modified Alex Landovskis March 21, 2012
+	 * @param shell : Manages interactions between the models and the views.
+	 * @param tasks : The tasks that are present.
+	 */
 	public TreeView(TardisShell shell, ArrayList<Task> tasks)
 	{
 		this.shell = shell;
@@ -47,6 +50,7 @@ public class TreeView extends JPanel {
 	}
 	/*
 	 * @description Setup the tree view.
+	 * @modified Alex Landovskis March 21, 2012
 	 */
 	private void treePanel()
 	{
@@ -65,7 +69,10 @@ public class TreeView extends JPanel {
 	}	
 	
 	/*
-	 * @description Load the tasks into the table.
+	 * @description Create the tree representing the tasks.
+	 * @modified Alex Landovskis March 21, 2012
+	 * @modified Alex Landovskis April 4, 2012
+	 * @param root : The root of the true to be built.
 	 */
 	private DefaultMutableTreeNode setTaskInfo(DefaultMutableTreeNode root)
 	{
@@ -90,7 +97,8 @@ public class TreeView extends JPanel {
 	}
 	
 	/*
-	 * @description Update the tree.
+	 * @description Ensure that tree is up to date.
+	 * @modified Alex Landovskis March 28, 2012
 	 */
 	public void update()
 	{
@@ -102,7 +110,10 @@ public class TreeView extends JPanel {
 	}
 	
 	/*
-	 * @description Traverse the tasks and subtasks to build a tree.
+	 * @description Go through each level of task and create a node to represent it.
+	 * @modified Alex Landovskis April 4, 2012
+	 * @param task : A highest level task.
+	 * @return : The root node modified to point to the whole tree.
 	 */
 	public DefaultMutableTreeNode traverse(Task task)
 	{
