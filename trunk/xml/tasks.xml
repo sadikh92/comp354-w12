@@ -6,7 +6,7 @@
 		<description>This is my first task...</description>
 		<duration>1</duration>
 		<deliverable>First task.doc</deliverable>
-		<beginDate>Mon Jan 16 00:00:00 EST 2012</<beginDate>>
+		<beginDate>Mon Jan 16 00:00:00 EST 2012</beginDate>
 		<dueDate>Mon Jan 23 00:00:00 EST 2012</dueDate>
 		<personId>2</personId>
 		<superTaskId></superTaskId>
@@ -53,7 +53,7 @@
 		<successorId>1</successorId>
 	</task>
 	<task>
-		<id>5</id>
+		<id>4</id>
 		<title>My first subtask's sub-task</title>
 		<description>This is my second sub-task...</description>
 		<duration>1</duration>
