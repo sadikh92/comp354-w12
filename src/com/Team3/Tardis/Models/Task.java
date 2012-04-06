@@ -10,6 +10,15 @@ public class Task {
 	private String shortDescription; 
 	private int duration;
 	private String deliverable;
+	private Date beginDate;
+	public Date getBeginDate() {
+		return beginDate;
+	}
+
+	public void setBeginDate(Date beginDate) {
+		this.beginDate = beginDate;
+	}
+
 	private Date dueDate;
 	private int personId;
 	private ArrayList<Task> subTasks;
