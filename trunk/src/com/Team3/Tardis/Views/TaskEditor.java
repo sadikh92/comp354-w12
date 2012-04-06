@@ -243,6 +243,8 @@ public class TaskEditor extends JFrame implements ActionListener {
 		d = Integer.parseInt(day);
 
 		Date dueDate = new Date(y-1900, m-1, d);
+		//auto generated begin date set to when task is created.
+		Date beginDate = new Date();
 
 		String sDuration = tDuration.getText();
 		int duration = Integer.parseInt(sDuration);
@@ -250,23 +252,23 @@ public class TaskEditor extends JFrame implements ActionListener {
 		if (index == -1) {
 			if (cSuper.getSelectedIndex() == -1 && cSuccessor.getSelectedIndex()==-1) {
 				// gets called if tasks does not have a parent does not have a successor
-				taskCreator(tIDNum, taskTitle, tDesc.getText(), duration, tDeliverable.getText(), dueDate, people.get(cPeople.getSelectedIndex()).getPersonId(), null, null);
+				taskCreator(tIDNum, taskTitle, tDesc.getText(), duration, tDeliverable.getText(), dueDate, people.get(cPeople.getSelectedIndex()).getPersonId(),beginDate, null, null);
 			} 
 			else if (cSuper.getSelectedIndex() == -1 && cSuccessor.getSelectedIndex()!=-1) {
 				// gets called if tasks does not have a parent but has a successor a successor
-				taskCreator(tIDNum, taskTitle, tDesc.getText(), duration, tDeliverable.getText(), dueDate, people.get(cPeople.getSelectedIndex()).getPersonId(), null, tasks.get(cSuccessor.getSelectedIndex()));
+				taskCreator(tIDNum, taskTitle, tDesc.getText(), duration, tDeliverable.getText(), dueDate, people.get(cPeople.getSelectedIndex()).getPersonId(),beginDate, null, tasks.get(cSuccessor.getSelectedIndex()));
 			} 
 			else if (cSuccessor.getSelectedIndex()==-1){
 				// gets called if tasks has a parent but no successor
-				taskCreator(tIDNum, taskTitle, tDesc.getText(), duration, tDeliverable.getText(), dueDate, people.get(cPeople.getSelectedIndex()).getPersonId(), tasks.get(cSuper.getSelectedIndex()), null);
+				taskCreator(tIDNum, taskTitle, tDesc.getText(), duration, tDeliverable.getText(), dueDate, people.get(cPeople.getSelectedIndex()).getPersonId(),beginDate, tasks.get(cSuper.getSelectedIndex()), null);
 			}
 			else{
 				// gets called if tasks has a parent and a successor
-				taskCreator(tIDNum, taskTitle, tDesc.getText(), duration, tDeliverable.getText(), dueDate, people.get(cPeople.getSelectedIndex()).getPersonId(), tasks.get(cSuper.getSelectedIndex()),tasks.get(cSuccessor.getSelectedIndex()));
+				taskCreator(tIDNum, taskTitle, tDesc.getText(), duration, tDeliverable.getText(), dueDate, people.get(cPeople.getSelectedIndex()).getPersonId(),beginDate, tasks.get(cSuper.getSelectedIndex()),tasks.get(cSuccessor.getSelectedIndex()));
 			}
 		} 
 		else
-			taskCreator(tIDNum, taskTitle, tDesc.getText(), duration, tDeliverable.getText(), dueDate, people.get(cPeople.getSelectedIndex()).getPersonId(), null, null);
+			taskCreator(tIDNum, taskTitle, tDesc.getText(), duration, tDeliverable.getText(), dueDate, people.get(cPeople.getSelectedIndex()).getPersonId(),beginDate, null, null);
 	}
 
 	private boolean validateTitle() {
@@ -387,12 +389,14 @@ public class TaskEditor extends JFrame implements ActionListener {
 
 	// Creates new task object
 	// or Edits an existing task object
-	private void taskCreator(long taskId, String title, String shortDescription, int duration, String deliverable, Date dueDate, int personID, Task parent, Task successor) {
+	private void taskCreator(long taskId, String title, String shortDescription, int duration, String deliverable, Date dueDate, int personID, Date beginDate, Task parent, Task successor) {
 
 		// creates new object
 		if (index < 0) {
 			Task t = new Task();
 			t.setTaskId(taskId);
+			// auto generated begin date set to when task was created.
+			t.setBeginDate(beginDate);
 			t.setTitle(title);
 			t.setShortDescription(shortDescription);
 			t.setDuration(duration);
