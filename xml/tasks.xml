@@ -6,6 +6,7 @@
 		<description>This is my first task...</description>
 		<duration>1</duration>
 		<deliverable>First task.doc</deliverable>
+		<beginDate>Mon Jan 16 00:00:00 EST 2012</<beginDate>>
 		<dueDate>Mon Jan 23 00:00:00 EST 2012</dueDate>
 		<personId>2</personId>
 		<superTaskId></superTaskId>
@@ -18,6 +19,7 @@
 		<description>This is my second task...</description>
 		<duration>3</duration>
 		<deliverable>Second task.doc</deliverable>
+		<beginDate>Fri Jan 20 00:00:00 EST 2012</beginDate>
 		<dueDate>Fri Jan 27 00:00:00 EST 2012</dueDate>
 		<personId>1</personId>
 		<superTaskId></superTaskId>
@@ -30,6 +32,7 @@
 		<description>This is my first sub-task...</description>
 		<duration>1</duration>
 		<deliverable>First sub-task.doc</deliverable>
+		<beginDate>Mon Jan 16 00:00:00 EST 2012</beginDate>
 		<dueDate>Mon Jan 23 00:00:00 EST 2012</dueDate>
 		<personId>3</personId>
 		<superTaskId>0</superTaskId>
@@ -42,9 +45,23 @@
 		<description>This is my second sub-task...</description>
 		<duration>1</duration>
 		<deliverable>Second sub-task.doc</deliverable>
+		<beginDate>Sun Mar 4 00:00:00 EST 2012</beginDate>
 		<dueDate>Sun Mar 11 00:00:00 EST 2012</dueDate>
 		<personId>4</personId>
 		<superTaskId>1</superTaskId>
+		<completionPercentage>0</completionPercentage>
+		<successorId>1</successorId>
+	</task>
+	<task>
+		<id>5</id>
+		<title>My first subtask's sub-task</title>
+		<description>This is my second sub-task...</description>
+		<duration>1</duration>
+		<deliverable>Second level sub-task.doc</deliverable>
+		<beginDate>Sun Mar 4 00:00:00 EST 2012</beginDate>
+		<dueDate>Sun Mar 11 00:00:00 EST 2012</dueDate>
+		<personId>4</personId>
+		<superTaskId>2</superTaskId>
 		<completionPercentage>0</completionPercentage>
 		<successorId>1</successorId>
 	</task>
