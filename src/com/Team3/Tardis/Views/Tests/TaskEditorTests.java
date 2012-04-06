@@ -112,6 +112,7 @@ public class TaskEditorTests {
 		}
 	}
 	
+	@Test
 	/**
 	 * @Description Test edit with a task that contains a super task.
 	 */
@@ -125,8 +126,8 @@ public class TaskEditorTests {
 			ArrayList<Task> tasks = taskReader.loadTasks(Common.TASKS_FILE);
 
 			//save the before values to make sure they stay the same after editing
-			long taskAt0Id = tasks.get(2).getTaskId();
-			long taskAt0Super = tasks.get(0).getSuperTask().getTaskId();
+			long taskAt2Id = tasks.get(2).getTaskId();
+			long taskAt2Super = tasks.get(2).getSuperTask().getTaskId();
 			
 			TaskEditorWrapper taskEdit = new TaskEditorWrapper(new TardisShellMock(), tasks, people, 2);
 			
@@ -141,16 +142,16 @@ public class TaskEditorTests {
 			taskEdit.updateTask();			
 			
 			//check if everything are equal
-			Task t = tasks.get(0);
+			Task t = tasks.get(2);
 			assertEquals("Test title", t.getTitle());
 			assertEquals("Test deliverable", t.getDeliverable());
-			assertEquals(tasks.get(0).getPersonId(), people.get(0).getPersonId());
+			assertEquals(tasks.get(2).getPersonId(), people.get(0).getPersonId());
 			assertEquals("Test desc", t.getShortDescription());
-			assertEquals(taskAt0Id, t.getTaskId());			
+			assertEquals(taskAt2Id, t.getTaskId());			
 			assertEquals(testDate.getMonth(), t.getDueDate().getMonth());
 			assertEquals(testDate.getDate(), t.getDueDate().getDate());
 			assertEquals(testDate.getYear(), t.getDueDate().getYear());
-			assertEquals(taskAt0Super, t.getSuperTask().getTaskId());
+			assertEquals(taskAt2Super, t.getSuperTask().getTaskId());
 
 		} catch (Exception ex) {
 			fail("exception occured");
