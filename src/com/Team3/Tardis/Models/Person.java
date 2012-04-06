@@ -3,8 +3,9 @@ package com.Team3.Tardis.Models;
 import java.util.ArrayList;
 
 /**
- * @author Eric Regnier
+ * @author Eric Regnier,Kam Yip,Alex Landovskis,Adam Anderson,Jaffari Rahmatullah,David Campbell,Babacar Ndiaye
  * @Description Person entity
+ * @Last modified 3/11/12 13:09
  */
 public class Person {
 
