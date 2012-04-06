@@ -340,14 +340,30 @@ public class TaskEditor extends JFrame implements ActionListener {
 	
 	// verifies that the successor and subtask relationship is consistent
 	private boolean validateSuccessor() {
-		Task parent = tasks.get(cSuper.getSelectedIndex());
-		Task successor = tasks.get(cSuccessor.getSelectedIndex());
-		// if task has no parent then the successor must not have a parent either
-		if (parent == null && successor.getSuperTask()!= null)
+		Task parent;
+		Task tSuccessor;
+		
+		if(cSuper.getSelectedIndex()==-1)
+			parent = null;
+		else
+			parent = tasks.get(cSuper.getSelectedIndex());
+		if(cSuccessor.getSelectedIndex()==-1)
+			tSuccessor =null;
+		else
+			tSuccessor = tasks.get(cSuccessor.getSelectedIndex());
+		
+		// if the task has no successor then the task must not have a parent
+		if(tSuccessor ==null&& parent != null)
 			return false;
-		else if(parent != null && successor.getTaskId()!=parent.getTaskId()){
+		else if(parent!= null && tSuccessor == null)
+			return false;
+		// if task has no parent then the successor must not have a parent either
+		else if (parent == null && tSuccessor.getSuperTask()!= null)
+			return false;
+		// if task has a parent and the successor is not the parent then the successor must be in the Subtasks of the parent
+		else if(parent != null && tSuccessor.getTaskId()!=parent.getTaskId()){
 			for(int i = 0;i< parent.getSubtasks().size();i++){
-				if(parent.getSubtasks().get(i).getTaskId()==successor.getTaskId())
+				if(parent.getSubtasks().get(i).getTaskId()==tSuccessor.getTaskId())
 					return true;
 			}
 		return false;
@@ -372,9 +388,16 @@ public class TaskEditor extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(this, "Invalid Successor - Subtask relationship", "Error", JOptionPane.ERROR_MESSAGE);
 			else {
 				updateTask();
+				
+				// updating Status
+				if(cSuccessor.getSelectedIndex()!=-1){
+					tasks.get(cSuccessor.getSelectedIndex()).updateCompletion();
+				}
+				
 
 				// updating the display and closing the TaskEditor Window
 				shell.update();
+				
 				this.dispose();
 			}
 		}
@@ -408,6 +431,11 @@ public class TaskEditor extends JFrame implements ActionListener {
 			tasks.add(t);
 			if (parent != null)
 				parent.addSubtask(t);
+			t.setStatus("WaitingToRun");
+			t.setCompletionPercentage(0);
+			if(successor!= null)
+				t.getSuccessor().addPredecessor(t);
+			
 		}
 		// edits existing object
 		else {
