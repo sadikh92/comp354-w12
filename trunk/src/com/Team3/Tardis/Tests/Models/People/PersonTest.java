@@ -50,13 +50,15 @@ public class PersonTest {
 			assertEquals(1, firstTasks.size());
 			Task firstTask = firstTasks.get(0);
 			
-			Date firstDate = new Date("01/23/2012");
+			Date firstBeginDate = new Date("01/16/2012");
+			Date firstDueDate = new Date("01/23/2012");
 			assertEquals(0, firstTask.getTaskId());
 			assertEquals("My first task", firstTask.getTitle());
 			assertEquals("This is my first task...", firstTask.getShortDescription());
 			assertEquals(1, firstTask.getDuration());
 			assertEquals("First task.doc", firstTask.getDeliverable());
-			assertEquals(firstDate, firstTask.getDueDate());
+			assertEquals(firstBeginDate, firstTask.getBeginDate());
+			assertEquals(firstDueDate, firstTask.getDueDate());
 			assertEquals(2, firstTask.getPersonId());
 			assertEquals(first.getPersonId(), firstTask.getPersonId());
 			
@@ -67,13 +69,15 @@ public class PersonTest {
 			assertEquals(1, secondTasks.size());
 			Task secondTask = secondTasks.get(0);
 			
-			Date secondDate = new Date("01/27/2012");
+			Date secondBeginDate = new Date("01/20/2012");
+			Date secondDueDate = new Date("01/27/2012");
 			assertEquals(1, secondTask.getTaskId());
 			assertEquals("My second task", secondTask.getTitle());
 			assertEquals("This is my second task...", secondTask.getShortDescription());
 			assertEquals(3, secondTask.getDuration());
 			assertEquals("Second task.doc", secondTask.getDeliverable());
-			assertEquals(secondDate, secondTask.getDueDate());
+			assertEquals(secondBeginDate, secondTask.getBeginDate());
+			assertEquals(secondDueDate, secondTask.getDueDate());
 			assertEquals(1, secondTask.getPersonId());
 			assertEquals(second.getPersonId(), secondTask.getPersonId());
 			
@@ -84,13 +88,15 @@ public class PersonTest {
 			assertEquals(1, thirdTasks.size());
 			Task thirdTask = thirdTasks.get(0);
 			
-			Date thirdDate = new Date("01/23/2012");
+			Date thirdBeginDate = new Date("01/16/2012");
+			Date thirdDueDate = new Date("01/23/2012");
 			assertEquals(2, thirdTask.getTaskId());
 			assertEquals("My first sub-task", thirdTask.getTitle());
 			assertEquals("This is my first sub-task...", thirdTask.getShortDescription());
 			assertEquals(1, thirdTask.getDuration());
 			assertEquals("First sub-task.doc", thirdTask.getDeliverable());
-			assertEquals(thirdDate, thirdTask.getDueDate());
+			assertEquals(thirdBeginDate, thirdTask.getBeginDate());
+			assertEquals(thirdDueDate, thirdTask.getDueDate());
 			assertEquals(3, thirdTask.getPersonId());
 			assertEquals(third.getPersonId(), thirdTask.getPersonId());
 			
@@ -102,23 +108,27 @@ public class PersonTest {
 			Task fourthTask1 = fourthTasks.get(0);
 			Task fourthTask2 = fourthTasks.get(1);
 			
-			Date fourthDate1 = new Date("03/11/2012");
+			Date fourthBeginDate1 = new Date("03/04/2012");
+			Date fourthDueDate1 = new Date("03/11/2012");
 			assertEquals(3, fourthTask1.getTaskId());
 			assertEquals("My second sub-task", fourthTask1.getTitle());
 			assertEquals("This is my second sub-task...", fourthTask1.getShortDescription());
 			assertEquals(1, fourthTask1.getDuration());
 			assertEquals("Second sub-task.doc", fourthTask1.getDeliverable());
-			assertEquals(fourthDate1, fourthTask1.getDueDate());
+			assertEquals(fourthBeginDate1, fourthTask1.getBeginDate());
+			assertEquals(fourthDueDate1, fourthTask1.getDueDate());
 			assertEquals(4, fourthTask1.getPersonId());
 			assertEquals(fourth.getPersonId(), fourthTask1.getPersonId());
 			
-			Date fourthDate2 = new Date("03/11/2012");
+			Date fourthBeginDate2 = new Date("03/04/2012");
+			Date fourthDueDate2 = new Date("03/11/2012");
 			assertEquals(4, fourthTask2.getTaskId());
 			assertEquals("My first sub-task's sub-task", fourthTask2.getTitle());
 			assertEquals("This is my first sub-task's sub-task...", fourthTask2.getShortDescription());
 			assertEquals(1, fourthTask2.getDuration());
 			assertEquals("Second level sub-task.doc", fourthTask2.getDeliverable());
-			assertEquals(fourthDate2, fourthTask2.getDueDate());
+			assertEquals(fourthBeginDate2, fourthTask2.getBeginDate());
+			assertEquals(fourthDueDate2, fourthTask2.getDueDate());
 			assertEquals(4, fourthTask2.getPersonId());
 			assertEquals(fourth.getPersonId(), fourthTask2.getPersonId());
 			
