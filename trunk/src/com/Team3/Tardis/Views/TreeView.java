@@ -12,7 +12,12 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
 import com.Team3.Tardis.Models.Task;
-
+/**
+ * @author Alex Landovskis
+ * @description Displays the tasks and subtasks as a tree.
+ * Parts of TreeView from PeopleUI class.
+ * @Last modified 4/5/12 20:31
+ */
 public class TreeView extends JPanel {
 	/*
 	 * @description Displays the tasks and subtasks as a tree.

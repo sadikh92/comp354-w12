@@ -1,9 +1,10 @@
 package com.Team3.Tardis.Views.Tests;
-
 /**
  * @author Eric Regnier
- * @Description Common variables used for the tests.
+ * @description Common variables used for the tests.
+ * @Last modified 3/11/12 13:09
  */
+
 public class Common {
 	
 	static final String PEOPLE_FILE = "xml/people.xml";

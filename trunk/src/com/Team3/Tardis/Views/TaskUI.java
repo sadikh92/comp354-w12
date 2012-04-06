@@ -21,7 +21,11 @@ import javax.swing.table.DefaultTableModel;
 import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.Models.Task;
 import com.Team3.Tardis.Views.TaskEditor;
-
+/**
+ * @author Eric Regnier,David Campbell,Babacar Ndiaye
+ * @description table view of task
+ * @Last modified 4/4/12 22:11
+ */
 //Table View of Tasks
 public class TaskUI extends JPanel implements ActionListener
 {	

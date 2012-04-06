@@ -12,7 +12,11 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
-
+/**
+ * @author David Campbell,Christopher Gee
+ * @description display people
+ * @Last modified 3/5/12 13:26
+ */
 //Table View of Tasks
 public class PeopleUI extends JPanel
 {	

@@ -7,11 +7,12 @@ import java.util.ArrayList;
 
 import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.Models.Task;
-
-/*
- * @author Alex Landovskis
+/**
+ * @author David Campbell,Alex Landovskis
  * @description Prepare and output table 2
+ * @Last modified 3/4/12 14:13
  */
+
 public class PeopleView implements IPeopleView {
 	
 	/*

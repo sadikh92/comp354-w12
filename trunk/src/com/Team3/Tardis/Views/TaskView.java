@@ -7,11 +7,12 @@ import java.util.ArrayList;
 
 import com.Team3.Tardis.Models.Person;
 import com.Team3.Tardis.Models.Task;
-
-/*
- * @author David Campbell,Babacar Ndiaye
+/**
+ * @author Eric Regnier,David Campbell,Babacar Ndiaye
  * @description Prepare and output table 1
+ * @Last modified 4/4/12 17:23
  */
+
 public class TaskView implements ITaskView {
 
 	/*
