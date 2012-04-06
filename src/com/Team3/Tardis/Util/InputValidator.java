@@ -3,11 +3,12 @@ package com.Team3.Tardis.Util;
 import java.util.regex.Pattern;
 import org.apache.commons.jxpath.JXPathContext;
 import org.apache.commons.jxpath.JXPathException;
-
 /**
- * @author Eric Regnier,Babacar Ndiaye
- * @Version 2. Added logging functionality.
+ * @author Eric Regnier,Kam Yip,Alex Landovskis,Jaffari Rahmatullah,Babacar Ndiaye
+ * @description input validator
+ * @Last modified 4/3/12 10:44
  */
+
 public class InputValidator implements IInputValidator {
 
 	private static final String TEXT_FIELD = "^(\\S)(.){1,75}(\\S)$";
