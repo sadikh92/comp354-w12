@@ -7,7 +7,11 @@ import java.awt.event.*;
 import java.util.Date;
 
 import com.Team3.Tardis.Models.*;
-
+/**
+ * @author Eric Dana,Eric Regnier,David Campbell,Adam Anderson,Babacar Ndiaye
+ * @description taskeditor
+ * @Last modified 4/5/12 21:11
+ */
 @SuppressWarnings("serial")
 public class TaskEditor extends JFrame implements ActionListener {
 	// parameters
