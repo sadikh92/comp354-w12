@@ -2,13 +2,16 @@ package com.Team3.Tardis.Views.Tests;
 /**
  * @author Eric Regnier, David Campbell
  * @description Common variables used for the tests.
- * @Last modified 5/4/12 10:54
+ * @Last modified 6/4/12 11:18
  */
 
 public class Common {
 	
 	static final String PEOPLE_FILE = "xml/people.xml";
 	static final String TASKS_FILE = "xml/tasks.xml";
+	static final String EMPTY_TASK_FILE1 = "xml/empty_task.xml";
+	static final String EMPTY_TASK_FILE2 = "xml/empty_task_xml_tags.xml";
+	static final String NO_SUBTASKS_FILE = "xml/no_subtasks.xml";
 	
 	//static final String ONE_TASK_TEST_FILE = "report/report_test.txt";
 	//static final String ONE_TASK_ACTUAL_FILE = "report/report_one_task.txt";
