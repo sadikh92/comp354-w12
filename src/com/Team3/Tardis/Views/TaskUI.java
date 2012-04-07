@@ -24,7 +24,7 @@ import com.Team3.Tardis.Views.TaskEditor;
 /**
  * @author Eric Regnier,David Campbell,Babacar Ndiaye
  * @description table view of task
- * @Last modified 4/4/12 22:11
+ * @Last modified 7/4/12 12:59
  */
 //Table View of Tasks
 public class TaskUI extends JPanel implements ActionListener
@@ -143,7 +143,6 @@ public class TaskUI extends JPanel implements ActionListener
 	{		
 		//Sets the two dimensional array to the correct size
 		taskInfo = new Object[tasks.size()][11];
-		boolean breakIf = false;
 		
 		//Loads the array with the correct values
 		for (int i = 0; i != taskInfo.length; ++i)
@@ -156,7 +155,7 @@ public class TaskUI extends JPanel implements ActionListener
 			taskInfo[i][5] = tasks.get(i).getDueDate();		
 			//Rather than adding a person's ID, the ID is used to find
 			//the person in the people arrayList to print to show their name instead
-			for (int j = 0; j != people.size() && !breakIf; ++j)
+			for (int j = 0; j != people.size(); ++j)
 			{
 				//When the person's ID matches the ID of the person in the people list
 				if (people.get(j).getPersonId() == tasks.get(i).getPersonId())
@@ -165,19 +164,30 @@ public class TaskUI extends JPanel implements ActionListener
 					taskInfo[i][6] = people.get(j).getFirstName();
 					
 					//The search stops
-					breakIf = true;
+					break;
 				}
 			}
-			if(tasks.get(i).getSuperTask()!=null)
-				taskInfo[i][7] = tasks.get(i).getSuperTask().getTaskId();
 			
-			if(tasks.get(i).getSuccessor()!=null)
+			if(tasks.get(i).getSuperTask() != null)
+			{
+				taskInfo[i][7] = tasks.get(i).getSuperTask().getTaskId();
+			}
+			else
+			{
+				taskInfo[i][7] = "None";
+			}
+			
+			if(tasks.get(i).getSuccessor() != null)
+			{
 				taskInfo[i][8] = tasks.get(i).getSuccessor().getTitle();
+			}
+			else
+			{
+				taskInfo[i][8] = "None";
+			}
 			
 			taskInfo[i][9] = tasks.get(i).getStatus();
 			taskInfo[i][10] = tasks.get(i).getCompletionPercentage();
-			
-			breakIf = false;
 		}
 	}
 	
@@ -261,19 +271,18 @@ public class TaskUI extends JPanel implements ActionListener
 	//Delete will call itself recursively to delete any subtasks
 	private void delete(int row)
 	{
-		boolean breakIf = false;
 		int index = row;
 		
 		//If the task has a super task
 		if (tasks.get(index).getSuperTask() != null)	
 		{			
 			//The task will be removed from the super task's list of subtasks
-			for (int i = 0; i != tasks.get(index).getSuperTask().getSubtasks().size() && !breakIf;)
+			for (int i = 0; i != tasks.get(index).getSuperTask().getSubtasks().size();)
 			{
 				if (tasks.get(index).getSuperTask().getSubtasks().get(i).getTaskId() == tasks.get(index).getTaskId())
 				{
 					tasks.get(index).getSuperTask().getSubtasks().remove(i);
-					breakIf = true;
+					break;
 				}
 				else
 				{
@@ -281,16 +290,13 @@ public class TaskUI extends JPanel implements ActionListener
 				}
 			}
 			
-			//BreakIf is reset
-			breakIf = false;
-			
 			//The task will be removed from the super task's list of predecessors
-			for (int i = 0; i != tasks.get(index).getSuperTask().getPredecessors().size() && !breakIf;)
+			for (int i = 0; i != tasks.get(index).getSuperTask().getPredecessors().size();)
 			{
 				if (tasks.get(index).getSuperTask().getPredecessors().get(i).getTaskId() == tasks.get(index).getTaskId())
 				{
 					tasks.get(index).getSuperTask().getPredecessors().remove(i);
-					breakIf = true;
+					break;
 				}
 				else
 				{
@@ -298,20 +304,17 @@ public class TaskUI extends JPanel implements ActionListener
 				}
 			}
 		}
-		
-		//BreakIf is reset
-		breakIf = false;
 		
 		//The task removes itself from its successor's list of predecessors
 		if (tasks.get(index).getSuccessor() != null)
 		{
 			//delete from list of predecessor of its successor
-			for (int i = 0; i != tasks.get(index).getSuccessor().getPredecessors().size() && !breakIf;)
+			for (int i = 0; i != tasks.get(index).getSuccessor().getPredecessors().size();)
 			{
 				if (tasks.get(index).getSuccessor().getPredecessors().get(i).getTaskId() == tasks.get(index).getTaskId())
 				{
 					tasks.get(index).getSuccessor().getPredecessors().remove(i);
-					breakIf = true;
+					break;
 				}
 				else
 				{
@@ -319,9 +322,6 @@ public class TaskUI extends JPanel implements ActionListener
 				}
 			}
 		}
-		
-		//BreakIf is reset
-		breakIf = false;
 		
 		//If the task has subtasks,
 		//The delete method is called recursively on each of its children
@@ -335,12 +335,12 @@ public class TaskUI extends JPanel implements ActionListener
 			for (int i = 0; i != tasks.get(index).getSubtasks().size();)
 			{
 				//Find the subtask's location in the arrayList so that it can be deleted
-				for (int j = 0; j != tasks.size() && !breakIf;)
+				for (int j = 0; j != tasks.size();)
 				{
 					if (tasks.get(index).getSubtasks().get(i).getTaskId() == tasks.get(j).getTaskId())
 					{
 						subIndex = j;
-						breakIf = true;
+						break;
 					}
 					else
 					{
@@ -352,8 +352,6 @@ public class TaskUI extends JPanel implements ActionListener
 				if (subIndex != -1)
 				{
 					delete(subIndex);
-				
-					breakIf = false;
 				}
 			}
 		}
