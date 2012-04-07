@@ -20,7 +20,7 @@ import com.Team3.Tardis.Util.Logger;
 /**
  * @author Kam Yip,Alex Landovskis,Jaffari Rahmatullah,David Campbell,Babacar Ndiaye
  * @Description Reads tasks from a file.
- * @Last modified 4/5/12 20:34
+ * @Last modified 7/4/12 12:35
  */
 
 public class TaskReader implements ITaskReader{
@@ -160,7 +160,7 @@ public class TaskReader implements ITaskReader{
 				}
 			}
 			
-			//completion percentagw
+			//completion percentage
 			task.setCompletionPercentage(taskCtx.getValue("completionPercentage") == null ? 0
 					: Integer.parseInt(taskCtx.getValue("completionPercentage").toString()));
 			
@@ -196,6 +196,5 @@ public class TaskReader implements ITaskReader{
 			Logger.log(PeopleReader.class.getName(), "loadPerson() - Error = " + errorMessage);
 			throw new Exception(errorMessage);
 		}
-		
 	}
 }
