@@ -10,7 +10,7 @@ import com.Team3.Tardis.Models.*;
 /**
  * @author Eric Dana,Eric Regnier,David Campbell,Adam Anderson,Babacar Ndiaye
  * @description taskeditor
- * @Last modified 4/5/12 21:11
+ * @Last modified 4/7/12 17:42
  */
 @SuppressWarnings("serial")
 public class TaskEditor extends JFrame implements ActionListener {
@@ -375,6 +375,36 @@ public class TaskEditor extends JFrame implements ActionListener {
 		else
 			return true;
 	}
+	
+	//validation for dueDate, dueDate of successor must be after dueDate of predecessor
+	private boolean validateDueDate(){
+		
+		//setting duedate for comparison
+		String year = tYear.getText();
+		String month = tMonth.getText();
+		String day = tDay.getText();
+		int y = 0, m = 0, d = 0;
+		y = Integer.parseInt(year);
+		m = Integer.parseInt(month);
+		d = Integer.parseInt(day);
+
+		Date dueDate = new Date(y-1900, m-1, d);
+		
+		// setting tSuccessor to make if statements easier
+		Task tSuccessor;
+		
+		if(cSuccessor == null || cSuccessor.getSelectedIndex()==-1)
+			tSuccessor =null;
+		else
+			tSuccessor = tasks.get(cSuccessor.getSelectedIndex());
+		
+		// if due date of successor is after due date of predecessor returns false
+		if (tSuccessor.getDueDate().getYear() < dueDate.getYear() ||
+				tSuccessor.getDueDate().getYear() == dueDate.getYear() && tSuccessor.getDueDate().getMonth() < dueDate.getMonth() ||
+				tSuccessor.getDueDate().getYear() == dueDate.getYear() && tSuccessor.getDueDate().getMonth() == dueDate.getMonth() && tSuccessor.getDueDate().getDay() < dueDate.getDay())
+				return false;
+		return true;
+	}
 
 	// validation method activated upon Submit
 	public void actionPerformed(ActionEvent e) {
@@ -390,6 +420,8 @@ public class TaskEditor extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(this, "Incorrect Duration (must be an integer)", "Error", JOptionPane.ERROR_MESSAGE);
 			else if(!validateSuccessor())
 				JOptionPane.showMessageDialog(this, "Invalid Successor - Subtask relationship", "Error", JOptionPane.ERROR_MESSAGE);
+			else if(!validateDueDate())
+				JOptionPane.showMessageDialog(this, "Due date of current Task must be before due date of successor task", "Error", JOptionPane.ERROR_MESSAGE);
 			else {
 				updateTask();
 				
@@ -437,9 +469,15 @@ public class TaskEditor extends JFrame implements ActionListener {
 				parent.addSubtask(t);
 			t.setStatus("WaitingToRun");
 			t.setCompletionPercentage(0);
-			if(successor!= null)
+			if(successor!= null){
 				t.getSuccessor().addPredecessor(t);
-			
+				if(successor.getBeginDate().getYear() < dueDate.getYear() || 
+						successor.getBeginDate().getYear()<= dueDate.getYear() && successor.getBeginDate().getMonth() < dueDate.getMonth() || 
+						successor.getBeginDate().getYear()<= dueDate.getYear() && successor.getBeginDate().getMonth() <= dueDate.getMonth() && successor.getBeginDate().getDay() < dueDate.getDay()){
+					successor.setBeginDate(dueDate);
+				}
+					
+			}
 		}
 		// edits existing object
 		else {
