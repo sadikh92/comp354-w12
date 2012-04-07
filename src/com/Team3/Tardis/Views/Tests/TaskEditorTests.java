@@ -13,7 +13,7 @@ import com.Team3.Tardis.Util.InputValidator;
 /**
  * @author Eric Regnier, David Campbell
  * @Description Tests the TaskEditor (task edit popup).
- * @Last modified 6/4/12 2:09
+ * @Last modified 6/4/12 10:16
  */
 public class TaskEditorTests {
 
@@ -37,6 +37,7 @@ public class TaskEditorTests {
 			String desc = before.getShortDescription();
 			int duration = before.getDuration();
 			String deliverable = before.getDeliverable();
+			Date beginDate = before.getBeginDate();
 			Date dueDate = before.getDueDate();
 			long personId = before.getPersonId();
 			Task superTask = before.getSuperTask();
@@ -54,6 +55,7 @@ public class TaskEditorTests {
 			assertEquals(desc, after.getShortDescription());
 			assertEquals(duration, after.getDuration());
 			assertEquals(deliverable, after.getDeliverable());
+			assertEquals(beginDate, after.getBeginDate());
 			assertEquals(dueDate.getMonth(), after.getDueDate().getMonth());
 			assertEquals(dueDate.getDate(), after.getDueDate().getDate());
 			assertEquals(dueDate.getYear(), after.getDueDate().getYear());
@@ -61,7 +63,6 @@ public class TaskEditorTests {
 			assertEquals(superTask, after.getSuperTask());
 			assertEquals(completionPercentage, after.getCompletionPercentage());
 			assertEquals(successor, after.getSuccessor());
-			//assertNull(after.getSuperTask());
 
 		} catch (Exception ex) {
 			fail("exception occured");
@@ -70,7 +71,7 @@ public class TaskEditorTests {
 	
 	@Test
 	/**
-	 * @Description Test edit with a task that contains no super task.
+	 * @Description Test edit with a task that has no super task and no successor
 	 */
 	public void testEditWithNoSuperTask() {
 		try {
@@ -81,14 +82,20 @@ public class TaskEditorTests {
 			ArrayList<Person> people = peopleReader.loadPeople(Common.PEOPLE_FILE);
 			ArrayList<Task> tasks = taskReader.loadTasks(Common.TASKS_FILE);
 
-			//save the ID to make sure they stay the same after editing
-			long taskAt0Id = tasks.get(0).getTaskId();
+			//save the ID, superTask, completion percentage, successor and begin date
+			//to make sure they stay the same after editing
+			Task before = tasks.get(0);
+			long taskAt0Id = before.getTaskId();
+			Date beginDate = before.getBeginDate();
+			Task superTask = before.getSuperTask();
+			int completionPercentage = before.getCompletionPercentage();
+			Task successor = before.getSuccessor();
 			
 			TaskEditorWrapper taskEdit = new TaskEditorWrapper(new TardisShellMock(), tasks, people, 0);
-			
+
 			//edit the task
 			taskEdit.setTitle("Test title");
-			Date testDate = new Date();			
+			Date testDate = new Date();
 			taskEdit.setDueDate(testDate);
 			taskEdit.setDuration(10);
 			taskEdit.setDeliverable("Test deliverable");
@@ -106,7 +113,13 @@ public class TaskEditorTests {
 			assertEquals(testDate.getMonth(), t.getDueDate().getMonth());
 			assertEquals(testDate.getDate(), t.getDueDate().getDate());
 			assertEquals(testDate.getYear(), t.getDueDate().getYear());
-			assertNull(t.getSuperTask());
+
+			//The successor, completion percentage, super task and begin date should not have changed
+			assertEquals(beginDate, t.getBeginDate());
+			assertEquals(superTask, t.getSuperTask());
+			assertEquals(completionPercentage, t.getCompletionPercentage());
+			assertEquals(successor, t.getSuccessor());
+			
 		} catch (Exception ex) {
 			fail("exception occured");
 		}
@@ -114,7 +127,63 @@ public class TaskEditorTests {
 	
 	@Test
 	/**
-	 * @Description Test edit with a task that contains a super task.
+	 * @Description Test edit with a task that has no super task but has a successor
+	 */
+	public void testEditWithSuperTaskButSuccessor() {
+		try {
+			//sets up the needed classes
+			InputValidator validator = new InputValidator();
+			PeopleReader peopleReader = new PeopleReader(validator);
+			TaskReader taskReader = new TaskReader(validator);
+			ArrayList<Person> people = peopleReader.loadPeople(Common.PEOPLE_FILE);
+			ArrayList<Task> tasks = taskReader.loadTasks(Common.TASKS_FILE);
+
+			//save the ID, superTask, completion percentage, successor and begin date
+			//to make sure they stay the same after editing
+			Task before = tasks.get(1);
+			long taskAt0Id = before.getTaskId();
+			Date beginDate = before.getBeginDate();
+			Task superTask = before.getSuperTask();
+			int completionPercentage = before.getCompletionPercentage();
+			Task successor = before.getSuccessor();
+			
+			TaskEditorWrapper taskEdit = new TaskEditorWrapper(new TardisShellMock(), tasks, people, 1);
+			
+			//edit the task
+			taskEdit.setTitle("Test title");
+			Date testDate = new Date();
+			taskEdit.setDueDate(testDate);
+			taskEdit.setDuration(10);
+			taskEdit.setDeliverable("Test deliverable");
+			taskEdit.setDescription("Test desc");
+			taskEdit.setPerson(people.get(0).getPersonId());
+			taskEdit.updateTask();			
+			
+			//check the values
+			Task t = tasks.get(1);
+			assertEquals("Test title", t.getTitle());
+			assertEquals("Test deliverable", t.getDeliverable());
+			assertEquals(tasks.get(0).getPersonId(), people.get(0).getPersonId());
+			assertEquals("Test desc", t.getShortDescription());
+			assertEquals(taskAt0Id, t.getTaskId());
+			assertEquals(testDate.getMonth(), t.getDueDate().getMonth());
+			assertEquals(testDate.getDate(), t.getDueDate().getDate());
+			assertEquals(testDate.getYear(), t.getDueDate().getYear());
+
+			//The successor, completion percentage, super task and begin date should not have changed
+			assertEquals(beginDate, t.getBeginDate());
+			assertEquals(superTask, t.getSuperTask());
+			assertEquals(completionPercentage, t.getCompletionPercentage());
+			assertEquals(successor, t.getSuccessor());
+
+		} catch (Exception ex) {
+			fail("exception occured");
+		}
+	}
+	
+	@Test
+	/**
+	 * @Description Test edit with a task that has a super task.
 	 */
 	public void testEditWithSuperTask() {
 		try {
@@ -125,9 +194,14 @@ public class TaskEditorTests {
 			ArrayList<Person> people = peopleReader.loadPeople(Common.PEOPLE_FILE);
 			ArrayList<Task> tasks = taskReader.loadTasks(Common.TASKS_FILE);
 
-			//save the before values to make sure they stay the same after editing
-			long taskAt2Id = tasks.get(2).getTaskId();
-			long taskAt2Super = tasks.get(2).getSuperTask().getTaskId();
+			//save the ID, superTask, completion percentage, successor and begin date
+			//to make sure they stay the same after editing
+			Task before = tasks.get(2);
+			long taskAt2Id = before.getTaskId();
+			Date beginDate = before.getBeginDate();
+			long taskAt2Super = before.getSuperTask().getTaskId();
+			int completionPercentage = before.getCompletionPercentage();
+			Task successor = before.getSuccessor();
 			
 			TaskEditorWrapper taskEdit = new TaskEditorWrapper(new TardisShellMock(), tasks, people, 2);
 			
@@ -141,17 +215,20 @@ public class TaskEditorTests {
 			taskEdit.setPerson(people.get(0).getPersonId());
 			taskEdit.updateTask();			
 			
-			//check if everything are equal
+			//check if everything is equal
 			Task t = tasks.get(2);
 			assertEquals("Test title", t.getTitle());
 			assertEquals("Test deliverable", t.getDeliverable());
 			assertEquals(tasks.get(2).getPersonId(), people.get(0).getPersonId());
 			assertEquals("Test desc", t.getShortDescription());
-			assertEquals(taskAt2Id, t.getTaskId());			
+			assertEquals(taskAt2Id, t.getTaskId());		
+			assertEquals(beginDate, t.getBeginDate());
 			assertEquals(testDate.getMonth(), t.getDueDate().getMonth());
 			assertEquals(testDate.getDate(), t.getDueDate().getDate());
 			assertEquals(testDate.getYear(), t.getDueDate().getYear());
 			assertEquals(taskAt2Super, t.getSuperTask().getTaskId());
+			assertEquals(completionPercentage, t.getCompletionPercentage());
+			assertEquals(successor, t.getSuccessor());
 
 		} catch (Exception ex) {
 			fail("exception occured");
@@ -181,6 +258,7 @@ public class TaskEditorTests {
 			taskEdit.setDeliverable("Test deliverable");
 			taskEdit.setDescription("Test desc");
 			taskEdit.setPerson(people.get(0).getPersonId());
+			
 			taskEdit.updateTask();			
 			
 			//the last task is the one that just got added
@@ -194,6 +272,9 @@ public class TaskEditorTests {
 			assertEquals(testDate.getDate(), t.getDueDate().getDate());
 			assertEquals(testDate.getYear(), t.getDueDate().getYear());
 			assertEquals(t.getSuperTask().getTaskId(), tasks.get(0).getTaskId());
+			assertEquals(0, t.getCompletionPercentage());			
+			assertEquals(tasks.get(0).getTaskId(), t.getSuccessor().getTaskId());
+			
 		} catch (Exception ex) {
 			fail("exception occured");
 		}
