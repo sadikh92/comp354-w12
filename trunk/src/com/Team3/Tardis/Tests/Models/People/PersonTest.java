@@ -1,6 +1,7 @@
 package com.Team3.Tardis.Tests.Models.People;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,13 +16,14 @@ import com.Team3.Tardis.Util.InputValidator;
 
 
 /**
- * @author Alex Landovskis,Jaffari Rahmatullah,Adam Anderson
+ * @author Alex Landovskis,Jaffari Rahmatullah,Adam Anderson, David Campbell
  * @Description Test the methods of the Person class.
- * @Last modified 3/11/12 12:20
+ * @Last modified 4/6/12 9:15
  */
 public class PersonTest {
 	static final String PEOPLE_FILE = "xml/people.xml";
 	static final String TASKS_FILE = "xml/tasks.xml";
+	static final String TASKS_FILE_INVALID_PERSON = "tests/tasks_invalid_person_id.xml";
 	
 	@Test
 	/*
@@ -51,13 +53,13 @@ public class PersonTest {
 			assertEquals(1, firstTasks.size());
 			Task firstTask = firstTasks.get(0);
 			
-			Date firstBeginDate = new Date("01/16/2012");
-			Date firstDueDate = new Date("01/23/2012");
+			Date firstBeginDate = new Date("Mon Apr 23 00:00:00 EST 2012");
+			Date firstDueDate = new Date("Mon Apr 30 00:00:00 EST 2012");
 			assertEquals(0, firstTask.getTaskId());
 			assertEquals("My first task", firstTask.getTitle());
 			assertEquals("This is my first task...", firstTask.getShortDescription());
 			assertEquals(1, firstTask.getDuration());
-			assertEquals("First task.doc", firstTask.getDeliverable());
+			assertEquals("First task.doc", firstTask.getDeliverable());			
 			assertEquals(firstBeginDate, firstTask.getBeginDate());
 			assertEquals(firstDueDate, firstTask.getDueDate());
 			assertEquals(2, firstTask.getPersonId());
@@ -70,8 +72,8 @@ public class PersonTest {
 			assertEquals(1, secondTasks.size());
 			Task secondTask = secondTasks.get(0);
 			
-			Date secondBeginDate = new Date("01/20/2012");
-			Date secondDueDate = new Date("01/27/2012");
+			Date secondBeginDate = new Date("Mon Apr 16 00:00:00 EST 2012");
+			Date secondDueDate = new Date("Mon Apr 23 00:00:00 EST 2012");
 			assertEquals(1, secondTask.getTaskId());
 			assertEquals("My second task", secondTask.getTitle());
 			assertEquals("This is my second task...", secondTask.getShortDescription());
@@ -89,8 +91,8 @@ public class PersonTest {
 			assertEquals(1, thirdTasks.size());
 			Task thirdTask = thirdTasks.get(0);
 			
-			Date thirdBeginDate = new Date("01/16/2012");
-			Date thirdDueDate = new Date("01/23/2012");
+			Date thirdBeginDate = new Date("Mon Apr 16 00:00:00 EST 2012");
+			Date thirdDueDate = new Date("Mon Apr 23 00:00:00 EST 2012");
 			assertEquals(2, thirdTask.getTaskId());
 			assertEquals("My first sub-task", thirdTask.getTitle());
 			assertEquals("This is my first sub-task...", thirdTask.getShortDescription());
@@ -109,8 +111,8 @@ public class PersonTest {
 			Task fourthTask1 = fourthTasks.get(0);
 			Task fourthTask2 = fourthTasks.get(1);
 			
-			Date fourthBeginDate1 = new Date("03/04/2012");
-			Date fourthDueDate1 = new Date("03/11/2012");
+			Date fourthBeginDate1 = new Date("Mon Apr 9 00:00:00 EST 2012");
+			Date fourthDueDate1 = new Date("Mon Apr 16 00:00:00 EST 2012");
 			assertEquals(3, fourthTask1.getTaskId());
 			assertEquals("My second sub-task", fourthTask1.getTitle());
 			assertEquals("This is my second sub-task...", fourthTask1.getShortDescription());
@@ -121,8 +123,8 @@ public class PersonTest {
 			assertEquals(4, fourthTask1.getPersonId());
 			assertEquals(fourth.getPersonId(), fourthTask1.getPersonId());
 			
-			Date fourthBeginDate2 = new Date("03/04/2012");
-			Date fourthDueDate2 = new Date("03/11/2012");
+			Date fourthBeginDate2 = new Date("Mon Apr 9 00:00:00 EST 2012");
+			Date fourthDueDate2 = new Date("Mon Apr 16 00:00:00 EST 2012");
 			assertEquals(4, fourthTask2.getTaskId());
 			assertEquals("My first sub-task's sub-task", fourthTask2.getTitle());
 			assertEquals("This is my first sub-task's sub-task...", fourthTask2.getShortDescription());
@@ -141,7 +143,8 @@ public class PersonTest {
 	
 	@Test
 	/*
-	 * @description The getTasks method on the Person should return no tasks if the task is assigned to a non-existent person.
+	 * @description The getTasks method on a Person should not return a task that was
+	 * not assigned to anyone or that was assigned to someone who doesn't exist
 	 */
 	public void testUnassigned()
 	{
@@ -154,35 +157,30 @@ public class PersonTest {
 		try {
 			// Load the people and tasks.
 			people = peopleReader.loadPeople(PEOPLE_FILE);
-			tasks = taskReader.loadTasks(TASKS_FILE);
+			tasks = taskReader.loadTasks(TASKS_FILE_INVALID_PERSON);
 			
-			// Two people and two tasks should have been loaded.
+			// Four people and six tasks should have been loaded.
 			assertEquals(4, people.size());
-			assertEquals(5, tasks.size());
+			assertEquals(6, tasks.size());
 			
-			// Test the 1st person.
-			Person first = people.get(0);
-			ArrayList<Task> firstTasks = first.getTasks(tasks);
+			//None of the people should have task 4 assigned to them
+			for (Person tempPerson : people)
+			{
+				for (Task tempTask : tempPerson.getTasks(tasks))
+				{
+					assertFalse(tempTask.getTaskId() == tasks.get(4).getTaskId());
+				}
+			}
 			
-			assertEquals(1, firstTasks.size());
-			Task firstTask = firstTasks.get(0);
+			//None of the people should have task 5 assigned to them
+			for (Person tempPerson : people)
+			{
+				for (Task tempTask : tempPerson.getTasks(tasks))
+				{
+					assertFalse(tempTask.getTaskId() == tasks.get(5).getTaskId());
+				}
+			}
 			
-			// Test the 2nd person.
-			Person second = people.get(1);
-			ArrayList<Task> secondTasks = second.getTasks(tasks);
-			
-			assertEquals(1, secondTasks.size());
-			Task secondTask = secondTasks.get(0);
-			
-			Date secondDate = new Date("01/27/2012");
-			assertEquals(1, secondTask.getTaskId());
-			assertEquals("My second task", secondTask.getTitle());
-			assertEquals("This is my second task...", secondTask.getShortDescription());
-			assertEquals(3, secondTask.getDuration());
-			assertEquals("Second task.doc", secondTask.getDeliverable());
-			assertEquals(secondDate, secondTask.getDueDate());
-			assertEquals(1, secondTask.getPersonId());
-			assertEquals(second.getPersonId(), secondTask.getPersonId());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
