@@ -2,36 +2,30 @@ package com.Team3.Tardis.TestSuites;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import com.Team3.Tardis.Tests.Models.People.EmptyPersonFile;
-import com.Team3.Tardis.Tests.Models.People.PeopleFileNotFound;
-import com.Team3.Tardis.Tests.Models.People.PeopleLoad;
-import com.Team3.Tardis.Tests.Models.People.PersonTest;
-import com.Team3.Tardis.Tests.Models.Tasks.EmptyTasksFile;
-import com.Team3.Tardis.Tests.Models.Tasks.TasksFileNotFound;
-import com.Team3.Tardis.Tests.Models.Tasks.TasksLoad;
-import com.Team3.Tardis.Views.Tests.PeopleTaskReport;
-import com.Team3.Tardis.Views.Tests.TaskEditorTests;
-import com.Team3.Tardis.Views.Tests.TaskViewTests;
+import com.Team3.Tardis.Tests.Models.People.*;
+import com.Team3.Tardis.Tests.Models.Tasks.*;
+import com.Team3.Tardis.Views.Tests.*;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
 /**
- * @author Eric Regnier,Alex Landovskis
+ * @author Eric Regnier,Alex Landovskis, David Campbell
  * @description This is a test suite that runs all test cases.
- * @Last modified 3/11/12 13:09
+ * @Last modified 7/4/12 12:31
  */
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { EmptyPersonFile.class,
-					   PeopleFileNotFound.class,
-					   PeopleLoad.class,
-					   PersonTest.class,
-					   EmptyTasksFile.class,
-					   TasksFileNotFound.class,
-					   TasksLoad.class,
-					   PeopleTaskReport.class,
-					   TaskEditorTests.class,
-					   TaskViewTests.class
-					   } )
+@Suite.SuiteClasses( {	EmptyPersonFile.class,
+						PeopleFileNotFound.class,
+						PeopleLoad.class,
+						PersonTest.class,
+						EmptyTasksFile.class,
+						TasksFileNotFound.class,
+						TasksLoad.class,
+						TaskEditorTests.class,
+						TaskIUTests.class,
+						TaskViewTests.class,
+						TreeViewTests.class})
 public class AllTests {
 
 	public static Test suite() {
