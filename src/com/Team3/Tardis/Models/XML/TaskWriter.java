@@ -54,7 +54,7 @@ public class TaskWriter implements ITasksWriter {
 			//completion
 			sb.append("\n\t\t<completionPercentage>"+task.getCompletionPercentage()+"</completionPercentage>");
 			//If the task has a successor , the successor ID is printed
-			sb.append("\n\t\t<successorId>"+((task.getSuccessor() != null) ? task.getSuccessor().getTitle() : "" )+
+			sb.append("\n\t\t<successorId>"+((task.getSuccessor() != null) ? task.getSuccessor().getTaskId() : "" )+
 					  "</successorId>");
 				
 			sb.append("\n\t</task>");
