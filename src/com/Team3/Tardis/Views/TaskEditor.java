@@ -347,11 +347,11 @@ public class TaskEditor extends JFrame implements ActionListener {
 		Task parent;
 		Task tSuccessor;
 		
-		if(cSuper.getSelectedIndex()==-1)
+		if(cSuper == null || cSuper.getSelectedIndex()==-1)
 			parent = null;
 		else
 			parent = tasks.get(cSuper.getSelectedIndex());
-		if(cSuccessor.getSelectedIndex()==-1)
+		if(cSuccessor == null || cSuccessor.getSelectedIndex()==-1)
 			tSuccessor =null;
 		else
 			tSuccessor = tasks.get(cSuccessor.getSelectedIndex());
@@ -394,7 +394,7 @@ public class TaskEditor extends JFrame implements ActionListener {
 				updateTask();
 				
 				// updating Status
-				if(cSuccessor.getSelectedIndex()!=-1){
+				if(cSuccessor != null && cSuccessor.getSelectedIndex()!=-1){
 					tasks.get(cSuccessor.getSelectedIndex()).updateCompletion();
 				}
 				
