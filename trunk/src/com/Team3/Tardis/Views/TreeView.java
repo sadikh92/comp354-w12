@@ -13,10 +13,10 @@ import javax.swing.tree.DefaultTreeModel;
 
 import com.Team3.Tardis.Models.Task;
 /**
- * @author Alex Landovskis
+ * @author Alex Landovskis, David Campbell
  * @description Displays the tasks and subtasks as a tree.
  * Parts of TreeView from PeopleUI class.
- * @Last modified 4/5/12 20:31
+ * @Last modified 6/4/12 11:26
  */
 public class TreeView extends JPanel {
 	/*
@@ -27,12 +27,13 @@ public class TreeView extends JPanel {
 	 */
 	 
 	private static final long serialVersionUID = 8025858802929065772L;
-	private TardisShell shell;
+	private ITardisShell shell;
 	private ArrayList<Task> tasks;
 	
 	private JPanel treePanel;
 	private DefaultTreeModel treeModel;
 	private JTree tree;
+	protected DefaultMutableTreeNode rootForTest;
 	
 	/*
 	 * @description Initialize the tree view.
@@ -40,7 +41,7 @@ public class TreeView extends JPanel {
 	 * @param shell : Manages interactions between the models and the views.
 	 * @param tasks : The tasks that are present.
 	 */
-	public TreeView(TardisShell shell, ArrayList<Task> tasks)
+	public TreeView(ITardisShell shell, ArrayList<Task> tasks)
 	{
 		this.shell = shell;
 		this.tasks = tasks;
@@ -60,9 +61,11 @@ public class TreeView extends JPanel {
 	private void treePanel()
 	{
 		// Source http://docs.oracle.com/javase/tutorial/uiswing/components/tree.html
-		DefaultMutableTreeNode root = new DefaultMutableTreeNode("Root");
+		DefaultMutableTreeNode root = new DefaultMutableTreeNode("Project");
+		rootForTest = root;
 		
 		root = setTaskInfo(root);
+		//setTaskInfo();
 		treeModel = new DefaultTreeModel(root);
 		
 		tree = new JTree(treeModel);
@@ -98,6 +101,7 @@ public class TreeView extends JPanel {
 				root.add(taskNode);
 			}
 		}
+		
 		return root;
 	}
 	
@@ -137,6 +141,7 @@ public class TreeView extends JPanel {
 			subNode = traverse(subTask);
 			treeNode.add(subNode);
 		}
+		
 		return treeNode;
 	}
 }
