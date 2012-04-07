@@ -28,8 +28,8 @@ public class TasksLoad {
 		Logger.log("Testing", "Tasks");
 		try {
 			tasks = reader.loadTasks(TASKS_FILE);
-			// The file should contain 1 task
-			assertEquals(1, tasks.size());
+			// The file should contain 4 tasks so that everyone has 1 task assigned to them
+			assertEquals(4, tasks.size());
 			
 			// Test the 1st task.
 			Task first = tasks.get(0);
@@ -38,8 +38,8 @@ public class TasksLoad {
 			assertEquals("This is my first task...", first.getShortDescription());
 			assertEquals(1, first.getDuration());
 			assertEquals("First task.doc", first.getDeliverable());
-			assertEquals("Mon Jan 16 00:00:00 EST 2012", first.getBeginDate().toString());
-			assertEquals("Mon Jan 23 00:00:00 EST 2012", first.getDueDate().toString());
+			assertEquals("Mon Apr 23 01:00:00 EDT 2012", first.getBeginDate().toString());
+			assertEquals("Mon Apr 30 01:00:00 EDT 2012", first.getDueDate().toString());
 			assertEquals(2, first.getPersonId());
 			assertEquals(null, first.getSuperTask());
 			assertEquals(0, first.getCompletionPercentage());
