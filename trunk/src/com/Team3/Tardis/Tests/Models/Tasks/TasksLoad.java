@@ -14,7 +14,7 @@ import com.Team3.Tardis.Util.Logger;
  * @author Eric Regnier,Alex Landovskis,Jaffari Rahmatullah,David Campbell,Babacar Ndiaye
  * @description This is a test case to verify that the 
  * 				task reader successfully loads non-empty task files.
- * @Last modified 4/5/12 20:01
+ * @Last modified 4/6/12 9:33
  */
 public class TasksLoad {
 	static final String TASKS_FILE = "tests/tasks_one_task.xml";
