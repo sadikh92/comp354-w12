@@ -325,6 +325,15 @@ public class TaskEditor extends JFrame implements ActionListener {
 					return false;
 				}
 			}
+			
+			//Tests to see that the date is not less than the current date
+			Date givenDate = new Date(y - 1900, m - 1, d);
+			Date currentDate = new Date();
+			
+			if (givenDate.getTime() < currentDate.getTime())
+			{
+				return false;
+			}
 		}
 		else
 		{
@@ -398,19 +407,22 @@ public class TaskEditor extends JFrame implements ActionListener {
 		else
 			tSuccessor = tasks.get(cSuccessor.getSelectedIndex());
 		// will handle edits to compare the new date to old
-		if(tSuccessor==null && index>=0){
-			if(tasks.get(index).getSuccessor().getDueDate().getYear() < dueDate.getYear() ||
-					tasks.get(index).getSuccessor().getDueDate().getYear() == dueDate.getYear() && tasks.get(index).getSuccessor().getDueDate().getMonth() < dueDate.getMonth() ||
-							tasks.get(index).getSuccessor().getDueDate().getYear() == dueDate.getYear() && tasks.get(index).getSuccessor().getDueDate().getMonth() == dueDate.getMonth() && tasks.get(index).getSuccessor().getDueDate().getDay() < dueDate.getDay())
-				return false;
+		if(tSuccessor==null && index>=0)
+		{
+			if (tasks.get(index).getSuccessor().getDueDate().getTime() < dueDate.getTime())
+			{
+					return false;
+			}
+			
 			return true;
 		}
 		
 		// if due date of successor is after due date of predecessor returns false
-		if (tSuccessor.getDueDate().getYear() < dueDate.getYear() ||
-				tSuccessor.getDueDate().getYear() == dueDate.getYear() && tSuccessor.getDueDate().getMonth() < dueDate.getMonth() ||
-				tSuccessor.getDueDate().getYear() == dueDate.getYear() && tSuccessor.getDueDate().getMonth() == dueDate.getMonth() && tSuccessor.getDueDate().getDay() < dueDate.getDay())
+		if (tSuccessor.getDueDate().getTime() < dueDate.getTime())
+		{
 				return false;
+		}
+		
 		return true;
 	}
 	
@@ -428,21 +440,23 @@ public class TaskEditor extends JFrame implements ActionListener {
 		Date dueDate = new Date(y-1900, m-1, d);
 		
 		//this  "if" part will handle the edit
-		if(index>=0){
-			if(tasks.get(index).getBeginDate().getYear()> dueDate.getYear() ||
-					tasks.get(index).getBeginDate().getYear()== dueDate.getYear() &&tasks.get(index).getBeginDate().getMonth()> dueDate.getMonth() ||
-						tasks.get(index).getBeginDate().getYear()== dueDate.getYear() &&tasks.get(index).getBeginDate().getMonth()== dueDate.getMonth() && tasks.get(index).getBeginDate().getDay()> dueDate.getDay())
+		if(index>=0)
+		{
+			if (tasks.get(index).getBeginDate().getTime() > dueDate.getTime())
+			{
 				return false;
+			}
 				
 		}
 		// this "else" will handle the add
 		else{
 			// beginDate is auto generated to compare, will be effectively the same date as when the task is added
 			Date beginDate = new Date();
-			if(beginDate.getYear()< dueDate.getYear() ||
-					beginDate.getYear()== dueDate.getYear() &&beginDate.getMonth()< dueDate.getMonth() ||
-							beginDate.getYear()== dueDate.getYear() &&beginDate.getMonth()== dueDate.getMonth() && beginDate.getDay()< dueDate.getDay())
+			
+			if (beginDate.getTime() > dueDate.getTime())
+			{
 				return false;
+			}
 		}
 		return true;
 	}
@@ -512,14 +526,14 @@ public class TaskEditor extends JFrame implements ActionListener {
 				parent.addSubtask(t);
 			t.setStatus("WaitingToRun");
 			t.setCompletionPercentage(0);
-			if(successor!= null){
+			if(successor!= null)
+			{
 				t.getSuccessor().addPredecessor(t);
-				if(successor.getBeginDate().getYear() < dueDate.getYear() || 
-						successor.getBeginDate().getYear()<= dueDate.getYear() && successor.getBeginDate().getMonth() < dueDate.getMonth() || 
-						successor.getBeginDate().getYear()<= dueDate.getYear() && successor.getBeginDate().getMonth() <= dueDate.getMonth() && successor.getBeginDate().getDay() < dueDate.getDay()){
+					
+				if (successor.getBeginDate().getTime() < dueDate.getTime())
+				{
 					successor.setBeginDate(dueDate);
 				}
-					
 			}
 		}
 		// edits existing object
