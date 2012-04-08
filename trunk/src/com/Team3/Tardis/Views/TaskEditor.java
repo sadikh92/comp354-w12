@@ -413,6 +413,39 @@ public class TaskEditor extends JFrame implements ActionListener {
 				return false;
 		return true;
 	}
+	
+	//validates that the duedate is after the begin date
+	private boolean validateBeginDateDueDate(){
+		//setting duedate for comparison
+		String year = tYear.getText();
+		String month = tMonth.getText();
+		String day = tDay.getText();
+		int y = 0, m = 0, d = 0;
+		y = Integer.parseInt(year);
+		m = Integer.parseInt(month);
+		d = Integer.parseInt(day);
+				
+		Date dueDate = new Date(y-1900, m-1, d);
+		
+		//this  "if" part will handle the edit
+		if(index>=0){
+			if(tasks.get(index).getBeginDate().getYear()< dueDate.getYear() ||
+					tasks.get(index).getBeginDate().getYear()== dueDate.getYear() &&tasks.get(index).getBeginDate().getMonth()< dueDate.getMonth() ||
+						tasks.get(index).getBeginDate().getYear()== dueDate.getYear() &&tasks.get(index).getBeginDate().getMonth()== dueDate.getMonth() && tasks.get(index).getBeginDate().getDay()< dueDate.getDay())
+				return false;
+				
+		}
+		// this "else" will handle the add
+		else{
+			// beginDate is auto generated to compare, will be effectively the same date as when the task is added
+			Date beginDate = new Date();
+			if(beginDate.getYear()< dueDate.getYear() ||
+					beginDate.getYear()== dueDate.getYear() &&beginDate.getMonth()< dueDate.getMonth() ||
+							beginDate.getYear()== dueDate.getYear() &&beginDate.getMonth()== dueDate.getMonth() && beginDate.getDay()< dueDate.getDay())
+				return false;
+		}
+		return true;
+	}
 
 	// validation method activated upon Submit
 	public void actionPerformed(ActionEvent e) {
@@ -430,6 +463,8 @@ public class TaskEditor extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(this, "Invalid Successor - Subtask relationship", "Error", JOptionPane.ERROR_MESSAGE);
 			else if(!validateDueDate())
 				JOptionPane.showMessageDialog(this, "Due date of current Task must be before due date of successor task", "Error", JOptionPane.ERROR_MESSAGE);
+			else if(!validateBeginDateDueDate())
+				JOptionPane.showMessageDialog(this, "Due date of current Task must be after the begin date", "Error", JOptionPane.ERROR_MESSAGE);
 			else {
 				updateTask();
 				
