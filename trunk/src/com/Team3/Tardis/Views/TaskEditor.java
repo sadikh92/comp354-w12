@@ -10,7 +10,7 @@ import com.Team3.Tardis.Models.*;
 /**
  * @author Eric Dana,Eric Regnier,David Campbell,Adam Anderson,Babacar Ndiaye
  * @description taskeditor
- * @Last modified 4/7/12 17:42
+ * @Last modified 4/7/12 23:12
  */
 @SuppressWarnings("serial")
 public class TaskEditor extends JFrame implements ActionListener {
@@ -429,9 +429,9 @@ public class TaskEditor extends JFrame implements ActionListener {
 		
 		//this  "if" part will handle the edit
 		if(index>=0){
-			if(tasks.get(index).getBeginDate().getYear()< dueDate.getYear() ||
-					tasks.get(index).getBeginDate().getYear()== dueDate.getYear() &&tasks.get(index).getBeginDate().getMonth()< dueDate.getMonth() ||
-						tasks.get(index).getBeginDate().getYear()== dueDate.getYear() &&tasks.get(index).getBeginDate().getMonth()== dueDate.getMonth() && tasks.get(index).getBeginDate().getDay()< dueDate.getDay())
+			if(tasks.get(index).getBeginDate().getYear()> dueDate.getYear() ||
+					tasks.get(index).getBeginDate().getYear()== dueDate.getYear() &&tasks.get(index).getBeginDate().getMonth()> dueDate.getMonth() ||
+						tasks.get(index).getBeginDate().getYear()== dueDate.getYear() &&tasks.get(index).getBeginDate().getMonth()== dueDate.getMonth() && tasks.get(index).getBeginDate().getDay()> dueDate.getDay())
 				return false;
 				
 		}
