@@ -15,7 +15,7 @@ import com.Team3.Tardis.Views.Tests.*;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses( { TaskEditorTests.class,
-					   TaskIUTests.class,
+					   TaskUITests.class,
 					   TaskViewTests.class,
 					   TreeViewTests.class} )
 public class ViewTestSuite {
