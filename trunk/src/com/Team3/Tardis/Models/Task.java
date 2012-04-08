@@ -6,7 +6,7 @@ import java.util.Date;
  * @author Eric Regnier,Kam Yip,Alex Landovskis,Adam Anderson,Jaffari Rahmatullah,
  * David Campbell,Babacar Ndiaye
  * @Description Task class
- * @Last modified 7/4/12 12:52
+ * @Last modified 7/4/12 7:57
  */
 public class Task {
 
@@ -35,6 +35,7 @@ public class Task {
 	//Default constructor to get rid of the empty arrayList problem
 	public Task()
 	{
+		taskId = new Date().getTime();
 		predecessors = new ArrayList<Task>();
 		subTasks = new ArrayList<Task>();
 		superTask = null;
