@@ -20,12 +20,11 @@ import org.jfree.data.time.SimpleTimePeriod;
 
 import com.Team3.Tardis.Models.Task;
 
-//import org.eclipse
 /**
- * @author Rahmat Jaffari
+ * @author Kam Yip,Alex Landovskis,Jaffari Rahmatullah,David Campbell,Babacar Ndiaye
  * Parts of GanttView from PeopleUI class.
  * @description Displays the tasks and subtasks in a Gantt chart.
- * @Last modified 5/4/12 8:55
+ * @Last modified 7/4/12 21:30
  */
 public class GanttView extends JPanel {
 	/**
@@ -37,6 +36,7 @@ public class GanttView extends JPanel {
 	
 	public GanttView(TardisShell shell, ArrayList<Task> tasks)
 	{
+		// backup the shell and tasks pointer
 		this.shell = shell;
 		this.tasks = tasks;
 		
@@ -49,24 +49,28 @@ public class GanttView extends JPanel {
 	 */
 	private void createGanttPanel()
 	{
+		// initialize the layout
 		setLayout(new BorderLayout());
 		
+		// create the dataset and then the gantt chart for that dataset
         IntervalCategoryDataset tasksDataset = createTasksDataset();
         JFreeChart ganttChart = createGanttChart(tasksDataset);
 
-        // add the chart to a panel...
+        // add the chart to a panel
         ChartPanel chartPanel = new ChartPanel(ganttChart);
 		
+        // add the panel to a scrollable pane,in case there is more data than the screen can display,
+        // and then add it to the super panel
 		JScrollPane scrollPane = new JScrollPane(chartPanel);
 		add(scrollPane);
 	}
 	
 	/**
-	 * @description Update the tree.
+	 * @description Update the gantt chart.
 	 */
 	public void update()
 	{
-		// update gantt chart here
+		// clear the panel and redraw the gantt chart
 		this.removeAll(); 
 		createGanttPanel();
 	}	
@@ -80,22 +84,28 @@ public class GanttView extends JPanel {
     private IntervalCategoryDataset createTasksDataset() {
 
         TaskSeriesCollection collection = new TaskSeriesCollection();
-        HashMap<String, TaskSeries> taskSeriesMap = new HashMap<String, TaskSeries>();
+        HashMap<String, TaskSeries> taskSeriesMap = new HashMap<String, TaskSeries>(); // temporary datastructure to help creating the dataset
         
+        // loop thru the tasks list and create the dataset out of the tasks
     	for (Task task : this.tasks)
     	{
-			if (task.getSuperTask() == null) // The current task is not a subtask.
+    		// Tasks that are not a subtask for other tasks (parent task)
+			if (task.getSuperTask() == null)
 			{
 				TaskSeries series;
 				String seriesLabel = "0 - Tasks";
 				
+				// retreive the series object if contained in the taskSeriesMap,
+				// otherwise create a new one that will be stored in the taskSeriesMap
 				if(taskSeriesMap.containsKey(seriesLabel))
 					series = (TaskSeries)taskSeriesMap.get(seriesLabel);
 				else 
 					series = new TaskSeries(seriesLabel);
 				
+				// create a task for the dataset's series
 				series.add(new org.jfree.data.gantt.Task(task.getTitle(), new SimpleTimePeriod(task.getBeginDate(), task.getDueDate())));
 				
+				// add the series to the helper datastructure
 		        taskSeriesMap.put(seriesLabel, series);
 			}
 			else
@@ -104,23 +114,30 @@ public class GanttView extends JPanel {
 				String seriesLabel = task.getLevel()+getOrdinalSuffix(task.getLevel()) + " Level Sub-task";
 				Task tempTask = task.getSuperTask();
 				
+				// find the top-most supertask for the task
 				while(tempTask.getSuperTask() != null)
 					tempTask = tempTask.getSuperTask();
-			
+				
+				// retreive the series object if contained in the taskSeriesMap,
+				// otherwise create a new one that will be stored in the taskSeriesMap			
 				if(taskSeriesMap.containsKey(seriesLabel))
 					series = (TaskSeries)taskSeriesMap.get(seriesLabel);
 				else 
 					series = new TaskSeries(seriesLabel);
-				
+
+				// create a task for the dataset's series
 				series.add(new org.jfree.data.gantt.Task(tempTask.getTitle(), new SimpleTimePeriod(task.getBeginDate(), task.getDueDate())));
-				
+
+				// add the series to the helper datastructure
 		        taskSeriesMap.put(seriesLabel, series);
 			}
 		}
     	
+    	// sort the dataset by name, this also sorts by level since the first character of the name is the level.
     	List<String> sortedKeys = new ArrayList<String>(taskSeriesMap.keySet());
     	Collections.sort(sortedKeys);
     	
+    	// add the series to the collection (dataset) in order of levels (sorted previously)
     	for (Iterator<String> iterator = sortedKeys.iterator(); iterator.hasNext();)
     	{
 	        collection.add(taskSeriesMap.get(iterator.next()));	
@@ -139,6 +156,7 @@ public class GanttView extends JPanel {
      */
     private JFreeChart createGanttChart(IntervalCategoryDataset dataset) {
     	
+    	// create the gantt chart based on the given dataset
         JFreeChart chart = ChartFactory.createGanttChart(
             "Tasks Gantt Chart", // chart title
             "Task",              // domain axis label
