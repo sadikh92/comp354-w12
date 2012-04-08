@@ -24,14 +24,14 @@ import com.Team3.Tardis.Views.TaskEditor;
 /**
  * @author Eric Regnier,David Campbell,Babacar Ndiaye
  * @description table view of task
- * @Last modified 7/4/12 12:59
+ * @Last modified 7/4/12 1:44
  */
 //Table View of Tasks
 public class TaskUI extends JPanel implements ActionListener
 {	
 	//Stores the array of Task Objects
 	private ITardisShell shell;
-	private ArrayList<Task> tasks;
+	protected ArrayList<Task> tasks;
 	private ArrayList<Person> people;
 	
 	//Names of the columns
@@ -269,7 +269,7 @@ public class TaskUI extends JPanel implements ActionListener
 	
 	//Deletes the appropriate Task from the array list
 	//Delete will call itself recursively to delete any subtasks
-	private void delete(int row)
+	protected void delete(int row)
 	{
 		int index = row;
 		
