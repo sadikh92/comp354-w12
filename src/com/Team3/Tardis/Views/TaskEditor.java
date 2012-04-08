@@ -397,6 +397,14 @@ public class TaskEditor extends JFrame implements ActionListener {
 			tSuccessor =null;
 		else
 			tSuccessor = tasks.get(cSuccessor.getSelectedIndex());
+		// will handle edits to compare the new date to old
+		if(tSuccessor==null && index>=0){
+			if(tasks.get(index).getSuccessor().getDueDate().getYear() < dueDate.getYear() ||
+					tasks.get(index).getSuccessor().getDueDate().getYear() == dueDate.getYear() && tasks.get(index).getSuccessor().getDueDate().getMonth() < dueDate.getMonth() ||
+							tasks.get(index).getSuccessor().getDueDate().getYear() == dueDate.getYear() && tasks.get(index).getSuccessor().getDueDate().getMonth() == dueDate.getMonth() && tasks.get(index).getSuccessor().getDueDate().getDay() < dueDate.getDay())
+				return false;
+			return true;
+		}
 		
 		// if due date of successor is after due date of predecessor returns false
 		if (tSuccessor.getDueDate().getYear() < dueDate.getYear() ||
