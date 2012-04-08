@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<tasks>
+	<task>
+		<id>0</id>
+		<title>My first task</title>
+		<description>This is my first task...</description>
+		<duration>1</duration>
+		<deliverable>First task.doc</deliverable>
+		<beginDate>Mon Apr 23 01:00:00 EDT 2012</beginDate>
+		<dueDate>Mon Apr 30 01:00:00 EDT 2012</dueDate>
+		<personId>2</personId>
+		<superTaskId></superTaskId>
+		<completionPercentage>0</completionPercentage>
+		<successorId></successorId>
+	</task>
+	<task>
+		<id>1</id>
+		<title>My second task</title>
+		<description>This is my second task...</description>
+		<duration>3</duration>
+		<deliverable>Second task.doc</deliverable>
+		<beginDate>Mon Apr 16 01:00:00 EDT 2012</beginDate>
+		<dueDate>Mon Apr 23 01:00:00 EDT 2012</dueDate>
+		<personId>1</personId>
+		<superTaskId></superTaskId>
+		<completionPercentage>0</completionPercentage>
+		<successorId>0</successorId>
+	</task>
+	<task>
+		<id>2</id>
+		<title>My first sub-task</title>
+		<description>This is my first sub-task...</description>
+		<duration>1</duration>
+		<deliverable>First sub-task.doc</deliverable>
+		<beginDate>Mon Apr 16 01:00:00 EDT 2012</beginDate>
+		<dueDate>Mon Apr 23 01:00:00 EDT 2012</dueDate>
+		<personId>3</personId>
+		<superTaskId>0</superTaskId>
+		<completionPercentage>0</completionPercentage>
+		<successorId>0</successorId>
+	</task>
+	<task>
+		<id>3</id>
+		<title>My second sub-task</title>
+		<description>This is my second sub-task...</description>
+		<duration>1</duration>
+		<deliverable>Second sub-task.doc</deliverable>
+		<beginDate>Mon Apr 09 01:00:00 EDT 2012</beginDate>
+		<dueDate>Mon Apr 16 01:00:00 EDT 2012</dueDate>
+		<personId>4</personId>
+		<superTaskId>1</superTaskId>
+		<completionPercentage>0</completionPercentage>
+		<successorId>1</successorId>
+	</task>
+	<task>
+		<id>4</id>
+		<title>My first sub-task's sub-task</title>
+		<description>This is my first sub-task's sub-task...</description>
+		<duration>1</duration>
+		<deliverable>Second level sub-task.doc</deliverable>
+		<beginDate>Mon Apr 09 01:00:00 EDT 2012</beginDate>
+		<dueDate>Mon Apr 16 01:00:00 EDT 2012</dueDate>
+		<personId>4</personId>
+		<superTaskId>2</superTaskId>
+		<completionPercentage>0</completionPercentage>
+		<successorId>2</successorId>
+	</task>
+	<task>
+		<id>1333845975720</id>
+		<title>New task for save testing</title>
+		<description>New task for save testing</description>
+		<duration>10</duration>
+		<deliverable>New task deliverable</deliverable>
+		<beginDate>Sat Apr 07 20:46:15 EDT 2012</beginDate>
+		<dueDate>Sat Apr 07 20:46:15 EDT 2012</dueDate>
+		<personId>4</personId>
+		<superTaskId></superTaskId>
+		<completionPercentage>0</completionPercentage>
+		<successorId></successorId>
+	</task>
+</tasks>
