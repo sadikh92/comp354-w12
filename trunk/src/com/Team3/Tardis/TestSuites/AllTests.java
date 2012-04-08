@@ -23,7 +23,7 @@ import junit.framework.TestSuite;
 						TasksFileNotFound.class,
 						TasksLoad.class,
 						TaskEditorTests.class,
-						TaskIUTests.class,
+						TaskUITests.class,
 						TaskViewTests.class,
 						TreeViewTests.class})
 public class AllTests {
