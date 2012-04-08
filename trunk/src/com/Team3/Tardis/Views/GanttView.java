@@ -21,10 +21,11 @@ import org.jfree.data.time.SimpleTimePeriod;
 import com.Team3.Tardis.Models.Task;
 
 //import org.eclipse
-/*
+/**
  * @author Rahmat Jaffari
  * Parts of GanttView from PeopleUI class.
  * @description Displays the tasks and subtasks in a Gantt chart.
+ * @Last modified 5/4/12 8:55
  */
 public class GanttView extends JPanel {
 	/**
